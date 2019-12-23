@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"compatibilityLevel": "JAVA_8",
+	"package": "cookiedragon.luchadora.mixin.mixins",
+	"refmap": "mixins.invicta.refmap.json",
+	"mixins": [
+		"MixinMinecraft",
+		"entity.MixinEntityPlayerSP",
+		"entity.MixinEntityRenderer",
+		"netty.MixinNettyCompressionDecoder",
+		"netty.MixinAbstractInterruptibleChannel"
+	]
+}
