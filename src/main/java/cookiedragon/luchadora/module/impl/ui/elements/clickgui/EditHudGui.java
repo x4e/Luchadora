@@ -1,6 +1,9 @@
-package cookiedragon.luchadora.module.impl.ui;
+package cookiedragon.luchadora.module.impl.ui.elements.clickgui;
 
+import cookiedragon.luchadora.module.impl.ui.HudManager;
 import net.minecraft.client.gui.GuiScreen;
+
+import java.io.IOException;
 
 /**
  * @author cookiedragon234 21/Dec/2019
@@ -25,9 +28,12 @@ public class EditHudGui extends GuiScreen
 	//
 	
 	@Override
-	protected void keyTyped(char typedChar, int keyCode)
+	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
-		HudManager.keyTyped(typedChar, keyCode);
+		if(HudManager.keyTyped(typedChar, keyCode))
+			return;
+		
+		super.keyTyped(typedChar, keyCode);
 	}
 	
 	@Override

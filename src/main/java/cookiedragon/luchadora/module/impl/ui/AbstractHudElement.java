@@ -1,6 +1,7 @@
 package cookiedragon.luchadora.module.impl.ui;
 
 import cookiedragon.luchadora.module.AbstractModule;
+import cookiedragon.luchadora.module.impl.ui.elements.clickgui.EditHudGui;
 import cookiedragon.luchadora.util.*;
 import org.lwjgl.opengl.Display;
 
@@ -24,8 +25,10 @@ public abstract class AbstractHudElement extends AbstractModule implements IRend
 		HudManager.hudElements.add(this);
 	}
 	
-	public void keyTyped(Key key)
-	{ }
+	public boolean keyTyped(Key key)
+	{
+		return false;
+	}
 	
 	@Override
 	public void render(Vec2f mousePos)

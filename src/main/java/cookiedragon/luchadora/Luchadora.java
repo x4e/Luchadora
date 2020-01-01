@@ -41,10 +41,10 @@ public class Luchadora
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		ModuleManager.init();
 		BindManager.init();
 		HudManager.init();
 		ForgeEventListener.init();
+		ModuleManager.init();
 		new DiscordIntegration().start();
 		
 		MinecraftForge.EVENT_BUS.register(this);

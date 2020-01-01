@@ -1,9 +1,11 @@
 package cookiedragon.luchadora.util;
 
+import com.google.common.collect.ImmutableSet;
 import org.lwjgl.input.Keyboard;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
+import java.util.Set;
 
 /**
  * <p>lwjgl keycodes in an enum</p>
@@ -175,6 +177,17 @@ public enum Key
 	public boolean hasChangedState()
 	{
 		return this.code != 0 && Keyboard.getEventKey() == this.code;
+	}
+	
+	@Override
+	public String toString()
+	{
+		String name = this.name();
+		if (name.startsWith("KEY_"))
+		{
+			name = name.substring("KEY_".length());
+		}
+		return name;
 	}
 	
 	/**

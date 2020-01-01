@@ -22,8 +22,10 @@ public abstract class ValueElement<T extends Value> implements IRenderable, Glob
 		this.moduleElement = moduleElement;
 	}
 	
-	public void keyTyped(Key key)
-	{ }
+	public boolean keyTyped(Key key)
+	{
+		return false;
+	}
 	
 	@Override
 	public boolean mouseRelease(Vec2f mousePos, int mouseID)

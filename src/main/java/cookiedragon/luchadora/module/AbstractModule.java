@@ -42,6 +42,7 @@ public abstract class AbstractModule implements ISerializable, Globals
 		
 		EventDispatcher.register(this);
 		
+		this.enabled.setDescription(this.description);
 		this.enabled.addCallback((oldValue, newValue) ->
 		{
 			if (newValue)
@@ -96,6 +97,11 @@ public abstract class AbstractModule implements ISerializable, Globals
 		return enabled;
 	}
 	
+	public boolean isEnabled()
+	{
+		return enabled.getValue();
+	}
+	
 	public Value<Boolean> getVisible()
 	{
 		return visible;
@@ -144,9 +150,18 @@ public abstract class AbstractModule implements ISerializable, Globals
 		List<Value> values = new ArrayList<>();
 		try
 		{
+			List<Class> clazzes = new ArrayList<>();
+			
 			Class clazz = this.getClass();
 			do
 			{
+				clazzes.add(clazz);
+			}
+			while ((clazz = clazz.getSuperclass()) != null && AbstractModule.class.isAssignableFrom(clazz));
+			
+			for (int i = clazzes.size() - 1; i >= 0; i--)
+			{
+				clazz = clazzes.get(i);
 				for (Field declaredField : clazz.getDeclaredFields())
 				{
 					if (Value.class.isAssignableFrom(declaredField.getType()))
@@ -157,7 +172,6 @@ public abstract class AbstractModule implements ISerializable, Globals
 					}
 				}
 			}
-			while ((clazz = clazz.getSuperclass()) != null && AbstractModule.class.isAssignableFrom(clazz));
 		}
 		catch(Exception e)
 		{

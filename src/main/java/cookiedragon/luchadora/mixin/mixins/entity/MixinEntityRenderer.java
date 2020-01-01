@@ -2,6 +2,7 @@ package cookiedragon.luchadora.mixin.mixins.entity;
 
 import cookiedragon.luchadora.event.api.EventDispatcher;
 import cookiedragon.luchadora.event.client.Render2dEvent;
+import cookiedragon.luchadora.event.client.UpdateLightmapEvent;
 import net.minecraft.client.renderer.EntityRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -26,5 +27,11 @@ public class MixinEntityRenderer
 	{
 		Render2dEvent event = new Render2dEvent();
 		EventDispatcher.dispatch(event);
+	}
+	
+	@Inject(method = "updateLightmap", at = @At(value = "HEAD", target = "Lnet/minecraft/client/renderer/texture/DynamicTexture;updateDynamicTexture()V"))
+	private void updateLightmapWrapper(float partialTicks, CallbackInfo ci)
+	{
+		EventDispatcher.dispatch(new UpdateLightmapEvent());
 	}
 }

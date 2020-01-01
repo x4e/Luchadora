@@ -9,6 +9,6 @@ public class ChatUtils implements Globals
 {
 	public static void sendMessage(String message)
 	{
-		mc.getPlayer().sendMessage(new TextComponentString(message));
+		mc.player.sendMessage(new TextComponentString(message));
 	}
 }

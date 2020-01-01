@@ -1,11 +1,11 @@
 package cookiedragon.luchadora.value.values;
 
+import com.google.gson.JsonElement;
+import cookiedragon.luchadora.util.Key;
 import cookiedragon.luchadora.value.Value;
 import com.google.gson.JsonObject;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 @SuppressWarnings("unchecked")
 public class EnumValue<T extends Enum> extends Value<Enum>
 {
-	protected final Class<? extends Enum> enumType;
-	protected final Set<? extends Enum> options;
+	public final Class<? extends Enum> enumType;
+	public final List<? extends Enum> options;
 	
 	public EnumValue(String name, T defaultValue)
 	{
@@ -26,18 +26,28 @@ public class EnumValue<T extends Enum> extends Value<Enum>
 		
 		this.enumType = defaultValue.getClass();
 		options = Arrays.stream(defaultValue.getClass().getEnumConstants())
-			.collect(Collectors.toCollection(HashSet::new));
+			.collect(Collectors.toCollection(ArrayList::new));
 	}
 	
 	@Override
 	public JsonObject addToObject(JsonObject jsonObject)
 	{
-		return null;
+		jsonObject.addProperty(this.getName(), this.getValue().name());
+		return jsonObject;
 	}
 	
 	@Override
 	public void retrieveFromObject(JsonObject jsonObject)
 	{
-	
+		if (jsonObject.has(this.getName()))
+		{
+			JsonElement element = jsonObject.get(this.getName());
+			
+			for (Enum enumConstant : this.defaultVal.getClass().getEnumConstants())
+			{
+				if(enumConstant.name().equals(element.getAsString()))
+					this.setValue(enumConstant);
+			}
+		}
 	}
 }

@@ -13,6 +13,12 @@ public class Vec2f
 		this.y = y;
 	}
 	
+	public Vec2f(float x, float y, float scale)
+	{
+		this.x = x * scale;
+		this.y = y * scale;
+	}
+	
 	public Vec2f(Vec2f other)
 	{
 		this.x = other.x;
@@ -45,6 +51,14 @@ public class Vec2f
 	public Vec2f subtract(Vec2f b)
 	{
 		return new Vec2f(x - b.x, y - b.y);
+	}
+	
+	public Vec2f scale(float scale)
+	{
+		return new Vec2f(
+			x * scale,
+			y * scale
+		);
 	}
 	
 	@Override

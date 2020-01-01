@@ -1,9 +1,6 @@
 package cookiedragon.luchadora.module.impl.ui.elements.clickgui.values;
 
-import cookiedragon.luchadora.event.api.EventDispatcher;
-import cookiedragon.luchadora.event.api.Subscriber;
-import cookiedragon.luchadora.event.client.KeyPressedEvent;
-import cookiedragon.luchadora.module.impl.ui.EditHudGui;
+import cookiedragon.luchadora.module.impl.ui.elements.clickgui.EditHudGui;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ModuleElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
 import cookiedragon.luchadora.util.Key;
@@ -31,6 +28,7 @@ public class KeyValueElement extends ValueElement<KeyValue>
 		if (moduleElement.collapsed)
 		{
 			size = new Vec2f(0,0);
+			isListening = false;
 			return;
 		}
 		
@@ -47,7 +45,7 @@ public class KeyValueElement extends ValueElement<KeyValue>
 			position.y,
 			position.x + size.x,
 			position.y + size.y,
-			Color.DARK_GRAY.getRGB()
+			moduleElement.categoryElement.guiModule.negativeColour.getValue().getRGB()
 		);
 		
 		RenderUtils.renderOutline(
@@ -58,10 +56,19 @@ public class KeyValueElement extends ValueElement<KeyValue>
 			Color.BLACK.getRGB()
 		);
 		
-		mc.fontRenderer.drawString(
-			isListening ? "..." : this.value.getValue().name(),
+		mc.fontRenderer.drawStringClamped(
+			this.value.getName(),
 			position.x + 1,
 			position.y + 1,
+			size.x / 2,
+			Color.LIGHT_GRAY.getRGB()
+		);
+		
+		mc.fontRenderer.drawStringRightClamped(
+			isListening ? "..." : this.value.getValue().toString(),
+			position.x + size.x,
+			position.y + 1,
+			size.x / 2,
 			Color.LIGHT_GRAY.getRGB()
 		);
 	}
@@ -76,17 +83,28 @@ public class KeyValueElement extends ValueElement<KeyValue>
 				isListening = !isListening;
 				return true;
 			}
+			else if(mouseID == 1)
+			{
+				isListening = false;
+				return true;
+			}
 		}
+		isListening = false;
 		return false;
 	}
 	
 	@Override
-	public void keyTyped(Key key)
+	public boolean keyTyped(Key key)
 	{
 		if (this.isListening && mc.getCurrentScreen() instanceof EditHudGui && !this.moduleElement.collapsed)
 		{
-			this.value.setValue(key);
+			if (key != Key.KEY_ESCAPE)
+			{
+				this.value.setValue(key);
+			}
 			this.isListening = false;
+			return true;
 		}
+		return false;
 	}
 }

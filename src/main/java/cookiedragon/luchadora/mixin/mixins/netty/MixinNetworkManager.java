@@ -19,7 +19,7 @@ public class MixinNetworkManager
 	@Shadow
 	private Channel channel;
 	
-	@Redirect(method = "handleDisconnection", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/INetHandler;onDisconnect(Lnet/minecraft/util/text/ITextComponent;)V"))
+	@Redirect(method = "handleDisconnection", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/INetHandler;onDisconnect(Lnet/minecraft/util/text/ITextComponent;)V"), remap = false)
 	private void onDisconnectNetwork(INetHandler iNetHandler, ITextComponent reason)
 	{
 		System.out.println(channel.getClass().toString());

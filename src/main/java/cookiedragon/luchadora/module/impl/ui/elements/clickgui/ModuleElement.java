@@ -19,18 +19,19 @@ import java.util.Set;
  */
 public class ModuleElement implements IRenderable, Globals
 {
+	public final CategoryElement categoryElement;
 	Vec2f modulePosition = new Vec2f(0,0);
 	Vec2f moduleSize = new Vec2f(0,0);
 	public final AbstractModule module;
 	private final List<ValueElement> valueElements;
 	public boolean collapsed = true;
 	
-	public ModuleElement(AbstractModule module)
+	public ModuleElement(AbstractModule module, CategoryElement categoryElement)
 	{
 		this.module = module;
+		this.categoryElement = categoryElement;
 		valueElements = new ArrayList<>();
 		
-		System.out.println(ModuleManager.getValuesForModule(module));
 		for (Value value : ModuleManager.getValuesForModule(module))
 		{
 			if (value instanceof BooleanValue)
@@ -57,6 +58,10 @@ public class ModuleElement implements IRenderable, Globals
 			{
 				valueElements.add(new StringValueElement((StringValue) value, this));
 			}
+			else if(value instanceof ColourValue)
+			{
+				valueElements.add(new ColourValueElement((ColourValue) value, this));
+			}
 			else
 			{
 				new RuntimeException("Gui didnt recognise value " + value.getClass().toString()).printStackTrace();
@@ -69,12 +74,16 @@ public class ModuleElement implements IRenderable, Globals
 		return module.getCategory();
 	}
 	
-	public void keyTyped(Key key)
+	public boolean keyTyped(Key key)
 	{
 		for (ValueElement valueElement : valueElements)
 		{
-			valueElement.keyTyped(key);
+			if (valueElement.keyTyped(key))
+			{
+				return true;
+			}
 		}
+		return false;
 	}
 	
 	@Override
@@ -110,12 +119,22 @@ public class ModuleElement implements IRenderable, Globals
 	@Override
 	public boolean mouseRelease(Vec2f mousePos, int mouseID)
 	{
+		for (ValueElement valueElement : valueElements)
+		{
+			valueElement.mouseRelease(mousePos, mouseID);
+		}
+		
 		return false;
 	}
 	
 	@Override
 	public boolean mouseClickMove(Vec2f mousePos, int mouseID)
 	{
+		for (ValueElement valueElement : valueElements)
+		{
+			valueElement.mouseClickMove(mousePos, mouseID);
+		}
+		
 		return false;
 	}
 }

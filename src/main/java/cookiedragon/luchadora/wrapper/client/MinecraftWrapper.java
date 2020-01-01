@@ -1,6 +1,9 @@
 package cookiedragon.luchadora.wrapper.client;
 
+import cookiedragon.luchadora.util.Vec2f;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.ServerData;
 
@@ -10,7 +13,17 @@ import net.minecraft.client.multiplayer.ServerData;
 public class MinecraftWrapper
 {
 	private static final Minecraft mc = Minecraft.getMinecraft();
-	public final FontRendererWrapper fontRenderer = new FontRendererWrapper(mc.fontRenderer);
+	public final FontRendererWrapper fontRenderer = new FontRendererWrapper(mc);
+	public final RenderEngineWrapper renderEngine = new RenderEngineWrapper(mc);
+	public final ResourceManagerWrapper resourceManager = new ResourceManagerWrapper(mc);
+	public final NetHandlerWrapper connection = new NetHandlerWrapper(mc);
+	public final PlayerWrapper player = new PlayerWrapper(mc);
+	public final WorldWrapper world = new WorldWrapper(mc);
+	
+	public Vec2f getDisplaySize()
+	{
+		return new Vec2f(mc.displayWidth, mc.displayHeight);
+	}
 	
 	public void displayGuiScreen(GuiScreen screen)
 	{
@@ -22,9 +35,9 @@ public class MinecraftWrapper
 		return mc.currentScreen;
 	}
 	
-	public PlayerWrapper getPlayer()
+	public GuiIngame getIngameGui()
 	{
-		return new PlayerWrapper(mc.player);
+		return mc.ingameGUI;
 	}
 	
 	public ServerDataWrapper getCurrentServerData()

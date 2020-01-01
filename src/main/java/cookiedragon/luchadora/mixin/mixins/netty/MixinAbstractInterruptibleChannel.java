@@ -14,7 +14,7 @@ import java.nio.channels.spi.AbstractInterruptibleChannel;
 @Mixin(AbstractInterruptibleChannel.class)
 public class MixinAbstractInterruptibleChannel
 {
-	@Inject(method = "close", at = @At("HEAD"))
+	@Inject(method = "close", at = @At("HEAD"), remap = false)
 	private void onCloseWrapper(CallbackInfo ci)
 	{
 		new RuntimeException("Interruptible Channel Closed").printStackTrace();

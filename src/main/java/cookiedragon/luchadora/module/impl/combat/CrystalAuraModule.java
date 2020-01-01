@@ -14,7 +14,9 @@ public class CrystalAuraModule extends AbstractModule
 {
 	private final Value<Boolean> booleanValue = new BooleanValue("Test Boolean", true);
 	private final Value<Key> secondKeyValue = new KeyValue("Second key", Key.KEY_N);
-	private final NumberValue<Integer> intVale = new NumberValue<Integer>("Int val", 2);
+	private final NumberValue intVale = new NumberValue("Int val", 2,0, 4);
+	private final NumberValue floatVal = new NumberValue("Float val", 0f, -2, 2.2);
+	private final NumberValue neg = new NumberValue("neg", -3, -4, -2);
 	private final SelectableStringValue selectableStringValue = new SelectableStringValue("strings", "a", "a", "b");
 	private final StringValue stringValue = new StringValue("String Val", "hi");
 	

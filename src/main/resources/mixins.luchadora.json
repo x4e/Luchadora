@@ -7,7 +7,9 @@
 		"MixinMinecraft",
 		"entity.MixinEntityPlayerSP",
 		"entity.MixinEntityRenderer",
+		"entity.MixinPlayerControllerMP",
 		"netty.MixinNettyCompressionDecoder",
-		"netty.MixinAbstractInterruptibleChannel"
+		"netty.MixinAbstractInterruptibleChannel",
+		"misc.MixinChatAllowedCharacters"
 	]
 }

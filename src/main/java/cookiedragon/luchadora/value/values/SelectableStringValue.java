@@ -1,5 +1,7 @@
 package cookiedragon.luchadora.value.values;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.stream.Collectors;
@@ -10,24 +12,19 @@ import java.util.stream.Stream;
  */
 public class SelectableStringValue extends StringValue
 {
-	protected Set<String> options;
+	public final List<String> options;
 	
 	public SelectableStringValue(String name, String defaultVal, String... options)
 	{
-		this(name, defaultVal, Stream.of(options).collect(Collectors.toCollection(HashSet::new)));
+		this(name, defaultVal, Stream.of(options).collect(Collectors.toCollection(ArrayList::new)));
 	}
 	
-	public SelectableStringValue(String name, String defaultVal, Set<String> options)
+	public SelectableStringValue(String name, String defaultVal, List<String> options)
 	{
 		super(name, defaultVal);
 		this.options = options;
 		
 		options.add(defaultVal);
-	}
-	
-	public Set<String> getOptions()
-	{
-		return this.options;
 	}
 	
 	@Override

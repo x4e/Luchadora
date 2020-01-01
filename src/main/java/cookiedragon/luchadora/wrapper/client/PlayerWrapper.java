@@ -1,5 +1,6 @@
 package cookiedragon.luchadora.wrapper.client;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.util.text.ITextComponent;
 
@@ -8,15 +9,20 @@ import net.minecraft.util.text.ITextComponent;
  */
 public class PlayerWrapper
 {
-	private EntityPlayerSP player;
+	private final Minecraft mc;
 	
-	public PlayerWrapper(EntityPlayerSP player)
+	public PlayerWrapper(Minecraft mc)
 	{
-		this.player = player;
+		this.mc = mc;
 	}
 	
 	public void sendMessage(ITextComponent component)
 	{
-		this.player.sendMessage(component);
+		mc.player.sendMessage(component);
+	}
+	
+	public boolean onGround()
+	{
+		return mc.player.onGround;
 	}
 }

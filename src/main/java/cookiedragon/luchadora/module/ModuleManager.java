@@ -2,10 +2,14 @@ package cookiedragon.luchadora.module;
 
 import cookiedragon.luchadora.event.api.EventDispatcher;
 import cookiedragon.luchadora.event.luchadora.ModuleInitialisationEvent;
+import cookiedragon.luchadora.module.impl.combat.BreakHighlightModule;
 import cookiedragon.luchadora.module.impl.combat.CrystalAuraModule;
+import cookiedragon.luchadora.module.impl.dev.InvalidTeleportModule;
+import cookiedragon.luchadora.module.impl.player.BreakTweaksModule;
+import cookiedragon.luchadora.module.impl.player.MultiTaskModule;
+import cookiedragon.luchadora.module.impl.render.FullBrightModule;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.CategoryElement;
-import cookiedragon.luchadora.module.impl.ui.elements.WatermarkElement;
-import cookiedragon.luchadora.module.impl.ui.gui.GuiModule;
+import cookiedragon.luchadora.module.impl.ui.elements.clickgui.GuiModule;
 import cookiedragon.luchadora.util.SimpleClassLoader;
 import cookiedragon.luchadora.value.Value;
 
@@ -24,9 +28,13 @@ public class ModuleManager
 		
 		new SimpleClassLoader<AbstractModule>()
 			.build(
+				BreakHighlightModule.class,
 				CrystalAuraModule.class,
-				GuiModule.class,
-				WatermarkElement.class
+				InvalidTeleportModule.class,
+				BreakTweaksModule.class,
+				MultiTaskModule.class,
+				FullBrightModule.class,
+				GuiModule.class
 			)
 			.initialise(
 				module -> modules.put(module, module.getValues()),
@@ -35,25 +43,27 @@ public class ModuleManager
 			);
 		
 		{
-			CategoryElement module;
+			GuiModule guiModule = (GuiModule) modules.keySet().stream().filter(module -> module.getClass().equals(GuiModule.class)).findFirst().orElseThrow(IllegalStateException::new);
 			
-			module = new CategoryElement(Category.UI);
-			modules.put(module, module.getValues());
-			module = new CategoryElement(Category.COMBAT);
-			modules.put(module, module.getValues());
+			for (Category enumConstant : Category.class.getEnumConstants())
+			{
+				CategoryElement module = new CategoryElement(enumConstant, guiModule);
+				modules.put(module, module.getValues());
+			}
 		}
 		
 		System.out.println(modules.toString());
 		
 		EventDispatcher.dispatch(new ModuleInitialisationEvent.Post());
+		System.out.println("Post module init");
 	}
 	
-	public static AbstractModule getModule(Class<? extends AbstractModule> moduleClazz)
+	public static <T extends AbstractModule> T getModule(Class<T> moduleClazz)
 	{
 		for (AbstractModule module : modules.keySet())
 		{
 			if (moduleClazz.isAssignableFrom(module.getClass()))
-				return module;
+				return Objects.requireNonNull(moduleClazz.cast(module));
 		}
 		throw new RuntimeException("AbstractModule " + moduleClazz + " was not initialised!");
 	}
@@ -81,5 +91,10 @@ public class ModuleManager
 				return value;
 		}
 		throw new RuntimeException("Couldnt find value '" + valueName + "' for module '" + module.getName() + "'");
+	}
+	
+	public static Iterator<AbstractModule> iterator()
+	{
+		return modules.keySet().iterator();
 	}
 }

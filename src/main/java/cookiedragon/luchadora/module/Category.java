@@ -5,11 +5,19 @@ package cookiedragon.luchadora.module;
  */
 public enum Category
 {
-	COMBAT("Combat", true),
-	UI("UI", false);
+	COMBAT("Combat"),
+	UI("UI", false),
+	PLAYER("Player"),
+	RENDER("Render"),
+	DEV("Dev");
 	
 	public final String displayName;
 	public final boolean visible;
+	Category(String displayName)
+	{
+		this(displayName, true);
+	}
+	
 	Category(String displayName, boolean visible)
 	{
 		this.displayName = displayName;

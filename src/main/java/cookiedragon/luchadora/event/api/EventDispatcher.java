@@ -191,4 +191,18 @@ public class EventDispatcher
 		
 		return event;
 	}
+	
+	public static void debug()
+	{
+		System.out.println("--- Debugging event dispatcher");
+		for (Map.Entry<Class<?>, Set<SubscribingMethod>> entry : subscriptions.entrySet())
+		{
+			System.out.println("-" + entry.getKey().toString());
+			for (SubscribingMethod subscribingMethod : entry.getValue())
+			{
+				System.out.println("\t-" + subscribingMethod + "\n");
+			}
+		}
+		System.out.println("---");
+	}
 }

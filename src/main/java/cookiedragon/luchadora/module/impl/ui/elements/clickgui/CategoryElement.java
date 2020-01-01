@@ -7,7 +7,6 @@ import cookiedragon.luchadora.module.AbstractModule;
 import cookiedragon.luchadora.module.Category;
 import cookiedragon.luchadora.module.ModuleManager;
 import cookiedragon.luchadora.module.impl.ui.AbstractHudElement;
-import cookiedragon.luchadora.module.impl.ui.EditHudGui;
 import cookiedragon.luchadora.util.Key;
 import cookiedragon.luchadora.util.RenderUtils;
 import cookiedragon.luchadora.util.Vec2f;
@@ -21,6 +20,7 @@ import java.util.ArrayList;
 @AbstractModule.Deceleration(name = "Category", description = "", category = Category.UI, defaultOn = true)
 public class CategoryElement extends AbstractHudElement
 {
+	public final GuiModule guiModule;
 	private final Category category;
 	private Vec2f titleSize = new Vec2f(0,0);
 	private Vec2f modulePosition = new Vec2f(0,0);
@@ -28,11 +28,12 @@ public class CategoryElement extends AbstractHudElement
 	
 	private ArrayList<ModuleElement> moduleElements;
 	
-	public CategoryElement(Category category)
+	public CategoryElement(Category category, GuiModule guiModule)
 	{
 		super();
 		setName(category.displayName);
 		this.category = category;
+		this.guiModule = guiModule;
 		
 		EventDispatcher.subscribe(this);
 	}
@@ -45,23 +46,25 @@ public class CategoryElement extends AbstractHudElement
 		moduleElements = new ArrayList<>();
 		for (AbstractModule module : ModuleManager.getModules())
 		{
-			moduleElements.add(new ModuleElement(module));
+			moduleElements.add(new ModuleElement(module, this));
 		}
 	}
 	
 	@Override
-	public void keyTyped(Key key)
+	public boolean keyTyped(Key key)
 	{
 		super.keyTyped(key);
-		if (!shouldRender()) return;
+		if (!shouldRender()) return false;
 		
 		if (!collapsed)
 		{
 			for (ModuleElement moduleElement : moduleElements)
 			{
-				moduleElement.keyTyped(key);
+				if(moduleElement.keyTyped(key))
+					return true;
 			}
 		}
+		return false;
 	}
 	
 	@Override
@@ -82,7 +85,7 @@ public class CategoryElement extends AbstractHudElement
 			position.y,
 			position.x + titleSize.x,
 			position.y + titleSize.y,
-			new Color(255,99,71).getRGB()
+			guiModule.primaryColour.getValue().getRGB()
 		);
 		
 		RenderUtils.renderOutline(
@@ -152,8 +155,36 @@ public class CategoryElement extends AbstractHudElement
 	}
 	
 	@Override
+	public boolean mouseRelease(Vec2f mousePos, int mouseID)
+	{
+		super.mouseRelease(mousePos, mouseID);
+		
+		for (ModuleElement moduleElement : moduleElements)
+		{
+			if (moduleElement.mouseRelease(mousePos, mouseID))
+				return true;
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public boolean mouseClickMove(Vec2f mousePos, int mouseID)
+	{
+		super.mouseClickMove(mousePos, mouseID);
+		
+		for (ModuleElement moduleElement : moduleElements)
+		{
+			if (moduleElement.mouseClickMove(mousePos, mouseID))
+				return true;
+		}
+		
+		return false;
+	}
+	
+	@Override
 	public boolean shouldRender()
 	{
-		return mc.getCurrentScreen() instanceof EditHudGui && this.getEnabled().getValue();
+		return mc.getCurrentScreen() instanceof EditHudGui && (this.getEnabled().getValue() || this.getName().equals(this.category.displayName));
 	}
 }

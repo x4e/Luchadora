@@ -41,12 +41,17 @@ public class BooleanValueElement extends ValueElement<BooleanValue>
 			size.x -= 2;
 		}
 		
+		Color onColour = isEnabledValue ?
+			moduleElement.categoryElement.guiModule.secondaryColour.getValue()
+			:
+			moduleElement.categoryElement.guiModule.tertiaryColour.getValue();
+		
 		RenderUtils.renderRectangle(
 			position.x,
 			position.y,
 			position.x + size.x,
 			position.y + size.y,
-			value.getValue() ? new Color(255,140,0).getRGB() : Color.DARK_GRAY.getRGB()
+			value.getValue() ? onColour.getRGB() : moduleElement.categoryElement.guiModule.negativeColour.getValue().getRGB()
 		);
 		
 		RenderUtils.renderOutline(

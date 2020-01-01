@@ -28,4 +28,10 @@ class SubscribingMethod
 	{
 		method.invoke(this.instance, arg);
 	}
+	
+	@Override
+	public String toString()
+	{
+		return "(" + clazz + ", " + instance + ", " + method + ", " + active + ")";
+	}
 }

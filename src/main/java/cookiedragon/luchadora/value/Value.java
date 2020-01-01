@@ -3,6 +3,7 @@ package cookiedragon.luchadora.value;
 import cookiedragon.luchadora.util.ISerializable;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.BiConsumer;
 
 /**
@@ -11,6 +12,7 @@ import java.util.function.BiConsumer;
 public abstract class Value<T> implements ISerializable
 {
 	protected final String name;
+	protected String description;
 	protected final T defaultVal;
 	protected T value;
 	protected BiConsumer<T, T> callback; // called when the value of this value is set using the setValue function
@@ -32,6 +34,17 @@ public abstract class Value<T> implements ISerializable
 	public String getName()
 	{
 		return name;
+	}
+	
+	public String getDescription()
+	{
+		return description;
+	}
+	
+	public Value<T> setDescription(String description)
+	{
+		this.description = description;
+		return this;
 	}
 	
 	public T getDefaultVal()
