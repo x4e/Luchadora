@@ -40,7 +40,7 @@ public class WorldProviderWrapper
 	private static Method lightmapMethod = null;
 	private static Method getGenerateLightmapMethod()
 	{
-		if(lightmapMethod == null)
+		if (lightmapMethod == null)
 			lightmapMethod =
 				Objects.requireNonNull(
 					ObfuscationReflectionHelper.findMethod(

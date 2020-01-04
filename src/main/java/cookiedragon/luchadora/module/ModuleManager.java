@@ -5,9 +5,14 @@ import cookiedragon.luchadora.event.luchadora.ModuleInitialisationEvent;
 import cookiedragon.luchadora.module.impl.combat.BreakHighlightModule;
 import cookiedragon.luchadora.module.impl.combat.CrystalAuraModule;
 import cookiedragon.luchadora.module.impl.dev.InvalidTeleportModule;
+import cookiedragon.luchadora.module.impl.movement.ElytraFlyModule;
 import cookiedragon.luchadora.module.impl.player.BreakTweaksModule;
 import cookiedragon.luchadora.module.impl.player.MultiTaskModule;
+import cookiedragon.luchadora.module.impl.movement.NoSlowModule;
+import cookiedragon.luchadora.module.impl.player.NoEntityTraceModule;
+import cookiedragon.luchadora.module.impl.player.ReachModule;
 import cookiedragon.luchadora.module.impl.render.FullBrightModule;
+import cookiedragon.luchadora.module.impl.ui.elements.SearchBarElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.CategoryElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.GuiModule;
 import cookiedragon.luchadora.util.SimpleClassLoader;
@@ -30,11 +35,21 @@ public class ModuleManager
 			.build(
 				BreakHighlightModule.class,
 				CrystalAuraModule.class,
+				
 				InvalidTeleportModule.class,
+				
+				ElytraFlyModule.class,
+				NoSlowModule.class,
+				
 				BreakTweaksModule.class,
 				MultiTaskModule.class,
+				NoEntityTraceModule.class,
+				ReachModule.class,
+				
 				FullBrightModule.class,
-				GuiModule.class
+				
+				GuiModule.class,
+				SearchBarElement.class
 			)
 			.initialise(
 				module -> modules.put(module, module.getValues()),
@@ -43,11 +58,11 @@ public class ModuleManager
 			);
 		
 		{
-			GuiModule guiModule = (GuiModule) modules.keySet().stream().filter(module -> module.getClass().equals(GuiModule.class)).findFirst().orElseThrow(IllegalStateException::new);
+			GuiModule guiModule = getModule(GuiModule.class);
 			
-			for (Category enumConstant : Category.class.getEnumConstants())
+			for (Category category : Category.class.getEnumConstants())
 			{
-				CategoryElement module = new CategoryElement(enumConstant, guiModule);
+				CategoryElement module = new CategoryElement(category, guiModule);
 				modules.put(module, module.getValues());
 			}
 		}

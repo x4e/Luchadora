@@ -9,10 +9,16 @@ import cookiedragon.luchadora.value.values.NumberValue;
 /**
  * @author cookiedragon234 01/Jan/2020
  */
-@AbstractModule.Deceleration(name = "Full Bright", description = "Get rid of darkness", category = Category.RENDER)
+@AbstractModule.Declaration(name = "Full Bright", description = "Get rid of darkness", category = Category.RENDER)
 public class FullBrightModule extends AbstractModule
 {
-	private NumberValue brightness = new NumberValue("Brightness", 1f, 0, 5);
+	private NumberValue brightness = new NumberValue("Brightness", 1f, 0, 3);
+	
+	public FullBrightModule()
+	{
+		brightness.addCallback((oldVal, newVal) ->
+			updateLightmap(newVal.floatValue()));
+	}
 	
 	@Subscriber
 	private void onUpdateLightmap(UpdateLightmapEvent event)
@@ -34,7 +40,7 @@ public class FullBrightModule extends AbstractModule
 	
 	private static void updateLightmap(float brightness)
 	{
-		if(mc.world.nonNull())
+		if (mc.world.nonNull())
 		{
 			for (int i = 0; i < mc.world.provider.getLightBrightnessTable().length; i++)
 			{

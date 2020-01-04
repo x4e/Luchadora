@@ -10,7 +10,7 @@ import cookiedragon.luchadora.value.values.BooleanValue;
 /**
  * @author cookiedragon234 31/Dec/2019
  */
-@AbstractModule.Deceleration(name = "Break Tweaks", description = "Tweak block breaking behaviour", category = Category.PLAYER)
+@AbstractModule.Declaration(name = "Break Tweaks", description = "Tweak block breaking behaviour", category = Category.PLAYER)
 public class BreakTweaksModule extends AbstractModule
 {
 	private Value<Boolean> stickyBreak = new BooleanValue("Sticky Break", true);

@@ -3,6 +3,7 @@ package cookiedragon.luchadora;
 import cookiedragon.luchadora.integration.discord.DiscordIntegration;
 import cookiedragon.luchadora.managers.BindManager;
 import cookiedragon.luchadora.managers.ForgeEventListener;
+import cookiedragon.luchadora.managers.PerspectiveManager;
 import cookiedragon.luchadora.module.ModuleManager;
 import cookiedragon.luchadora.module.impl.ui.HudManager;
 import net.minecraft.block.Block;
@@ -44,6 +45,7 @@ public class Luchadora
 		BindManager.init();
 		HudManager.init();
 		ForgeEventListener.init();
+		PerspectiveManager.init();
 		ModuleManager.init();
 		new DiscordIntegration().start();
 		

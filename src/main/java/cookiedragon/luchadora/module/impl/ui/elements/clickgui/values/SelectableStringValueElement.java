@@ -50,7 +50,7 @@ public class SelectableStringValueElement extends ValueElement<SelectableStringV
 			position.y,
 			position.x + size.x,
 			position.y + size.y,
-			Color.BLACK.getRGB()
+			new Color(0,0,0, 50).getRGB()
 		);
 		
 		mc.fontRenderer.drawStringClamped(
@@ -58,7 +58,7 @@ public class SelectableStringValueElement extends ValueElement<SelectableStringV
 			position.x + 1,
 			position.y + 1,
 			size.x / 2,
-			Color.LIGHT_GRAY.getRGB()
+			moduleElement.categoryElement.guiModule.textColour.getValue().getRGB()
 		);
 		
 		mc.fontRenderer.drawStringRightClamped(
@@ -66,14 +66,14 @@ public class SelectableStringValueElement extends ValueElement<SelectableStringV
 			position.x + size.x,
 			position.y + 1,
 			size.x / 2,
-			Color.LIGHT_GRAY.getRGB()
+			moduleElement.categoryElement.guiModule.textColour.getValue().getRGB()
 		);
 	}
 	
 	@Override
 	public boolean mouseClick(Vec2f mousePos, int mouseID)
 	{
-		if(position.contains(size, mousePos))
+		if (position.contains(size, mousePos))
 		{
 			
 			int currentIndex = value.options.indexOf(value.getValue());

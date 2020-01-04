@@ -80,7 +80,7 @@ public class HudManager implements Globals
 		Key key = Key.fromCode(keyCode);
 		for (AbstractHudElement hudElement : hudElements)
 		{
-			if(hudElement.keyTyped(key))
+			if (hudElement.keyTyped(key))
 				return true;
 		}
 		return false;

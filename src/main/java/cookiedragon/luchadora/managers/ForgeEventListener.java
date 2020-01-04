@@ -1,10 +1,13 @@
 package cookiedragon.luchadora.managers;
 
+import cookiedragon.luchadora.event.api.EventDispatcher;
+import cookiedragon.luchadora.event.client.Render3dEvent;
 import cookiedragon.luchadora.guis.CustomGuiGameOver;
 import net.minecraft.client.gui.GuiGameOver;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -29,9 +32,15 @@ public class ForgeEventListener
 	@SubscribeEvent
 	public static void onGuiOpened(GuiOpenEvent event)
 	{
-		if(event.getGui() instanceof GuiGameOver)
+		if (event.getGui() instanceof GuiGameOver)
 		{
 			event.setGui(new CustomGuiGameOver((GuiGameOver) event.getGui()));
 		}
+	}
+	
+	@SubscribeEvent
+	public static void onRenderLast(RenderWorldLastEvent event)
+	{
+		EventDispatcher.dispatch(new Render3dEvent());
 	}
 }

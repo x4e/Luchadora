@@ -47,7 +47,7 @@ public class StringValueElement extends ValueElement<StringValue>
 			position.y,
 			position.x + size.x,
 			position.y + size.y,
-			typing ? Color.ORANGE.getRGB() : Color.DARK_GRAY.getRGB()
+			typing ? Color.ORANGE.getRGB() : moduleElement.categoryElement.guiModule.negativeColour.getValue().getRGB()
 		);
 		
 		RenderUtils.renderOutline(
@@ -55,7 +55,7 @@ public class StringValueElement extends ValueElement<StringValue>
 			position.y,
 			position.x + size.x,
 			position.y + size.y,
-			Color.BLACK.getRGB()
+			new Color(0,0,0, 50).getRGB()
 		);
 		
 		mc.fontRenderer.drawStringClamped(
@@ -63,7 +63,7 @@ public class StringValueElement extends ValueElement<StringValue>
 			position.x + 1,
 			position.y + 1,
 			size.x / 2,
-			Color.LIGHT_GRAY.getRGB()
+			moduleElement.categoryElement.guiModule.textColour.getValue().getRGB()
 		);
 		
 		mc.fontRenderer.drawStringRightClamped(
@@ -71,14 +71,14 @@ public class StringValueElement extends ValueElement<StringValue>
 			position.x + size.x,
 			position.y + 1,
 			size.x / 2,
-			Color.LIGHT_GRAY.getRGB()
+			moduleElement.categoryElement.guiModule.textColour.getValue().getRGB()
 		);
 	}
 	
 	@Override
 	public boolean mouseClick(Vec2f mousePos, int mouseID)
 	{
-		if(position.contains(size, mousePos) && mouseID == 0)
+		if (position.contains(size, mousePos) && mouseID == 0)
 		{
 			this.typing = true;
 			return true;
@@ -91,7 +91,7 @@ public class StringValueElement extends ValueElement<StringValue>
 	@Override
 	public boolean mouseRelease(Vec2f mousePos, int mouseID)
 	{
-		if(position.contains(size, mousePos) && mouseID == 0)
+		if (position.contains(size, mousePos) && mouseID == 0)
 		{
 			this.typing = true;
 			return true;
@@ -114,7 +114,7 @@ public class StringValueElement extends ValueElement<StringValue>
 			return true;
 		}
 		
-		if(key == Key.KEY_BACK && !Keyboard.isRepeatEvent() && this.value.getValue().length() > 0)
+		if (key == Key.KEY_BACK && !Keyboard.isRepeatEvent() && this.value.getValue().length() > 0)
 		{
 			this.value.setValue(this.value.getValue().substring(0, value.getValue().length() - 1));
 			return false;
@@ -122,10 +122,10 @@ public class StringValueElement extends ValueElement<StringValue>
 		
 		String keyStr = Character.toString(Keyboard.getEventCharacter());
 		
-		if(keyStr.length() <= 0)
+		if (keyStr.length() <= 0)
 			return false;
 		
-		if((Key.KEY_LSHIFT.isKeyDown() || Key.KEY_RSHIFT.isKeyDown()) ^ Key.KEY_CAPITAL.isKeyDown())
+		if ((Key.KEY_LSHIFT.isKeyDown() || Key.KEY_RSHIFT.isKeyDown()) ^ Key.KEY_CAPITAL.isKeyDown())
 		{
 			keyStr = keyStr.toUpperCase();
 		}
@@ -134,7 +134,7 @@ public class StringValueElement extends ValueElement<StringValue>
 			keyStr = keyStr.toLowerCase();
 		}
 		
-		if(this.typing && ChatAllowedCharacters.isAllowedCharacter(keyStr.charAt(0)) && !keyStr.contains("\n"))
+		if (this.typing && ChatAllowedCharacters.isAllowedCharacter(keyStr.charAt(0)) && !keyStr.contains("\n"))
 		{
 			this.value.setValue(this.value.getValue() + keyStr);
 			return true;

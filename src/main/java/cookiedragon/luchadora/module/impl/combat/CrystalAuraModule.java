@@ -9,7 +9,7 @@ import cookiedragon.luchadora.value.values.*;
 /**
  * @author cookiedragon234 15/Dec/2019
  */
-@AbstractModule.Deceleration(name = "Crystal Aura", description = "Automatically place and break crystals", category = Category.COMBAT)
+@AbstractModule.Declaration(name = "Crystal Aura", description = "Automatically place and break crystals", category = Category.COMBAT)
 public class CrystalAuraModule extends AbstractModule
 {
 	private final Value<Boolean> booleanValue = new BooleanValue("Test Boolean", true);

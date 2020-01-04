@@ -9,6 +9,7 @@ public enum Category
 	UI("UI", false),
 	PLAYER("Player"),
 	RENDER("Render"),
+	MOVEMENT("Movement"),
 	DEV("Dev");
 	
 	public final String displayName;

@@ -38,4 +38,19 @@ public class ResourceManagerWrapper implements IResourceManager
 	{
 		return mc.getResourceManager().getAllResources(location);
 	}
+	
+	public double viewerPosX()
+	{
+		return mc.getRenderManager().viewerPosX;
+	}
+	
+	public double viewerPosY()
+	{
+		return mc.getRenderManager().viewerPosY;
+	}
+	
+	public double viewerPosZ()
+	{
+		return mc.getRenderManager().viewerPosZ;
+	}
 }

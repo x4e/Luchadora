@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * @author cookiedragon234 21/Dec/2019
  */
-@AbstractModule.Deceleration(name = "Category", description = "", category = Category.UI, defaultOn = true)
+@AbstractModule.Declaration(name = "Category", description = "", category = Category.UI, defaultOn = true)
 public class CategoryElement extends AbstractHudElement
 {
 	public final GuiModule guiModule;
@@ -60,7 +60,7 @@ public class CategoryElement extends AbstractHudElement
 		{
 			for (ModuleElement moduleElement : moduleElements)
 			{
-				if(moduleElement.keyTyped(key))
+				if (moduleElement.keyTyped(key))
 					return true;
 			}
 		}
@@ -75,7 +75,7 @@ public class CategoryElement extends AbstractHudElement
 		
 		titleSize = new Vec2f(
 			100,
-			mc.fontRenderer.getFontHeight() + 4
+			mc.fontRenderer.getFontHeight() + 3
 		);
 		
 		draggableSize = titleSize;
@@ -93,7 +93,7 @@ public class CategoryElement extends AbstractHudElement
 			position.y,
 			position.x + titleSize.x,
 			position.y + titleSize.y,
-			Color.BLACK.getRGB()
+			new Color(0,0,0, 50).getRGB()
 		);
 		
 		mc.fontRenderer.drawCenteredString(
@@ -101,7 +101,7 @@ public class CategoryElement extends AbstractHudElement
 			position.x,
 			position.y + 2,
 			titleSize.x,
-			Color.WHITE.getRGB()
+			guiModule.textColour.getValue().getRGB()
 		);
 		
 		//

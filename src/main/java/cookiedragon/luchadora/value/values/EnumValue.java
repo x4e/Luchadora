@@ -45,7 +45,7 @@ public class EnumValue<T extends Enum> extends Value<Enum>
 			
 			for (Enum enumConstant : this.defaultVal.getClass().getEnumConstants())
 			{
-				if(enumConstant.name().equals(element.getAsString()))
+				if (enumConstant.name().equals(element.getAsString()))
 					this.setValue(enumConstant);
 			}
 		}

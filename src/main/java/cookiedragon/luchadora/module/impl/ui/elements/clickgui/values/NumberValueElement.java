@@ -56,7 +56,7 @@ public class NumberValueElement extends ValueElement<NumberValue>
 			position.y,
 			position.x + size.x,
 			position.y + size.y,
-			Color.DARK_GRAY.getRGB()
+			moduleElement.categoryElement.guiModule.negativeColour.getValue().getRGB()
 		);
 		
 		RenderUtils.renderRectangle(
@@ -72,14 +72,14 @@ public class NumberValueElement extends ValueElement<NumberValue>
 			position.y,
 			position.x + size.x,
 			position.y + size.y,
-			Color.BLACK.getRGB()
+			new Color(0,0,0, 50).getRGB()
 		);
 		
 		mc.fontRenderer.drawString(
 			this.value.getName(),
 			position.x + 1,
 			position.y + 1,
-			Color.LIGHT_GRAY.getRGB()
+			moduleElement.categoryElement.guiModule.textColour.getValue().getRGB()
 		);
 		
 		mc.fontRenderer.drawStringRight(
@@ -87,7 +87,7 @@ public class NumberValueElement extends ValueElement<NumberValue>
 			position.x + 1,
 			position.y + 1,
 			position.x + size.x,
-			Color.LIGHT_GRAY.getRGB()
+			moduleElement.categoryElement.guiModule.textColour.getValue().getRGB()
 		);
 	}
 	

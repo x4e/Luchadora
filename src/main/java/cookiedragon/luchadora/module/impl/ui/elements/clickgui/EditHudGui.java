@@ -30,7 +30,7 @@ public class EditHudGui extends GuiScreen
 	@Override
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
-		if(HudManager.keyTyped(typedChar, keyCode))
+		if (HudManager.keyTyped(typedChar, keyCode))
 			return;
 		
 		super.keyTyped(typedChar, keyCode);
@@ -58,5 +58,12 @@ public class EditHudGui extends GuiScreen
 	protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick)
 	{
 		HudManager.mouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick);
+	}
+	
+	
+	@Override
+	public boolean doesGuiPauseGame()
+	{
+		return false;
 	}
 }

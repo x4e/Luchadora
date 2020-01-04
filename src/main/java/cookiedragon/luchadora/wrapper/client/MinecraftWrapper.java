@@ -6,6 +6,8 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.ServerData;
+import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.util.math.RayTraceResult;
 
 /**
  * @author cookiedragon234 16/Dec/2019
@@ -19,6 +21,11 @@ public class MinecraftWrapper
 	public final NetHandlerWrapper connection = new NetHandlerWrapper(mc);
 	public final PlayerWrapper player = new PlayerWrapper(mc);
 	public final WorldWrapper world = new WorldWrapper(mc);
+	
+	public final RenderGlobal getRenderGlobalActual()
+	{
+		return mc.renderGlobal;
+	}
 	
 	public Vec2f getDisplaySize()
 	{
@@ -51,5 +58,10 @@ public class MinecraftWrapper
 	public boolean isSinglePlayer()
 	{
 		return mc.isIntegratedServerRunning();
+	}
+	
+	public RayTraceResult getMouseOver()
+	{
+		return mc.objectMouseOver;
 	}
 }

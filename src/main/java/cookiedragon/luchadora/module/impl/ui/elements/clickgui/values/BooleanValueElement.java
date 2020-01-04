@@ -59,14 +59,14 @@ public class BooleanValueElement extends ValueElement<BooleanValue>
 			position.y,
 			position.x + size.x,
 			position.y + size.y,
-			Color.BLACK.getRGB()
+			new Color(0,0,0, 50).getRGB()
 		);
 		
 		mc.fontRenderer.drawString(
 			isEnabledValue ? this.moduleElement.module.getName() : this.value.getName(),
-			position.x + 1,
-			position.y + 1,
-			Color.LIGHT_GRAY.getRGB()
+			position.x + 1.5f,
+			position.y + 1.5f,
+			moduleElement.categoryElement.guiModule.textColour.getValue().getRGB()
 		);
 	}
 	

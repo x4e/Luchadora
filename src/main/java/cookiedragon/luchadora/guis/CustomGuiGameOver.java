@@ -33,7 +33,7 @@ public class CustomGuiGameOver extends GuiGameOver
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException
 	{
-		if(button.id == 3)
+		if (button.id == 3)
 		{
 			mc.displayGuiScreen(null);
 			mc.player.isDead = false;

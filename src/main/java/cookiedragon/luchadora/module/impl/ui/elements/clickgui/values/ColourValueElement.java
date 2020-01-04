@@ -86,7 +86,7 @@ public class ColourValueElement extends ValueElement<ColourValue>
 			textPos.y,
 			textPos.x + textSize.x,
 			textPos.y + textSize.y,
-			Color.BLACK.getRGB()
+			new Color(0,0,0, 50).getRGB()
 		);
 		
 		mc.fontRenderer.drawStringClamped(
@@ -94,7 +94,7 @@ public class ColourValueElement extends ValueElement<ColourValue>
 			textPos.x + 1,
 			textPos.y + 1,
 			size.x / 2,
-			Color.LIGHT_GRAY.getRGB()
+			moduleElement.categoryElement.guiModule.textColour.getValue().getRGB()
 		);
 		
 		/*mc.fontRenderer.drawStringRightClamped(

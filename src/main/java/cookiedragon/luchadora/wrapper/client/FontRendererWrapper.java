@@ -53,7 +53,7 @@ public class FontRendererWrapper
 		
 		int stringWidth = getStringWidth(text);
 		
-		if(stringWidth > width)
+		if (stringWidth > width)
 		{
 			float scale = width / stringWidth;
 			GlStateManager.scale(scale, scale, 1);
@@ -75,7 +75,7 @@ public class FontRendererWrapper
 		
 		int stringWidth = getStringWidth(text);
 		
-		if(stringWidth > width)
+		if (stringWidth > width)
 		{
 			float scale = width / stringWidth;
 			GlStateManager.scale(scale, scale, 1);

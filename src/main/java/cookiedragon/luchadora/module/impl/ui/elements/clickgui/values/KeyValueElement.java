@@ -53,7 +53,7 @@ public class KeyValueElement extends ValueElement<KeyValue>
 			position.y,
 			position.x + size.x,
 			position.y + size.y,
-			Color.BLACK.getRGB()
+			new Color(0,0,0, 50).getRGB()
 		);
 		
 		mc.fontRenderer.drawStringClamped(
@@ -61,7 +61,7 @@ public class KeyValueElement extends ValueElement<KeyValue>
 			position.x + 1,
 			position.y + 1,
 			size.x / 2,
-			Color.LIGHT_GRAY.getRGB()
+			moduleElement.categoryElement.guiModule.textColour.getValue().getRGB()
 		);
 		
 		mc.fontRenderer.drawStringRightClamped(
@@ -69,7 +69,7 @@ public class KeyValueElement extends ValueElement<KeyValue>
 			position.x + size.x,
 			position.y + 1,
 			size.x / 2,
-			Color.LIGHT_GRAY.getRGB()
+			moduleElement.categoryElement.guiModule.textColour.getValue().getRGB()
 		);
 	}
 	
@@ -83,7 +83,7 @@ public class KeyValueElement extends ValueElement<KeyValue>
 				isListening = !isListening;
 				return true;
 			}
-			else if(mouseID == 1)
+			else if (mouseID == 1)
 			{
 				isListening = false;
 				return true;

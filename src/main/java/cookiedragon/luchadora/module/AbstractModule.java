@@ -32,7 +32,7 @@ public abstract class AbstractModule implements ISerializable, Globals
 	
 	public AbstractModule()
 	{
-		Deceleration annotation = this.getAnnotation();
+		Declaration annotation = this.getAnnotation();
 		this.name = annotation.name();
 		this.description = annotation.description();
 		this.category = annotation.category();
@@ -58,8 +58,8 @@ public abstract class AbstractModule implements ISerializable, Globals
 		});
 	}
 	
-	protected abstract void onEnabled();
-	protected abstract void onDisabled();
+	protected void onEnabled(){}
+	protected void onDisabled(){}
 	
 	public String getName()
 	{
@@ -123,18 +123,18 @@ public abstract class AbstractModule implements ISerializable, Globals
 		return this.name;
 	}
 	
-	private Deceleration getAnnotation()
+	private Declaration getAnnotation()
 	{
-		if (this.getClass().isAnnotationPresent(Deceleration.class))
+		if (this.getClass().isAnnotationPresent(Declaration.class))
 		{
-			return this.getClass().getAnnotation(Deceleration.class);
+			return this.getClass().getAnnotation(Declaration.class);
 		}
 		throw new RuntimeException("Annotation missing for module " + this.getClass().getName());
 	}
 	
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.TYPE)
-	public @interface Deceleration
+	public @interface Declaration
 	{
 		@Nonnull String name();
 		@Nonnull String description();

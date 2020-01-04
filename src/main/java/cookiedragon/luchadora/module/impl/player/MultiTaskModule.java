@@ -8,7 +8,7 @@ import cookiedragon.luchadora.module.Category;
 /**
  * @author cookiedragon234 31/Dec/2019
  */
-@AbstractModule.Deceleration(name = "MultiTask", description = "Peform multiple actions at once", category = Category.PLAYER)
+@AbstractModule.Declaration(name = "MultiTask", description = "Peform multiple actions at once", category = Category.PLAYER)
 public class MultiTaskModule extends AbstractModule
 {
 	@Subscriber

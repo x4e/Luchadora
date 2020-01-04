@@ -58,7 +58,7 @@ public class ModuleElement implements IRenderable, Globals
 			{
 				valueElements.add(new StringValueElement((StringValue) value, this));
 			}
-			else if(value instanceof ColourValue)
+			else if (value instanceof ColourValue)
 			{
 				valueElements.add(new ColourValueElement((ColourValue) value, this));
 			}
@@ -110,7 +110,8 @@ public class ModuleElement implements IRenderable, Globals
 		
 		for (ValueElement valueElement : valueElements)
 		{
-			valueElement.mouseClick(mousePos, mouseID);
+			if (valueElement.mouseClick(mousePos, mouseID))
+				return true;
 		}
 		
 		return false;

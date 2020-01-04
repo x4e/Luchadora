@@ -11,7 +11,7 @@ import java.awt.*;
 /**
  * @author cookiedragon234 21/Dec/2019
  */
-@AbstractModule.Deceleration(name = "Watermark", description = "", category = Category.UI)
+@AbstractModule.Declaration(name = "Watermark", description = "", category = Category.UI)
 public class WatermarkElement extends AbstractHudElement
 {
 	@Override
