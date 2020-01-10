@@ -29,16 +29,4 @@ public class ElytraFlyModule extends AbstractModule
 			}
 		}
 	}
-	
-	@Override
-	protected void onEnabled()
-	{
-	
-	}
-	
-	@Override
-	protected void onDisabled()
-	{
-	
-	}
 }

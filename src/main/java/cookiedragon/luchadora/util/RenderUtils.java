@@ -7,6 +7,7 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -51,6 +52,21 @@ public class RenderUtils
 		GlStateManager.disableBlend();
 	}
 	
+	public static void drawPixel(float x, float y, int colour)
+	{
+		Tessellator tessellator = Tessellator.getInstance();
+		BufferBuilder bufferbuilder = tessellator.getBuffer();
+		GlStateManager.enableBlend();
+		GlStateManager.disableTexture2D();
+		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+		colour(colour);
+		bufferbuilder.begin(GL11.GL_POINTS, DefaultVertexFormats.POSITION);
+		bufferbuilder.pos(x, y, 0).endVertex();
+		tessellator.draw();
+		GlStateManager.enableTexture2D();
+		GlStateManager.disableBlend();
+	}
+	
 	public static void colour(int rgb)
 	{
 		float r = (float) (rgb >> 16 & 255) / 255.0F;
@@ -72,6 +88,7 @@ public class RenderUtils
 		bufferbuilder.pos((double)(x + width), (double)(y + 0), 0).tex((double)((float)(textureX + width) * 0.00390625F), (double)((float)(textureY + 0) * 0.00390625F)).endVertex();
 		bufferbuilder.pos((double)(x + 0), (double)(y + 0), 0).tex((double)((float)(textureX + 0) * 0.00390625F), (double)((float)(textureY + 0) * 0.00390625F)).endVertex();
 		tessellator.draw();
+		
 	}
 	
 	public static void glColor(Color color)
@@ -95,6 +112,14 @@ public class RenderUtils
 		
 		GlStateManager.depthMask(true);
 		GlStateManager.enableTexture2D();
+		GlStateManager.disableBlend();
+	}
+	
+	public static void drawTextureAt(int x, int y, int width, int height, ResourceLocation resourceLocation)
+	{
+		mc.getTextureManager().bindTexture(resourceLocation);
+		GlStateManager.enableBlend();
+		Gui.drawModalRectWithCustomSizedTexture(x, y, 0, 0, width, height, width, height);
 		GlStateManager.disableBlend();
 	}
 }
