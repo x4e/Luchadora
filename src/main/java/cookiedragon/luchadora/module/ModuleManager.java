@@ -7,10 +7,7 @@ import cookiedragon.luchadora.module.impl.combat.CrystalAuraModule;
 import cookiedragon.luchadora.module.impl.dev.InvalidTeleportModule;
 import cookiedragon.luchadora.module.impl.movement.ElytraFlyModule;
 import cookiedragon.luchadora.module.impl.movement.NoSlowModule;
-import cookiedragon.luchadora.module.impl.player.BreakTweaksModule;
-import cookiedragon.luchadora.module.impl.player.MultiTaskModule;
-import cookiedragon.luchadora.module.impl.player.NoEntityTraceModule;
-import cookiedragon.luchadora.module.impl.player.ReachModule;
+import cookiedragon.luchadora.module.impl.player.*;
 import cookiedragon.luchadora.module.impl.render.FullBrightModule;
 import cookiedragon.luchadora.module.impl.ui.elements.SearchBarElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.CategoryElement;
@@ -45,6 +42,7 @@ public class ModuleManager
 				MultiTaskModule.class,
 				NoEntityTraceModule.class,
 				ReachModule.class,
+				RotationLockModule.class,
 				
 				FullBrightModule.class,
 				

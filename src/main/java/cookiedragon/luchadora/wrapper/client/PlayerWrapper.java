@@ -2,6 +2,7 @@ package cookiedragon.luchadora.wrapper.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.util.text.ITextComponent;
@@ -40,6 +41,11 @@ public class PlayerWrapper
 		return mc.player.isElytraFlying();
 	}
 	
+	public void turn(float yaw, float pitch)
+	{
+		mc.player.turn(yaw, pitch);
+	}
+	
 	public void setVelocity(double x, double y, double z)
 	{
 		mc.player.setVelocity(x, y, z);
@@ -65,6 +71,11 @@ public class PlayerWrapper
 		return mc.player.rotationYaw;
 	}
 	
+	public void setRotationYaw(float yaw)
+	{
+		mc.player.rotationYaw = yaw;
+	}
+	
 	public float getRotationPitch()
 	{
 		return mc.player.rotationPitch;
@@ -78,5 +89,15 @@ public class PlayerWrapper
 	public float getMoveStrafing()
 	{
 		return mc.player.moveStrafing;
+	}
+	
+	public Entity getRidingEntity()
+	{
+		return mc.player.getRidingEntity();
+	}
+	
+	public void setRotation(float yaw, float pitch)
+	{
+		mc.player.setPositionAndRotation(mc.player.posX, mc.player.posY, mc.player.posZ, yaw, pitch);
 	}
 }

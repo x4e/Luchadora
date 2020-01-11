@@ -48,6 +48,5 @@ public class PerspectiveManager implements Globals
 	{
 		EventDispatcher.register(PerspectiveManager.class);
 		EventDispatcher.subscribe(PerspectiveManager.class);
-		EventDispatcher.debug();
 	}
 }

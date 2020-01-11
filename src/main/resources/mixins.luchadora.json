@@ -5,6 +5,7 @@
 	"refmap": "mixins.invicta.refmap.json",
 	"mixins": [
 		"MixinMinecraft",
+		"entity.MixinEntity",
 		"entity.MixinEntityPlayerSP",
 		"entity.MixinEntityRenderer",
 		"entity.MixinPlayerControllerMP",

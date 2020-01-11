@@ -69,7 +69,7 @@ public abstract class Value<T> implements ISerializable
 		this.value = value;
 		
 		if (!bypassCallback && callback != null)
-			callback.accept(oldVal, value);
+			callback.accept(oldVal, this.value);
 	}
 	
 	@Override

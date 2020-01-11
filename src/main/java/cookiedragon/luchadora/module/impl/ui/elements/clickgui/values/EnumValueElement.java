@@ -77,19 +77,24 @@ public class EnumValueElement extends ValueElement<EnumValue>
 		{
 			EnumValue enumValue = value;
 			int currentIndex = enumValue.options.indexOf(value.getValue());
+			int size = enumValue.options.size();
 			
-			try
-			{
-				value.setValue(
-					Objects.requireNonNull(
-						enumValue.options.get(currentIndex + 1)
-					)
-				);
-			}
-			catch (Exception e)
-			{
-				value.setValue(enumValue.options.get(0));
-			}
+			int add;
+			if (mouseID == 0)
+				add = 1;
+			else if (mouseID == 1)
+				add = -1;
+			else
+				return false;
+			
+			int newIndex = currentIndex + add;
+			
+			if (newIndex < 0)
+				newIndex = size - 1;
+			else if (newIndex >= size)
+				newIndex = 0;
+			
+			value.setValue(value.options.get(newIndex));
 			
 			return true;
 		}

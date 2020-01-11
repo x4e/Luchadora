@@ -4,8 +4,10 @@ import cookiedragon.luchadora.event.api.EventDispatcher;
 import cookiedragon.luchadora.event.client.Render2dEvent;
 import cookiedragon.luchadora.event.client.Render3dEvent;
 import cookiedragon.luchadora.event.client.UpdateLightmapEvent;
+import cookiedragon.luchadora.event.entity.EntityTurnEvent;
 import cookiedragon.luchadora.event.entity.GetEntitiesMouseOverEvent;
 import cookiedragon.luchadora.managers.PerspectiveManager;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -61,6 +63,20 @@ public class MixinEntityRenderer
 		GetEntitiesMouseOverEvent event = new GetEntitiesMouseOverEvent(Objects.requireNonNull((List<Entity>)list));
 		EventDispatcher.dispatch(event);
 		return event.size;
+	}
+	
+	@Redirect(method = "updateCameraAndRender", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/entity/EntityPlayerSP;turn(FF)V"), require = 1)
+	private void onTurnPlayerWrapper(EntityPlayerSP playerSP, float yaw, float pitch)
+	{
+		EntityTurnEvent.Pre event = new EntityTurnEvent.Pre(playerSP, yaw, pitch);
+		EventDispatcher.dispatch(event);
+		if (!event.isCancelled())
+		{
+			event.getEntity().turn(event.getYaw(), event.getPitch());
+			
+			EntityTurnEvent.Post secondEvent = new EntityTurnEvent.Post(event.getEntity(), event.getYaw(), event.getPitch());
+			EventDispatcher.dispatch(event);
+		}
 	}
 	
 	/*@Inject(method = "renderWorldPass", at = @At("HEAD"), cancellable = true, require = 1)

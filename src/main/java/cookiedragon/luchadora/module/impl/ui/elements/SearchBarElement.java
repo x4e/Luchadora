@@ -1,5 +1,7 @@
 package cookiedragon.luchadora.module.impl.ui.elements;
 
+import cookiedragon.luchadora.module.AbstractModule;
+import cookiedragon.luchadora.module.Category;
 import cookiedragon.luchadora.module.impl.ui.AbstractHudElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.EditHudGui;
 import cookiedragon.luchadora.util.Key;
@@ -10,6 +12,7 @@ import org.lwjgl.input.Keyboard;
 /**
  * @author cookiedragon234 29/Dec/2019
  */
+@AbstractModule.Declaration(name = "Search Bar", description = "Filter hacks", category = Category.UI)
 public class SearchBarElement extends AbstractHudElement
 {
 	private GuiTextField textField = new GuiTextField(0, mc.fontRenderer.getFontRenderer(), 0, 0, 100, 10);

@@ -25,7 +25,7 @@ public class SimpleClassLoader<T>
 	public SimpleClassLoader<T> initialise(
 		Consumer<T> successfulInitialisationCallback,
 		Consumer<Class<? extends T>> unsucessfullInitialisationCallback,
-		BiFunction<Class<? extends T>, Throwable, Throwable> throwableOnErrorSupplier
+		BiFunction<Class<? extends T>, Throwable, RuntimeException> throwableOnErrorSupplier
 	)
 	{
 		for (Class<? extends T> clazz: clazzes)
@@ -34,10 +34,10 @@ public class SimpleClassLoader<T>
 			{
 				successfulInitialisationCallback.accept(clazz.newInstance());
 			}
-			catch(Exception e)
+			catch (Exception e)
 			{
 				unsucessfullInitialisationCallback.accept(clazz);
-				throwableOnErrorSupplier.apply(clazz, e).printStackTrace();
+				throw throwableOnErrorSupplier.apply(clazz, e);
 			}
 		}
 		
