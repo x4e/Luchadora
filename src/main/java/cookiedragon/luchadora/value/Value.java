@@ -26,9 +26,10 @@ public abstract class Value<T> implements ISerializable
 	/**
 	 * @param callback old value, new value
 	 */
-	public void addCallback(BiConsumer<T, T> callback)
+	public Value<T> addCallback(BiConsumer<T, T> callback)
 	{
 		this.callback = callback;
+		return this;
 	}
 	
 	public String getName()
