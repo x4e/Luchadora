@@ -30,18 +30,13 @@ public abstract class AbstractModule implements ISerializable, Globals
 	protected final Value<Boolean> visible = new BooleanValue("Visible", true);
 	protected final Value<Key> keyBind = new KeyValue("Keybind", Key.KEY_NONE);
 	
-	public AbstractModule()
+	public AbstractModule(String name, String description, Category category)
 	{
-		Declaration annotation = this.getAnnotation();
-		this.name = annotation.name();
-		this.description = annotation.description();
-		this.category = annotation.category();
-		this.enabled.setValue(annotation.defaultOn());
-		this.visible.setValue(annotation.defaultVisible() && category.visible);
-		this.keyBind.setValue(annotation.defaultBind());
+		this.name = name;
+		this.description = description;
+		this.category = category;
 		
 		EventDispatcher.register(this);
-		
 		this.enabled.setDescription(this.description);
 		this.enabled.addCallback((oldValue, newValue) ->
 		{
@@ -56,6 +51,14 @@ public abstract class AbstractModule implements ISerializable, Globals
 				this.onDisabled();
 			}
 		});
+		
+		Declaration annotation = this.getAnnotation();
+		if (annotation != null)
+		{
+			this.enabled.setValue(annotation.defaultOn());
+			this.visible.setValue(annotation.defaultVisible() && category.visible);
+			this.keyBind.setValue(annotation.defaultBind());
+		}
 	}
 	
 	protected void onEnabled(){}
@@ -129,17 +132,13 @@ public abstract class AbstractModule implements ISerializable, Globals
 		{
 			return this.getClass().getAnnotation(Declaration.class);
 		}
-		throw new RuntimeException("Annotation missing for module " + this.getClass().getName());
+		return null;
 	}
 	
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.TYPE)
 	public @interface Declaration
 	{
-		@Nonnull String name();
-		@Nonnull String description();
-		@Nonnull Category category();
-		
 		boolean defaultOn() default false;
 		boolean defaultVisible() default false;
 		Key defaultBind() default Key.KEY_NONE;

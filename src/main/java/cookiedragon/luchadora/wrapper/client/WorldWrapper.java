@@ -3,6 +3,7 @@ package cookiedragon.luchadora.wrapper.client;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nullable;
@@ -19,6 +20,11 @@ public class WorldWrapper
 	{
 		this.mc = mc;
 		this.provider = new WorldProviderWrapper(mc);
+	}
+	
+	public boolean checkNoEntityCollision(AxisAlignedBB bb)
+	{
+		return mc.world.checkNoEntityCollision(bb, null);
 	}
 	
 	public boolean nonNull()

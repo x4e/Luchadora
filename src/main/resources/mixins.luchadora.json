@@ -5,14 +5,29 @@
 	"refmap": "mixins.invicta.refmap.json",
 	"mixins": [
 		"MixinMinecraft",
+		
 		"entity.MixinEntity",
+		"entity.MixinEntityPlayer",
 		"entity.MixinEntityPlayerSP",
 		"entity.MixinEntityRenderer",
+		"entity.MixinRenderLivingBase",
 		"entity.MixinPlayerControllerMP",
+		
 		"netty.MixinNettyCompressionDecoder",
 		"netty.MixinAbstractInterruptibleChannel",
 		"netty.MixinNetworkManager",
+		
 		"misc.MixinChatAllowedCharacters",
-		"world.IMixinRenderGlobal"
+		"misc.MixinTimer",
+		
+		"world.IMixinRenderGlobal",
+		"world.MixinWorldClient",
+		
+		"lwjgl.MixinDisplay",
+		
+		"block.MixinBlock",
+		"block.MixinBlockLiquid",
+		"block.MixinBlockBarrier",
+		"block.MixinBlockModelShapes"
 	]
 }

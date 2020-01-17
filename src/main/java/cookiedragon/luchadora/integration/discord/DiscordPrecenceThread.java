@@ -5,6 +5,7 @@ import com.jagrosh.discordipc.entities.RichPresence;
 import cookiedragon.luchadora.managers.ForgeEventListener;
 import cookiedragon.luchadora.util.Globals;
 import cookiedragon.luchadora.wrapper.client.ServerDataWrapper;
+import net.minecraft.client.multiplayer.ServerData;
 
 /**
  * @author cookiedragon234 22/Dec/2019
@@ -61,13 +62,13 @@ public class DiscordPrecenceThread implements Runnable, Globals
 	
 	public static String getState()
 	{
-		ServerDataWrapper currentServerData = mc.getCurrentServerData();
-		if (currentServerData == null || !currentServerData.getIp().isEmpty())
+		ServerData currentServerData = mc.getCurrentServerData();
+		if (currentServerData == null || !currentServerData.serverIP.isEmpty())
 		{
 			return DISCORD;
 		}
 		
-		String state = currentServerData.getIp();
+		String state = currentServerData.serverIP;
 		
 		if (state.contains("2b2t.org"))
 		{
@@ -78,9 +79,9 @@ public class DiscordPrecenceThread implements Runnable, Globals
 				state += " " + lastChat.substring("Position in queue: ".length()) + " in q";
 			}
 		}
-		else if (currentServerData.getPopulationInfo() != null)
+		else if (currentServerData.populationInfo != null)
 		{
-			state += " " + currentServerData.getPopulationInfo();
+			state += " " + currentServerData.populationInfo;
 		}
 		
 		return state;
@@ -88,13 +89,13 @@ public class DiscordPrecenceThread implements Runnable, Globals
 	
 	public static String getDetails()
 	{
-		if (mc.isSinglePlayer())
+		if (mc.isSingleplayer())
 		{
 			return "SinglePlayer";
 		}
 		
-		ServerDataWrapper currentServerData = mc.getCurrentServerData();
-		if (currentServerData == null || !currentServerData.getIp().isEmpty())
+		ServerData currentServerData = mc.getCurrentServerData();
+		if (currentServerData == null || !currentServerData.serverIP.isEmpty())
 		{
 			return "Main Menu";
 		}

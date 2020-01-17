@@ -1,5 +1,6 @@
 package cookiedragon.luchadora.module.impl.ui.elements.clickgui.values;
 
+import cookiedragon.luchadora.kotlin.ExtensionsKt;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ModuleElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
 import cookiedragon.luchadora.util.Key;
@@ -36,7 +37,7 @@ public class StringValueElement extends ValueElement<StringValue>
 		
 		size = new Vec2f(
 			100,
-			mc.fontRenderer.getFontHeight() + 2
+			mc.fontRenderer.FONT_HEIGHT + 2
 		);
 		
 		position.x += 2;
@@ -58,7 +59,8 @@ public class StringValueElement extends ValueElement<StringValue>
 			new Color(0,0,0, 50).getRGB()
 		);
 		
-		mc.fontRenderer.drawStringClamped(
+		ExtensionsKt.drawStringClamped(
+			mc.fontRenderer,
 			this.value.getName(),
 			position.x + 1,
 			position.y + 1,
@@ -66,7 +68,8 @@ public class StringValueElement extends ValueElement<StringValue>
 			moduleElement.categoryElement.guiModule.textColour.getValue().getRGB()
 		);
 		
-		mc.fontRenderer.drawStringRightClamped(
+		ExtensionsKt.drawStringRightClamped(
+			mc.fontRenderer,
 			this.value.getValue(),
 			position.x + size.x,
 			position.y + 1,

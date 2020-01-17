@@ -5,17 +5,14 @@ import cookiedragon.luchadora.module.Category
 import cookiedragon.luchadora.util.ChatUtils
 import cookiedragon.luchadora.value.values.EnumValue
 import net.minecraft.network.play.client.CPacketPlayer
-import java.text.MessageFormat
 
 /**
  * @author cookiedragon234 10/Jan/2020
  */
-@AbstractModule.Declaration(name = "Invalid Teleport", description = "Attempts to teleport to invalid positions, causing unpredicted server actions", category = Category.DEV)
-class InvalidTeleportModule : AbstractModule() {
+class InvalidTeleportModule : AbstractModule("Invalid Teleport", "Sends invalid numbers to the server causing unpredicted actions", Category.DEV) {
+	private val modeVal = EnumValue("Value", ValueMode.NAN)
 	
-	private val modeVal = EnumValue("Mode", Mode.NAN)
-	
-	private enum class Mode {
+	private enum class ValueMode {
 		NAN,
 		INFINITY,
 		NEG_INFINITY,
@@ -25,23 +22,22 @@ class InvalidTeleportModule : AbstractModule() {
 	}
 	
 	override fun onEnabled() {
-		if (mc.isSinglePlayer) {
+		isEnabled = false
+		if (mc.isSingleplayer) {
 			ChatUtils.sendMessage("Cant use in SP")
-			isEnabled = false
 			return
 		}
 		
-		var pos: Double? = null
-		when {
-			modeVal.value === Mode.NAN 			-> pos = java.lang.Double.NaN
-			modeVal.value === Mode.INFINITY 	-> pos = java.lang.Double.POSITIVE_INFINITY
-			modeVal.value === Mode.NEG_INFINITY -> pos = java.lang.Double.NEGATIVE_INFINITY
-			modeVal.value === Mode.ZERO 		-> pos = 0.0
-			modeVal.value === Mode.MIN 			-> pos = java.lang.Double.MIN_VALUE
-			modeVal.value === Mode.MAX 			-> pos = java.lang.Double.MAX_VALUE
+		val pos = when (modeVal.value) {
+			ValueMode.NAN 			-> Double.NaN
+			ValueMode.INFINITY 		-> Double.POSITIVE_INFINITY
+			ValueMode.NEG_INFINITY 	-> Double.NEGATIVE_INFINITY
+			ValueMode.ZERO 			-> 0.0
+			ValueMode.MIN 			-> Double.MIN_VALUE
+			ValueMode.MAX 			-> Double.MAX_VALUE
+			else					-> throw IllegalStateException()
 		}
-		mc.connection.sendPacket(CPacketPlayer.Position(pos!!, pos, pos, mc.player.onGround()))
+		mc.connection!!.sendPacket(CPacketPlayer.Position(pos, pos, pos, mc.player.onGround))
 		ChatUtils.sendMessage("Sent Position $pos")
-		isEnabled = false
 	}
 }

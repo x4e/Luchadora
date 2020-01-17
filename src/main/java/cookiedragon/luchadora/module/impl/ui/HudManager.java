@@ -58,7 +58,7 @@ public class HudManager implements Globals
 	@Subscriber
 	private static void onRender2d(Render2dEvent event)
 	{
-		if (!(mc.getCurrentScreen() instanceof EditHudGui))
+		if (!(mc.currentScreen instanceof EditHudGui))
 		{
 			Vec2f mousePos = new Vec2f(Mouse.getX(), Mouse.getY(), 1/guiModule.guiScale.getValue().floatValue());
 			GlStateManager.pushAttrib();

@@ -1,6 +1,7 @@
 package cookiedragon.luchadora.module.impl.ui.elements.clickgui.values;
 
 import cookiedragon.luchadora.Luchadora;
+import cookiedragon.luchadora.kotlin.ExtensionsKt;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ModuleElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
 import cookiedragon.luchadora.util.RenderUtils;
@@ -43,7 +44,7 @@ public class ColourValueElement extends ValueElement<ColourValue>
 		super(value, moduleElement);
 		try
 		{
-			InputStream inputStream = mc.resourceManager.getResource(COLOUR_PICKER_RESOURCE).getInputStream();
+			InputStream inputStream = mc.getResourceManager().getResource(COLOUR_PICKER_RESOURCE).getInputStream();
 			pickerImage = ImageIO.read(inputStream);
 		}
 		catch (Exception e)
@@ -64,7 +65,7 @@ public class ColourValueElement extends ValueElement<ColourValue>
 		
 		size = new Vec2f(
 			100,
-			mc.fontRenderer.getFontHeight() + 2
+			mc.fontRenderer.FONT_HEIGHT + 2
 		);
 		
 		position.x += 2;
@@ -89,7 +90,8 @@ public class ColourValueElement extends ValueElement<ColourValue>
 			new Color(0,0,0, 50).getRGB()
 		);
 		
-		mc.fontRenderer.drawStringClamped(
+		ExtensionsKt.drawStringClamped(
+			mc.fontRenderer,
 			this.value.getName(),
 			textPos.x + 1,
 			textPos.y + 1,
@@ -139,7 +141,7 @@ public class ColourValueElement extends ValueElement<ColourValue>
 			GlStateManager.enableBlend();
 			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			GlStateManager.color(1F, 1F, 1F, 1F);
-			mc.getIngameGui().drawTexturedModalRect(x, y, 0, 0, width, height);
+			mc.ingameGUI.drawTexturedModalRect(x, y, 0, 0, width, height);
 			GlStateManager.disableBlend();
 			GlStateManager.scale(upScale, upScale, 1);
 			GlStateManager.popAttrib();

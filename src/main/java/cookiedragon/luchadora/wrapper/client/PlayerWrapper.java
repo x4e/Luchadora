@@ -3,8 +3,10 @@ package cookiedragon.luchadora.wrapper.client;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 
 /**
@@ -19,6 +21,23 @@ public class PlayerWrapper
 	{
 		this.mc = mc;
 		this.movementInput = new MovementInputWrapper(mc);
+	}
+	
+	
+	public InventoryPlayer getInventory()
+	{
+		return mc.player.inventory;
+	}
+	
+	public BlockPos getPosition()
+	{
+		return mc.player.getPosition();
+	}
+	
+	
+	public double getDistance(double x, double y, double z)
+	{
+		return mc.player.getDistance(x, y, z);
 	}
 	
 	public void sendMessage(ITextComponent component)

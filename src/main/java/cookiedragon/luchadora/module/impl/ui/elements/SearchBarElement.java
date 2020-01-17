@@ -12,17 +12,21 @@ import org.lwjgl.input.Keyboard;
 /**
  * @author cookiedragon234 29/Dec/2019
  */
-@AbstractModule.Declaration(name = "Search Bar", description = "Filter hacks", category = Category.UI)
 public class SearchBarElement extends AbstractHudElement
 {
-	private GuiTextField textField = new GuiTextField(0, mc.fontRenderer.getFontRenderer(), 0, 0, 100, 10);
+	public SearchBarElement()
+	{
+		super("Search Bar", "Filter Hacks", Category.UI);
+	}
+	
+	private GuiTextField textField = new GuiTextField(0, mc.fontRenderer, 0, 0, 100, 10);
 	
 	@Override
 	public void render(Vec2f mousePos)
 	{
-		if (this.isEnabled() &&  mc.getCurrentScreen() instanceof EditHudGui)
+		if (this.isEnabled() &&  mc.currentScreen instanceof EditHudGui)
 		{
-			this.position = mc.getDisplaySize();
+			this.position = new Vec2f(mc.displayWidth, mc.displayHeight);
 			position.x = (position.x / 2f) - (textField.width / 2f);
 			position.y = 10;
 			textField.drawTextBox();

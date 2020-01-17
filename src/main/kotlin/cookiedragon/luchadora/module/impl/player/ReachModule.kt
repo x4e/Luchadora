@@ -9,8 +9,7 @@ import cookiedragon.luchadora.value.values.NumberValue
 /**
  * @author cookiedragon234 11/Jan/2020
  */
-@AbstractModule.Declaration(name = "Reach", description = "Reach further", category = Category.PLAYER)
-class ReachModule : AbstractModule() {
+class ReachModule : AbstractModule("Reach", "Reach further", Category.PLAYER) {
 	private val reachDistance = NumberValue("Distance", 3.5f, 0, 6)
 	
 	@Subscriber

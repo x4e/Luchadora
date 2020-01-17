@@ -1,5 +1,7 @@
 package cookiedragon.luchadora.mixin;
 
+import net.minecraft.launchwrapper.Launch;
+import net.minecraft.launchwrapper.LaunchClassLoader;
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.mixin.MixinEnvironment;
@@ -18,6 +20,10 @@ public class CoreMod implements IFMLLoadingPlugin
 		MixinBootstrap.init();
 		Mixins.addConfiguration("mixins.luchadora.json");
 		MixinEnvironment.getDefaultEnvironment().setSide(MixinEnvironment.Side.CLIENT);
+		MixinEnvironment.getCurrentEnvironment().setOption(MixinEnvironment.Option.DEBUG_VERBOSE, true);
+		MixinEnvironment.getCurrentEnvironment().setOption(MixinEnvironment.Option.DEBUG_TARGETS, true);
+		MixinEnvironment.getCurrentEnvironment().setOption(MixinEnvironment.Option.DEBUG_INJECTORS, true);
+		MixinEnvironment.getCurrentEnvironment().setOption(MixinEnvironment.Option.DUMP_TARGET_ON_FAILURE, true);
 	}
 	
 	@Override

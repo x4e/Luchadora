@@ -3,6 +3,7 @@ package cookiedragon.luchadora;
 import cookiedragon.luchadora.integration.discord.DiscordIntegration;
 import cookiedragon.luchadora.managers.BindManager;
 import cookiedragon.luchadora.managers.ForgeEventListener;
+import cookiedragon.luchadora.managers.GenericEventListener;
 import cookiedragon.luchadora.managers.PerspectiveManager;
 import cookiedragon.luchadora.module.ModuleManager;
 import cookiedragon.luchadora.module.impl.ui.HudManager;
@@ -47,18 +48,8 @@ public class Luchadora
 		ForgeEventListener.init();
 		PerspectiveManager.init();
 		ModuleManager.init();
+		GenericEventListener.INSTANCE.init();
 		new DiscordIntegration().start();
-		
-		MinecraftForge.EVENT_BUS.register(this);
-	}
-	
-	@SubscribeEvent
-	public void onGuiOpen(GuiOpenEvent event)
-	{
-		if (event.getGui() instanceof GuiDisconnected)
-		{
-			new RuntimeException("Disconnect Exception").printStackTrace();
-		}
 	}
 	
 	@Mod.EventHandler

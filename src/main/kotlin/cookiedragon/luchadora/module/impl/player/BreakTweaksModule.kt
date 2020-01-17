@@ -9,8 +9,7 @@ import cookiedragon.luchadora.value.values.BooleanValue
 /**
  * @author cookiedragon234 11/Jan/2020
  */
-@AbstractModule.Declaration(name = "Break Tweaks", description = "Tweak block breaking behaviour", category = Category.PLAYER)
-class BreakTweaksModule : AbstractModule() {
+class BreakTweaksModule : AbstractModule("Break Tweaks", "Tweak block breaking behaviour", Category.PLAYER) {
 	private val stickyBreak = BooleanValue("Sticky Break", true)
 	
 	@Subscriber

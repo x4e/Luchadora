@@ -1,5 +1,6 @@
 package cookiedragon.luchadora.module.impl.ui.elements.clickgui.values;
 
+import cookiedragon.luchadora.kotlin.ExtensionsKt;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ModuleElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
 import cookiedragon.luchadora.util.RenderUtils;
@@ -32,7 +33,7 @@ public class BooleanValueElement extends ValueElement<BooleanValue>
 		
 		size = new Vec2f(
 			100,
-			mc.fontRenderer.getFontHeight() + 2
+			mc.fontRenderer.FONT_HEIGHT + 2
 		);
 		
 		if (!isEnabledValue)
@@ -62,7 +63,9 @@ public class BooleanValueElement extends ValueElement<BooleanValue>
 			new Color(0,0,0, 50).getRGB()
 		);
 		
-		mc.fontRenderer.drawString(
+		
+		ExtensionsKt.drawString(
+			mc.fontRenderer,
 			isEnabledValue ? this.moduleElement.module.getName() : this.value.getName(),
 			position.x + 1.5f,
 			position.y + 1.5f,

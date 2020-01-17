@@ -3,6 +3,7 @@ package cookiedragon.luchadora.module.impl.ui.elements.clickgui;
 import cookiedragon.luchadora.event.api.EventDispatcher;
 import cookiedragon.luchadora.event.api.Subscriber;
 import cookiedragon.luchadora.event.luchadora.ModuleInitialisationEvent;
+import cookiedragon.luchadora.kotlin.ExtensionsKt;
 import cookiedragon.luchadora.module.AbstractModule;
 import cookiedragon.luchadora.module.Category;
 import cookiedragon.luchadora.module.ModuleManager;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 /**
  * @author cookiedragon234 21/Dec/2019
  */
-@AbstractModule.Declaration(name = "Category", description = "", category = Category.UI, defaultOn = true)
+@AbstractModule.Declaration(defaultOn = true)
 public class CategoryElement extends AbstractHudElement
 {
 	public final GuiModule guiModule;
@@ -30,10 +31,18 @@ public class CategoryElement extends AbstractHudElement
 	
 	public CategoryElement(Category category, GuiModule guiModule)
 	{
-		super();
+		super("Category", "", Category.UI);
 		setName(category.displayName);
 		this.category = category;
 		this.guiModule = guiModule;
+		
+		this.position.x = category.ordinal() * 105;
+		
+		while (position.x >= 1080)
+		{
+			position.x -= 1080;
+			position.y += 100;
+		}
 		
 		EventDispatcher.subscribe(this);
 	}
@@ -75,7 +84,7 @@ public class CategoryElement extends AbstractHudElement
 		
 		titleSize = new Vec2f(
 			100,
-			mc.fontRenderer.getFontHeight() + 3
+			mc.fontRenderer.FONT_HEIGHT + 3
 		);
 		
 		draggableSize = titleSize;
@@ -96,14 +105,14 @@ public class CategoryElement extends AbstractHudElement
 			new Color(0,0,0, 50).getRGB()
 		);
 		
-		mc.fontRenderer.drawCenteredString(
+		ExtensionsKt.drawCenteredString(
+			mc.fontRenderer,
 			this.getName(),
 			position.x,
 			position.y + 2,
 			titleSize.x,
 			guiModule.textColour.getValue().getRGB()
 		);
-		
 		//
 		
 		modulePosition = new Vec2f(
@@ -185,6 +194,6 @@ public class CategoryElement extends AbstractHudElement
 	@Override
 	public boolean shouldRender()
 	{
-		return mc.getCurrentScreen() instanceof EditHudGui && (this.getEnabled().getValue() || this.getName().equals(this.category.displayName));
+		return mc.currentScreen instanceof EditHudGui && (this.getEnabled().getValue() || this.getName().equals(this.category.displayName));
 	}
 }

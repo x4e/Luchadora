@@ -11,9 +11,14 @@ import java.awt.*;
 /**
  * @author cookiedragon234 15/Dec/2019
  */
-@AbstractModule.Declaration(name = "Gui", description = "Graphical User Interface", category = Category.UI, defaultBind = Key.KEY_P)
+@AbstractModule.Declaration(defaultBind = Key.KEY_P)
 public class GuiModule extends AbstractModule
 {
+	public GuiModule()
+	{
+		super("Gui", "Graphical User Interface", Category.UI);
+	}
+	
 	public final ColourValue primaryColour = new ColourValue("Primary", new Color(0,0,0, 220));
 	public final ColourValue secondaryColour = new ColourValue("Secondary", new Color(0,0,0, 210));
 	public final ColourValue tertiaryColour = new ColourValue("Tertiary", new Color(0,0,0, 195));

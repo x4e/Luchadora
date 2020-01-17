@@ -8,8 +8,7 @@ import cookiedragon.luchadora.module.Category
 /**
  * @author cookiedragon234 10/Jan/2020
  */
-@AbstractModule.Declaration(name = "No Slow", description = "Dont be slowed down by various actions", category = Category.MOVEMENT)
-class NoSlowModule : AbstractModule() {
+class NoSlowModule : AbstractModule("No Slow", "Dont be slowed down by various actions", Category.MOVEMENT) {
 	@Subscriber
 	private fun onSlowEntity(event: SlowEntityUsingEvent) {
 		event.isCancelled = true

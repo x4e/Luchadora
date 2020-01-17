@@ -2,6 +2,7 @@ package cookiedragon.luchadora.module.impl.player
 
 import cookiedragon.luchadora.event.api.Subscriber
 import cookiedragon.luchadora.event.entity.EntityTurnEvent
+import cookiedragon.luchadora.kotlin.setRotation
 import cookiedragon.luchadora.module.AbstractModule
 import cookiedragon.luchadora.module.Category
 import cookiedragon.luchadora.value.values.EnumValue
@@ -11,8 +12,7 @@ import net.minecraft.util.EnumFacing
 /**
  * @author cookiedragon234 11/Jan/2020
  */
-@AbstractModule.Declaration(name = "Rotation Lock", description = "Lock your yaw", category = Category.PLAYER)
-class RotationLockModule: AbstractModule() {
+class RotationLockModule: AbstractModule("Rotation Lock", "Lock your yaw", Category.PLAYER) {
 	private val typeSetting = EnumValue("Mode", RotationLockType.DONT_SNAP)
 			.addCallback { oldVal, newVal -> recalculate(newVal)
 			}
@@ -44,8 +44,7 @@ class RotationLockModule: AbstractModule() {
 			else 						-> return
 		}
 		mc.player.setRotation(yaw!!, mc.player.rotationPitch)
-		if (mc.player.ridingEntity != null)
-			mc.player.ridingEntity.rotationYaw = yaw!!
+		mc.player.ridingEntity?.rotationYaw = yaw!!
 	}
 	
 	override fun onDisabled() {

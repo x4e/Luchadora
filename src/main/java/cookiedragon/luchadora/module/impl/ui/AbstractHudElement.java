@@ -1,6 +1,7 @@
 package cookiedragon.luchadora.module.impl.ui;
 
 import cookiedragon.luchadora.module.AbstractModule;
+import cookiedragon.luchadora.module.Category;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.EditHudGui;
 import cookiedragon.luchadora.util.*;
 import org.lwjgl.opengl.Display;
@@ -19,9 +20,9 @@ public abstract class AbstractHudElement extends AbstractModule implements IRend
 	private boolean dragging = false;
 	private Vec2f mouseOffset = new Vec2f(0,0);
 	
-	public AbstractHudElement()
+	public AbstractHudElement(String name, String description, Category category)
 	{
-		super();
+		super(name, description, category);
 		HudManager.hudElements.add(this);
 	}
 	
@@ -35,7 +36,7 @@ public abstract class AbstractHudElement extends AbstractModule implements IRend
 	{
 		forceInView();
 		
-		if (shouldRender() && mc.getCurrentScreen() instanceof EditHudGui)
+		if (shouldRender() && mc.currentScreen instanceof EditHudGui)
 		{
 			if (HudManager.getMouseOver(mousePos) == this || dragging)
 			{

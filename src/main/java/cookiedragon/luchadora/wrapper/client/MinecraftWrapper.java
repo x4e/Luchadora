@@ -7,6 +7,8 @@ import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.client.settings.GameSettings;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.math.RayTraceResult;
 
 /**
@@ -53,6 +55,11 @@ public class MinecraftWrapper
 			return null;
 		
 		return new ServerDataWrapper(mc.getCurrentServerData());
+	}
+	
+	public GameSettings getGameSettings()
+	{
+		return mc.gameSettings;
 	}
 	
 	public boolean isSinglePlayer()

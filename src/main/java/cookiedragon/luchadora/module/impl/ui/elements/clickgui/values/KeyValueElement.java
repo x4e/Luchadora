@@ -1,5 +1,6 @@
 package cookiedragon.luchadora.module.impl.ui.elements.clickgui.values;
 
+import cookiedragon.luchadora.kotlin.ExtensionsKt;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.EditHudGui;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ModuleElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
@@ -34,7 +35,7 @@ public class KeyValueElement extends ValueElement<KeyValue>
 		
 		size = new Vec2f(
 			100,
-			mc.fontRenderer.getFontHeight() + 2
+			mc.fontRenderer.FONT_HEIGHT + 2
 		);
 		
 		position.x += 2;
@@ -56,7 +57,8 @@ public class KeyValueElement extends ValueElement<KeyValue>
 			new Color(0,0,0, 50).getRGB()
 		);
 		
-		mc.fontRenderer.drawStringClamped(
+		ExtensionsKt.drawStringClamped(
+			mc.fontRenderer,
 			this.value.getName(),
 			position.x + 1,
 			position.y + 1,
@@ -64,7 +66,8 @@ public class KeyValueElement extends ValueElement<KeyValue>
 			moduleElement.categoryElement.guiModule.textColour.getValue().getRGB()
 		);
 		
-		mc.fontRenderer.drawStringRightClamped(
+		ExtensionsKt.drawStringRightClamped(
+			mc.fontRenderer,
 			isListening ? "..." : this.value.getValue().toString(),
 			position.x + size.x,
 			position.y + 1,
@@ -96,7 +99,7 @@ public class KeyValueElement extends ValueElement<KeyValue>
 	@Override
 	public boolean keyTyped(Key key)
 	{
-		if (this.isListening && mc.getCurrentScreen() instanceof EditHudGui && !this.moduleElement.collapsed)
+		if (this.isListening && mc.currentScreen instanceof EditHudGui && !this.moduleElement.collapsed)
 		{
 			if (key != Key.KEY_ESCAPE)
 			{

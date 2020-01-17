@@ -22,14 +22,14 @@ public class PerspectiveManager implements Globals
 	
 	public static float getYaw()
 	{
-		MutableFloat yaw = new MutableFloat(mc.player.getRotationYaw());
+		MutableFloat yaw = new MutableFloat(mc.player.rotationYaw);
 		yawModifiers.forEach(modifier -> modifier.accept(yaw));
 		return yaw.floatValue();
 	}
 	
 	public static float getPitch()
 	{
-		MutableFloat pitch = new MutableFloat(mc.player.getRotationPitch());
+		MutableFloat pitch = new MutableFloat(mc.player.rotationPitch);
 		pitchModifiers.forEach(modifier -> modifier.accept(pitch));
 		return pitch.floatValue();
 	}

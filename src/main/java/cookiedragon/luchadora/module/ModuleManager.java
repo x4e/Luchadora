@@ -2,16 +2,15 @@ package cookiedragon.luchadora.module;
 
 import cookiedragon.luchadora.event.api.EventDispatcher;
 import cookiedragon.luchadora.event.luchadora.ModuleInitialisationEvent;
-import cookiedragon.luchadora.module.impl.combat.BreakHighlightModule;
-import cookiedragon.luchadora.module.impl.combat.CrystalAuraModule;
-import cookiedragon.luchadora.module.impl.dev.InvalidTeleportModule;
-import cookiedragon.luchadora.module.impl.movement.ElytraFlyModule;
-import cookiedragon.luchadora.module.impl.movement.NoSlowModule;
+import cookiedragon.luchadora.module.impl.combat.*;
+import cookiedragon.luchadora.module.impl.dev.*;
+import cookiedragon.luchadora.module.impl.movement.*;
 import cookiedragon.luchadora.module.impl.player.*;
-import cookiedragon.luchadora.module.impl.render.FullBrightModule;
+import cookiedragon.luchadora.module.impl.render.*;
 import cookiedragon.luchadora.module.impl.ui.elements.SearchBarElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.CategoryElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.GuiModule;
+import cookiedragon.luchadora.module.impl.world.LiquidInteractModule;
 import cookiedragon.luchadora.util.SimpleClassLoader;
 import cookiedragon.luchadora.value.Value;
 
@@ -44,7 +43,10 @@ public class ModuleManager
 				ReachModule.class,
 				RotationLockModule.class,
 				
-				FullBrightModule.class,
+				EspModule.class,
+				ExtraRenderModule.class,
+				
+				LiquidInteractModule.class,
 				
 				GuiModule.class,
 				SearchBarElement.class

@@ -1,5 +1,6 @@
 package cookiedragon.luchadora.module.impl.ui.elements.clickgui.values;
 
+import cookiedragon.luchadora.kotlin.ExtensionsKt;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.EditHudGui;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ModuleElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
@@ -37,7 +38,7 @@ public class NumberValueElement extends ValueElement<NumberValue>
 		
 		size = new Vec2f(
 			100,
-			mc.fontRenderer.getFontHeight() + 2
+			mc.fontRenderer.FONT_HEIGHT + 2
 		);
 		
 		position.x += 2;
@@ -75,14 +76,17 @@ public class NumberValueElement extends ValueElement<NumberValue>
 			new Color(0,0,0, 50).getRGB()
 		);
 		
-		mc.fontRenderer.drawString(
+		
+		ExtensionsKt.drawString(
+			mc.fontRenderer,
 			this.value.getName(),
 			position.x + 1,
 			position.y + 1,
 			moduleElement.categoryElement.guiModule.textColour.getValue().getRGB()
 		);
 		
-		mc.fontRenderer.drawStringRight(
+		ExtensionsKt.drawStringRight(
+			mc.fontRenderer,
 			cachedVal == null ? this.value.getValue().toString() : cachedVal.toString(),
 			position.x + 1,
 			position.y + 1,
@@ -109,7 +113,7 @@ public class NumberValueElement extends ValueElement<NumberValue>
 	@Override
 	public boolean mouseClickMove(Vec2f mousePos, int mouseID)
 	{
-		if (this.isDragging && mc.getCurrentScreen() instanceof EditHudGui && !this.moduleElement.collapsed)
+		if (this.isDragging && mc.currentScreen instanceof EditHudGui && !this.moduleElement.collapsed)
 		{
 			if (mouseID == 0)
 			{

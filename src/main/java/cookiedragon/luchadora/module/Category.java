@@ -10,6 +10,7 @@ public enum Category
 	PLAYER("Player"),
 	RENDER("Render"),
 	MOVEMENT("Movement"),
+	WORLD("World"),
 	DEV("Dev");
 	
 	public final String displayName;

@@ -14,10 +14,9 @@ import java.awt.Color
 /**
  * @author cookiedragon234 10/Jan/2020
  */
-@AbstractModule.Declaration(name = "Break Highlight", description = "Highlight blocks that other players are breaking", category = Category.COMBAT)
-class BreakHighlightModule : AbstractModule() {
+class BreakHighlightModule : AbstractModule("Break Highlight", "Highlight blocks that other players are breaking", Category.COMBAT) {
 	private val colourValue = ColourValue("Colour", Color(0, 64, 255, 100))
-	private val damagedBlocks = (mc.renderGlobalActual as IMixinRenderGlobal).damagedBlocks
+	private val damagedBlocks = (mc.renderGlobal as IMixinRenderGlobal).damagedBlocks
 	
 	@Subscriber
 	private fun onRenderWorld(event: Render3dEvent) {
