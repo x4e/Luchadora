@@ -6,12 +6,25 @@ import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
 import cookiedragon.luchadora.util.RenderUtils;
 import cookiedragon.luchadora.util.Vec2f;
 import cookiedragon.luchadora.value.values.BooleanValue;
+import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.security.KeyStore;
+import java.util.Arrays;
 
 /**
  * @author cookiedragon234 22/Dec/2019
  */
+@SuppressWarnings("Duplicates")
 public class BooleanValueElement extends ValueElement<BooleanValue>
 {
 	private boolean isEnabledValue;
@@ -81,14 +94,17 @@ public class BooleanValueElement extends ValueElement<BooleanValue>
 			if (mouseID == 0)
 			{
 				this.value.setValue(!this.value.getValue());
+				mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0f));
 				return true;
 			}
 			else if (mouseID == 1 && isEnabledValue)
 			{
 				this.moduleElement.collapsed = !this.moduleElement.collapsed;
+				mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_TOAST_IN, 1.0f));
 				return true;
 			}
 		}
+		
 		return false;
 	}
 }

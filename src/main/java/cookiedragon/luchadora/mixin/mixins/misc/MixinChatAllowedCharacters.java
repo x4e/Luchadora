@@ -17,7 +17,7 @@ import java.util.Set;
 @Mixin(ChatAllowedCharacters.class)
 public class MixinChatAllowedCharacters
 {
-	private static final Set<Character> serverChars = ImmutableSet.copyOf(
+	private static final Set<Character> serverUnallowedChars = ImmutableSet.copyOf(
 		new Character[] { '/', '\n', '\r', '\t', '\u0000', '\f', '`', '?', '*', '\\', '<', '>', '|', '\"', ':'}
 	);
 	
@@ -31,7 +31,6 @@ public class MixinChatAllowedCharacters
 		{
 			cir.setReturnValue(input);
 			cir.cancel();
-			return;
 		}
 		else if (event.state == AllowedCharactersEvent.State.ALLOW_SERVER)
 		{
@@ -39,7 +38,7 @@ public class MixinChatAllowedCharacters
 			
 			for (char c0 : input.toCharArray())
 			{
-				if (!serverChars.contains(c0))
+				if (!serverUnallowedChars.contains(c0))
 				{
 					stringbuilder.append(c0);
 				}
@@ -47,7 +46,6 @@ public class MixinChatAllowedCharacters
 			
 			cir.setReturnValue(stringbuilder.toString());
 			cir.cancel();
-			return;
 		}
 	}
 }

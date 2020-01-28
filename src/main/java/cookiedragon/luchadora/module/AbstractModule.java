@@ -55,9 +55,9 @@ public abstract class AbstractModule implements ISerializable, Globals
 		Declaration annotation = this.getAnnotation();
 		if (annotation != null)
 		{
-			this.enabled.setValue(annotation.defaultOn());
-			this.visible.setValue(annotation.defaultVisible() && category.visible);
-			this.keyBind.setValue(annotation.defaultBind());
+			this.enabled.setValue(annotation.defaultOn(), true);
+			this.visible.setValue(annotation.defaultVisible() && category.visible, true);
+			this.keyBind.setValue(annotation.defaultBind(), true);
 		}
 	}
 	

@@ -1,5 +1,7 @@
 package cookiedragon.luchadora.module;
 
+import com.google.common.collect.ImmutableSet;
+import com.google.common.reflect.ClassPath;
 import cookiedragon.luchadora.event.api.EventDispatcher;
 import cookiedragon.luchadora.event.luchadora.ModuleInitialisationEvent;
 import cookiedragon.luchadora.module.impl.combat.*;
@@ -7,13 +9,21 @@ import cookiedragon.luchadora.module.impl.dev.*;
 import cookiedragon.luchadora.module.impl.movement.*;
 import cookiedragon.luchadora.module.impl.player.*;
 import cookiedragon.luchadora.module.impl.render.*;
+import cookiedragon.luchadora.module.impl.ui.AbstractHudElement;
 import cookiedragon.luchadora.module.impl.ui.elements.SearchBarElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.CategoryElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.GuiModule;
 import cookiedragon.luchadora.module.impl.world.LiquidInteractModule;
 import cookiedragon.luchadora.util.SimpleClassLoader;
 import cookiedragon.luchadora.value.Value;
+import net.minecraft.launchwrapper.Launch;
+import net.minecraft.launchwrapper.LaunchClassLoader;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 /**
@@ -27,14 +37,13 @@ public class ModuleManager
 	{
 		EventDispatcher.dispatch(new ModuleInitialisationEvent.Pre());
 		
-		new SimpleClassLoader<AbstractModule>()
+		/*new SimpleClassLoader<AbstractModule>()
 			.build(
 				BreakHighlightModule.class,
 				CrystalAuraModule.class,
 				
 				InvalidTeleportModule.class,
 				
-				ElytraFlyModule.class,
 				NoSlowModule.class,
 				
 				BreakTweaksModule.class,
@@ -55,7 +64,42 @@ public class ModuleManager
 				module -> modules.put(module, module.getValues()),
 				module -> {},
 				(module, e) -> new RuntimeException("Failed to initialise module '" + module.getName() + "'", e)
-			);
+			);*/
+		
+		try
+		{
+			for (ClassPath.ClassInfo classInfo : ClassPath.from(Launch.classLoader).getAllClasses())
+			{
+				if (classInfo.getName().startsWith("cookiedragon.luchadora."))
+				{
+					try
+					{
+						Class<?> aClass = classInfo.load();
+						if (!Modifier.isAbstract(aClass.getModifiers()) && AbstractModule.class.isAssignableFrom(aClass))
+						{
+							System.out.println("Found " + classInfo.getName());
+							for (Constructor<?> constructor : aClass.getConstructors())
+							{
+								if (constructor.getParameterCount() == 0)
+								{
+									AbstractModule instance = (AbstractModule)constructor.newInstance();
+									modules.put(instance, instance.getValues());
+									break;
+								}
+							}
+						}
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException("Failure loading modules", e);
+		}
 		
 		{
 			GuiModule guiModule = getModule(GuiModule.class);

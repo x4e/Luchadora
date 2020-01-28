@@ -1,7 +1,5 @@
 package cookiedragon.luchadora.kotlin
 
-import cookiedragon.luchadora.mixin.mixins.MixinMinecraft
-import cookiedragon.luchadora.mixin.mixins.misc.MixinTimer
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.FontRenderer
 import net.minecraft.client.renderer.GlStateManager
@@ -18,9 +16,6 @@ import net.minecraft.world.EnumDifficulty
 import net.minecraft.network.play.client.CPacketEntityAction
 import net.minecraft.network.play.client.CPacketPlayer
 import net.minecraft.util.*
-import org.omg.CORBA.Object
-import sun.jvm.hotspot.ui.GraphicsUtilities.getStringWidth
-import kotlin.math.roundToInt
 
 
 /**
@@ -172,8 +167,6 @@ fun Entity.setRotation(yaw: Float, pitch: Float) {
 }
 
 fun FontRenderer.drawStringClamped(text: String, x: Float, y: Float, width: Float, color: Int): Int {
-	val original = this.FONT_HEIGHT
-	
 	val stringWidth = getStringWidth(text)
 	
 	return if (stringWidth > width) {
@@ -192,7 +185,6 @@ fun FontRenderer.drawStringClamped(text: String, x: Float, y: Float, width: Floa
 fun FontRenderer.drawStringRightClamped(text: String, x: Float, y: Float, width: Float, color: Int): Int {
 	var _x = x
 	var _y = y
-	val original = this.FONT_HEIGHT
 	
 	val stringWidth = getStringWidth(text)
 	

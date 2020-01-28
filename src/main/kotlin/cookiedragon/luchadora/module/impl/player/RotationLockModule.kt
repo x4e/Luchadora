@@ -25,8 +25,6 @@ class RotationLockModule: AbstractModule("Rotation Lock", "Lock your yaw", Categ
 		WEST
 	}
 	
-	private var yaw: Float? = null
-	
 	override fun onEnabled() {
 		recalculate(typeSetting.value)
 	}
@@ -35,20 +33,16 @@ class RotationLockModule: AbstractModule("Rotation Lock", "Lock your yaw", Categ
 		if (!this.isEnabled)
 			return
 		
-		yaw = when (value) {
+		val yaw = when (value) {
 			RotationLockType.DONT_SNAP -> return
 			RotationLockType.NORTH 		-> EnumFacing.NORTH.horizontalAngle
 			RotationLockType.EAST 		-> EnumFacing.EAST.horizontalAngle
 			RotationLockType.SOUTH 		-> EnumFacing.SOUTH.horizontalAngle
 			RotationLockType.WEST 		-> EnumFacing.WEST.horizontalAngle
-			else 						-> return
+			else 						-> throw IllegalStateException("Enum Val $value not expected")
 		}
-		mc.player.setRotation(yaw!!, mc.player.rotationPitch)
-		mc.player.ridingEntity?.rotationYaw = yaw!!
-	}
-	
-	override fun onDisabled() {
-		yaw = null
+		mc.player.setRotation(yaw, mc.player.rotationPitch)
+		mc.player.ridingEntity?.rotationYaw = yaw
 	}
 	
 	@Subscriber

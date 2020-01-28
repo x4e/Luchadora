@@ -17,7 +17,5 @@ object GenericEventListener {
 	@Subscriber
 	private fun onSetDisplayTitle(event: SetDisplayTitleEvent) {
 		event.newTitle = Luchadora.getBrand()
-		if (event.newTitle == event.oldTitle)
-			event.isCancelled = true
 	}
 }

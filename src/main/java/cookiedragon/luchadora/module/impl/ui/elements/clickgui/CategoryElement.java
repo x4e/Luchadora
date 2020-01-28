@@ -11,6 +11,8 @@ import cookiedragon.luchadora.module.impl.ui.AbstractHudElement;
 import cookiedragon.luchadora.util.Key;
 import cookiedragon.luchadora.util.RenderUtils;
 import cookiedragon.luchadora.util.Vec2f;
+import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.init.SoundEvents;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -28,6 +30,8 @@ public class CategoryElement extends AbstractHudElement
 	private boolean collapsed = false;
 	
 	private ArrayList<ModuleElement> moduleElements;
+	
+	private CategoryElement(){this(null, null);}
 	
 	public CategoryElement(Category category, GuiModule guiModule)
 	{
@@ -150,6 +154,7 @@ public class CategoryElement extends AbstractHudElement
 			if (mouseID == 1)
 			{
 				collapsed = !collapsed;
+				mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_TOAST_OUT, 1.0f));
 				return true;
 			}
 		}

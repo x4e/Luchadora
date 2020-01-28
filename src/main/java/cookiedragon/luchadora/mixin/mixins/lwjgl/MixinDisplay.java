@@ -15,24 +15,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Display.class)
 public class MixinDisplay
 {
-	@Shadow
+	@Shadow(remap = false)
 	private static String title;
 	
-	private static boolean bypass = false;
-	
-	@Inject(method = "setTitle", at = @At("HEAD"), cancellable = true, require = 1)
+	@Inject(method = "setTitle", at = @At("HEAD"), cancellable = true, remap = false, require = 1)
 	private static void onSetTitle(String newTitle, CallbackInfo ci)
 	{
 		System.out.println("Set title " + newTitle + " : " + title);
-		bypass = !bypass;
-		if (!bypass)
-		{
-			return;
-		}
-		ci.cancel();
 		SetDisplayTitleEvent event = new SetDisplayTitleEvent(title, newTitle);
 		EventDispatcher.dispatch(event);
-		if (!event.isCancelled())
+		if (!event.getNewTitle().equals(newTitle))
+		{
+			ci.cancel();
 			Display.setTitle(event.getNewTitle());
+		}
 	}
 }

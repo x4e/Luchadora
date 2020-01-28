@@ -13,8 +13,6 @@
 		"entity.MixinRenderLivingBase",
 		"entity.MixinPlayerControllerMP",
 		
-		"netty.MixinNettyCompressionDecoder",
-		"netty.MixinAbstractInterruptibleChannel",
 		"netty.MixinNetworkManager",
 		
 		"misc.MixinChatAllowedCharacters",

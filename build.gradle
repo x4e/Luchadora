@@ -90,10 +90,6 @@ jar {
 }
 
 shadowJar {
-	dependencies {
-		include(dependency("org.sponversiongepowered:mixin"))
-		include(dependency("com.mojang:brigadier:1.0.17"))
-	}
 	exclude "dummyThing"
 	exclude "LICENSE.txt"
 	baseName = "luchadora"
