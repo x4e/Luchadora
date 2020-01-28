@@ -11,6 +11,13 @@ Please check LICENSE.MD.
 - Automatic Value detection through reflection
 - Kotlin
 
+## TODO
+1. Fix building release artifacts
+2. Implement brigadier command system based on what I made for https://github.com/2b2t-cc/Invicta/tree/master/src/main/java/com/invicta/api/command
+3. Change the colour picker to use a shader instead of a texture, will allow us to give sliders for saturation etc.
+
+If you would like to help with any of these I would appreciate it
+
 ## Contributing
 I'm welcome to accept PRs. Please be civil and polite in the PR.
 
