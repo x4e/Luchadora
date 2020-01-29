@@ -100,7 +100,8 @@ shadowJar {
 task clientJar(type: Jar, dependsOn: jar) {
 	from(zipTree(jar.archivePath)) {
 		include "cookiedragon/luchadora/**"
-		include "mixins.luchadora.json"
+		include "assets/**"
+		include "*.json"
 		include "META-INF/**"
 		include "mcmod.info"
 	}
@@ -113,8 +114,8 @@ task dependencyJar(type: Jar, dependsOn: shadowJar) {
 	from(zipTree(shadowJar.archivePath)) {
 		exclude "cookiedragon/**"
 		exclude "mixins.luchadora.json"
-		exclude "META-INF/**"
 		exclude "mcmod.info"
+		exclude "assets/**"
 	}
 	baseName = "luchadora"
 	version = ""
