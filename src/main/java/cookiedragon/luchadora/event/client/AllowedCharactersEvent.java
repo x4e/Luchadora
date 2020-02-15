@@ -5,5 +5,17 @@ package cookiedragon.luchadora.event.client;
  */
 public class AllowedCharactersEvent
 {
-	public boolean forceAllow = true;
+	public enum State
+	{
+		ALLOW(),
+		ALLOW_SERVER(),
+		DISALLOW()
+	}
+	
+	public State state;
+	
+	public AllowedCharactersEvent(State state)
+	{
+		this.state = state;
+	}
 }

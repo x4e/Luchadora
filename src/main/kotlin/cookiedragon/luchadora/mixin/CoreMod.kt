@@ -1,8 +1,9 @@
 package cookiedragon.luchadora.mixin
 
-import net.minecraft.launchwrapper.Launch
-import net.minecraft.launchwrapper.LaunchClassLoader
+import net.minecraft.launchwrapper.LogWrapper
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin
+import org.apache.logging.log4j.Level
+import org.apache.logging.log4j.LogManager
 import org.spongepowered.asm.launch.MixinBootstrap
 import org.spongepowered.asm.mixin.Mixins
 
@@ -11,6 +12,7 @@ import org.spongepowered.asm.mixin.Mixins
  */
 class CoreMod: IFMLLoadingPlugin {
 	init {
+		LogWrapper.retarget(LogManager.getLogger("Luchadora"))
 		try {
 			MixinBootstrap.init()
 			Mixins.addConfiguration("mixins.luchadora.json")

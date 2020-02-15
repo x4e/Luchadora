@@ -26,7 +26,7 @@ public abstract class AbstractModule implements ISerializable, Globals
 	private final String description;
 	private final Category category;
 	
-	protected final Value<Boolean> enabled = new BooleanValue("Enabled", true);
+	protected final Value<Boolean> enabled = new BooleanValue("Enabled", false);
 	protected final Value<Boolean> visible = new BooleanValue("Visible", true);
 	protected final Value<Key> keyBind = new KeyValue("Keybind", Key.KEY_NONE);
 	
