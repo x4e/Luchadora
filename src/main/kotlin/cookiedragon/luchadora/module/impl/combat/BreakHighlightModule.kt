@@ -16,11 +16,11 @@ import java.awt.Color
  */
 class BreakHighlightModule : AbstractModule("Break Highlight", "Highlight blocks that other players are breaking", Category.COMBAT) {
 	private val colourValue = ColourValue("Colour", Color(0, 64, 255, 100))
-	private val damagedBlocks = (mc.renderGlobal as IMixinRenderGlobal).damagedBlocks
+	private val damagedBlocks = (mc.renderGlobal as IMixinRenderGlobal).getDamagedBlocks()
 	
 	@Subscriber
 	private fun onRenderWorld(event: Render3dEvent) {
-		if (damagedBlocks.isEmpty())
+		if (damagedBlocks?.isNotEmpty() != true)
 			return
 		
 		GlStateManager.glLineWidth(5f)
@@ -28,7 +28,7 @@ class BreakHighlightModule : AbstractModule("Break Highlight", "Highlight blocks
 		val colour = colourValue.value
 		
 		for (value in damagedBlocks.values)
-			RenderUtils.drawSelectionBox(AxisAlignedBB(value.position), colour)
+			RenderUtils.drawSelectionBox(AxisAlignedBB(value!!.position), colour)
 		
 		GlStateManager.glLineWidth(1f)
 	}

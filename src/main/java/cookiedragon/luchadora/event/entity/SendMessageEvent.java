@@ -1,11 +1,11 @@
 package cookiedragon.luchadora.event.entity;
 
-import net.minecraftforge.fml.common.eventhandler.Cancelable;
+import cookiedragon.luchadora.event.CancellableEvent;
 
 /**
  * @author cookiedragon234 08/Dec/2019
  */
-public class SendMessageEvent
+public class SendMessageEvent extends CancellableEvent
 {
 	private final String message;
 	
@@ -19,7 +19,6 @@ public class SendMessageEvent
 		return this.message;
 	}
 	
-	@Cancelable
 	public static class Pre extends SendMessageEvent
 	{
 		public Pre(String message)
