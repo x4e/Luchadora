@@ -53,7 +53,7 @@ repositories {
 dependencies {
 	compile "com.mojang:brigadier:1.0.17"
 	compile 'com.jagrosh:DiscordIPC:0.4'
-	compile("org.spongepowered:mixin:0.7.4-SNAPSHOT") {
+	compile("org.spongepowered:mixin:0.8") {
 		exclude module: "launchwrapper"
 		exclude module: "guava"
 		exclude module: "gson"
@@ -90,8 +90,6 @@ jar {
 }
 
 shadowJar {
-	exclude "dummyThing"
-	exclude "LICENSE.txt"
 	baseName = "luchadora"
 	version = ""
 	classifier = "shadow"

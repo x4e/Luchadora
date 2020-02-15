@@ -6,4 +6,4 @@ import net.minecraft.block.state.IBlockState
 /**
  * @author cookiedragon234 13/Jan/2020
  */
-data class CanLiquidCollideEvent(val block: BlockLiquid, val state: IBlockState, val hitIfLiquid: Boolean, var returnVal: Boolean)
+data class CanLiquidCollideEvent(var forceCollide: Boolean = false)

@@ -11,6 +11,6 @@ import cookiedragon.luchadora.module.Category
 class LiquidInteractModule: AbstractModule("Liquid Interact", "Interact with liquids as if they were solid", Category.WORLD) {
 	@Subscriber
 	private fun onLiquidInteract(event: CanLiquidCollideEvent) {
-		event.returnVal = true
+		event.forceCollide = true
 	}
 }

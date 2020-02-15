@@ -14,12 +14,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
  */
 @Mixin(BlockLiquid::class)
 class MixinBlockLiquid {
-	@Inject(method = ["canCollideCheck"], at = [At("RETURN")], cancellable = true, require = 1)
+	@Inject(method = ["canCollideCheck"], at = [At("HEAD")], cancellable = true, require = 1)
 	private fun canCollideWrapper(state: IBlockState, hitIfLiquid: Boolean, cir: CallbackInfoReturnable<Boolean>) {
 		this as BlockLiquid
-		with(CanLiquidCollideEvent(this, state, hitIfLiquid, cir.returnValue)) {
+		with(CanLiquidCollideEvent()) {
 			EventDispatcher.dispatch(this)
-			cir.returnValue = returnVal
+			if (forceCollide) {
+				cir.returnValue = true
+				cir.cancel()
+			}
 		}
 	}
 }

@@ -1,5 +1,7 @@
 package cookiedragon.luchadora.mixin
 
+import net.minecraft.launchwrapper.Launch
+import net.minecraft.launchwrapper.LaunchClassLoader
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin
 import org.spongepowered.asm.launch.MixinBootstrap
 import org.spongepowered.asm.mixin.Mixins
@@ -9,8 +11,12 @@ import org.spongepowered.asm.mixin.Mixins
  */
 class CoreMod: IFMLLoadingPlugin {
 	init {
-		MixinBootstrap.init()
-		Mixins.addConfiguration("mixins.luchadora.json")
+		try {
+			MixinBootstrap.init()
+			Mixins.addConfiguration("mixins.luchadora.json")
+		} catch (t: Throwable) {
+			t.printStackTrace()
+		}
 	}
 	
 	override fun getASMTransformerClass(): Array<String?>? = arrayOfNulls(0)

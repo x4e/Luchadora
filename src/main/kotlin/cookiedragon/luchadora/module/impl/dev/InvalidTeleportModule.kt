@@ -4,6 +4,8 @@ import cookiedragon.luchadora.module.AbstractModule
 import cookiedragon.luchadora.module.Category
 import cookiedragon.luchadora.util.ChatUtils
 import cookiedragon.luchadora.value.values.EnumValue
+import net.minecraft.launchwrapper.Launch
+import net.minecraft.launchwrapper.LaunchClassLoader
 import net.minecraft.network.play.client.CPacketPlayer
 
 /**
@@ -22,6 +24,12 @@ class InvalidTeleportModule : AbstractModule("Invalid Teleport", "Sends invalid 
 	}
 	
 	override fun onEnabled() {
+		LaunchClassLoader::class.java.getDeclaredField("invalidClasses").apply {
+			isAccessible = true
+			println("CoreMod Load")
+			println(get(Launch.classLoader))
+		}
+		
 		isEnabled = false
 		if (mc.isSingleplayer) {
 			ChatUtils.sendMessage("Cant use in SP")
