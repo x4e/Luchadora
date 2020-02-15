@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Shadow
  */
 @Mixin(Entity::class)
 abstract class MixinEntity {
+	@JvmField
 	@Shadow
 	var world: World? = null
 }
