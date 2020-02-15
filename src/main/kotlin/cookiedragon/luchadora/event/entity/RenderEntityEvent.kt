@@ -1,6 +1,5 @@
 package cookiedragon.luchadora.event.entity
 
-import cookiedragon.luchadora.event.api.AbstractEvent
 import net.minecraft.entity.EntityLivingBase
 
 /**
@@ -14,7 +13,7 @@ object RenderEntityEvent {
 		val z: Double,
 		val yaw: Float,
 		val partialTicks: Float
-	): AbstractEvent()
+	)
 	data class Post(
 			val entity: EntityLivingBase,
 			val x: Double,
@@ -22,5 +21,5 @@ object RenderEntityEvent {
 			val z: Double,
 			val yaw: Float,
 			val partialTicks: Float
-	): AbstractEvent()
+	)
 }

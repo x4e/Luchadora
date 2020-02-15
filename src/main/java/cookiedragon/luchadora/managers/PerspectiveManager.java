@@ -1,14 +1,10 @@
 package cookiedragon.luchadora.managers;
 
-import cookiedragon.luchadora.event.api.EventDispatcher;
-import cookiedragon.luchadora.event.api.Subscriber;
+import cookiedragon.eventsystem.EventDispatcher;
 import cookiedragon.luchadora.util.Globals;
-import net.minecraft.client.renderer.EntityRenderer;
 import org.apache.commons.lang3.mutable.MutableFloat;
 
-import java.lang.reflect.Field;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -46,7 +42,7 @@ public class PerspectiveManager implements Globals
 	
 	public static void init()
 	{
-		EventDispatcher.register(PerspectiveManager.class);
-		EventDispatcher.subscribe(PerspectiveManager.class);
+		EventDispatcher.Companion.register(PerspectiveManager.class);
+		EventDispatcher.Companion.subscribe(PerspectiveManager.class);
 	}
 }

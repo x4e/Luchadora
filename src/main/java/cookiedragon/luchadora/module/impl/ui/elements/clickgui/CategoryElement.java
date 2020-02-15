@@ -1,7 +1,7 @@
 package cookiedragon.luchadora.module.impl.ui.elements.clickgui;
 
-import cookiedragon.luchadora.event.api.EventDispatcher;
-import cookiedragon.luchadora.event.api.Subscriber;
+import cookiedragon.eventsystem.EventDispatcher;
+import cookiedragon.eventsystem.Subscriber;
 import cookiedragon.luchadora.event.luchadora.ModuleInitialisationEvent;
 import cookiedragon.luchadora.kotlin.ExtensionsKt;
 import cookiedragon.luchadora.module.AbstractModule;
@@ -48,13 +48,13 @@ public class CategoryElement extends AbstractHudElement
 			position.y += 100;
 		}
 		
-		EventDispatcher.subscribe(this);
+		EventDispatcher.Companion.subscribe(this);
 	}
 	
 	@Subscriber
 	private void onModuleInitialisation(ModuleInitialisationEvent.Post event)
 	{
-		EventDispatcher.unsubscribe(this);
+		EventDispatcher.Companion.unsubscribe(this);
 		
 		moduleElements = new ArrayList<>();
 		for (AbstractModule module : ModuleManager.getModules())

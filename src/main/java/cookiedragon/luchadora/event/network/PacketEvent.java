@@ -1,13 +1,12 @@
 package cookiedragon.luchadora.event.network;
 
-import cookiedragon.luchadora.event.api.AbstractEvent;
+import cookiedragon.luchadora.event.CancellableEvent;
 import net.minecraft.network.Packet;
 
 /**
  * @author cookiedragon234 02/Jan/2020
  */
-@AbstractEvent.Cancellable
-public class PacketEvent extends AbstractEvent
+public class PacketEvent extends CancellableEvent
 {
 	public final Packet<?> packet;
 	

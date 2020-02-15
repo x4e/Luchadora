@@ -1,6 +1,6 @@
 package cookiedragon.luchadora.module.impl.render
 
-import cookiedragon.luchadora.event.api.Subscriber
+import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.event.block.GetBlockModelEvent
 import cookiedragon.luchadora.event.block.GetBlockRenderLayerEvent
 import cookiedragon.luchadora.event.block.GetBlockRenderTypeEvent

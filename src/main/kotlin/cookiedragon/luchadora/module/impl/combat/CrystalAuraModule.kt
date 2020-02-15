@@ -1,6 +1,6 @@
 package cookiedragon.luchadora.module.impl.combat
 
-import cookiedragon.luchadora.event.api.Subscriber
+import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.event.entity.UpdateWalkingPlayerEvent
 import cookiedragon.luchadora.kotlin.getExplosionDamage
 import cookiedragon.luchadora.kotlin.placeBlockMainHand

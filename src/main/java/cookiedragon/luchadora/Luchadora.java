@@ -7,19 +7,10 @@ import cookiedragon.luchadora.managers.GenericEventListener;
 import cookiedragon.luchadora.managers.PerspectiveManager;
 import cookiedragon.luchadora.module.ModuleManager;
 import cookiedragon.luchadora.module.impl.ui.HudManager;
-import net.minecraft.block.Block;
-import net.minecraft.client.gui.GuiDisconnected;
-import net.minecraft.item.Item;
-import net.minecraft.network.NetworkManager;
-import net.minecraftforge.client.event.GuiOpenEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(
 	modid = Luchadora.MOD_ID,
@@ -43,7 +34,7 @@ public class Luchadora
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		BindManager.init();
+		BindManager.INSTANCE.init();
 		HudManager.init();
 		ForgeEventListener.init();
 		PerspectiveManager.init();

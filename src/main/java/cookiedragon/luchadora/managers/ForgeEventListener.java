@@ -1,10 +1,9 @@
 package cookiedragon.luchadora.managers;
 
-import cookiedragon.luchadora.event.api.EventDispatcher;
+import cookiedragon.eventsystem.EventDispatcher;
 import cookiedragon.luchadora.event.client.Render3dEvent;
 import cookiedragon.luchadora.guis.CustomGuiGameOver;
 import net.minecraft.client.gui.GuiGameOver;
-import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -41,6 +40,6 @@ public class ForgeEventListener
 	@SubscribeEvent
 	public static void onRenderLast(RenderWorldLastEvent event)
 	{
-		EventDispatcher.dispatch(new Render3dEvent());
+		EventDispatcher.Companion.dispatch(new Render3dEvent());
 	}
 }

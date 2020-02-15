@@ -1,7 +1,7 @@
 package cookiedragon.luchadora.module;
 
 import com.google.gson.JsonObject;
-import cookiedragon.luchadora.event.api.EventDispatcher;
+import cookiedragon.eventsystem.EventDispatcher;
 import cookiedragon.luchadora.util.Globals;
 import cookiedragon.luchadora.util.ISerializable;
 import cookiedragon.luchadora.util.Key;
@@ -36,18 +36,18 @@ public abstract class AbstractModule implements ISerializable, Globals
 		this.description = description;
 		this.category = category;
 		
-		EventDispatcher.register(this);
+		EventDispatcher.Companion.register(this);
 		this.enabled.setDescription(this.description);
 		this.enabled.addCallback((oldValue, newValue) ->
 		{
 			if (newValue)
 			{
-				EventDispatcher.subscribe(this);
+				EventDispatcher.Companion.subscribe(this);
 				this.onEnabled();
 			}
 			else
 			{
-				EventDispatcher.unsubscribe(this);
+				EventDispatcher.Companion.unsubscribe(this);
 				this.onDisabled();
 			}
 		});

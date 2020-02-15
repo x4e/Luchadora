@@ -1,7 +1,7 @@
 package cookiedragon.luchadora.module.impl.ui;
 
-import cookiedragon.luchadora.event.api.EventDispatcher;
-import cookiedragon.luchadora.event.api.Subscriber;
+import cookiedragon.eventsystem.EventDispatcher;
+import cookiedragon.eventsystem.Subscriber;
 import cookiedragon.luchadora.event.client.Render2dEvent;
 import cookiedragon.luchadora.event.luchadora.ModuleInitialisationEvent;
 import cookiedragon.luchadora.module.ModuleManager;
@@ -11,9 +11,7 @@ import cookiedragon.luchadora.util.Globals;
 import cookiedragon.luchadora.util.Key;
 import cookiedragon.luchadora.util.Vec2f;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 
@@ -27,8 +25,8 @@ public class HudManager implements Globals
 	
 	public static void init()
 	{
-		EventDispatcher.register(HudManager.class);
-		EventDispatcher.subscribe(HudManager.class);
+		EventDispatcher.Companion.register(HudManager.class);
+		EventDispatcher.Companion.subscribe(HudManager.class);
 	}
 	
 	@Subscriber

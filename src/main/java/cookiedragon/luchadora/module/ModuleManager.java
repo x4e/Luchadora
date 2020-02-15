@@ -1,28 +1,14 @@
 package cookiedragon.luchadora.module;
 
-import com.google.common.collect.ImmutableSet;
 import com.google.common.reflect.ClassPath;
-import cookiedragon.luchadora.event.api.EventDispatcher;
+import cookiedragon.eventsystem.EventDispatcher;
 import cookiedragon.luchadora.event.luchadora.ModuleInitialisationEvent;
-import cookiedragon.luchadora.module.impl.combat.*;
-import cookiedragon.luchadora.module.impl.dev.*;
-import cookiedragon.luchadora.module.impl.movement.*;
-import cookiedragon.luchadora.module.impl.player.*;
-import cookiedragon.luchadora.module.impl.render.*;
-import cookiedragon.luchadora.module.impl.ui.AbstractHudElement;
-import cookiedragon.luchadora.module.impl.ui.elements.SearchBarElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.CategoryElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.GuiModule;
-import cookiedragon.luchadora.module.impl.world.LiquidInteractModule;
-import cookiedragon.luchadora.util.SimpleClassLoader;
 import cookiedragon.luchadora.value.Value;
 import net.minecraft.launchwrapper.Launch;
-import net.minecraft.launchwrapper.LaunchClassLoader;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
@@ -33,44 +19,16 @@ public class ModuleManager
 {
 	private static final Map<AbstractModule, List<Value>> modules = new HashMap<>();
 	
+	@SuppressWarnings("UnstableApiUsage")
 	public static void init()
 	{
-		EventDispatcher.dispatch(new ModuleInitialisationEvent.Pre());
-		
-		/*new SimpleClassLoader<AbstractModule>()
-			.build(
-				BreakHighlightModule.class,
-				CrystalAuraModule.class,
-				
-				InvalidTeleportModule.class,
-				
-				NoSlowModule.class,
-				
-				BreakTweaksModule.class,
-				MultiTaskModule.class,
-				NoEntityTraceModule.class,
-				ReachModule.class,
-				RotationLockModule.class,
-				
-				EspModule.class,
-				ExtraRenderModule.class,
-				
-				LiquidInteractModule.class,
-				
-				GuiModule.class,
-				SearchBarElement.class
-			)
-			.initialise(
-				module -> modules.put(module, module.getValues()),
-				module -> {},
-				(module, e) -> new RuntimeException("Failed to initialise module '" + module.getName() + "'", e)
-			);*/
+		EventDispatcher.Companion.dispatch(new ModuleInitialisationEvent.Pre());
 		
 		try
 		{
 			for (ClassPath.ClassInfo classInfo : ClassPath.from(Launch.classLoader).getAllClasses())
 			{
-				if (classInfo.getName().startsWith("cookiedragon.luchadora."))
+				if (classInfo.getName().startsWith("cookiedragon.luchadora.module"))
 				{
 					try
 					{
@@ -113,7 +71,7 @@ public class ModuleManager
 		
 		System.out.println(modules.toString());
 		
-		EventDispatcher.dispatch(new ModuleInitialisationEvent.Post());
+		EventDispatcher.Companion.dispatch(new ModuleInitialisationEvent.Post());
 		System.out.println("Post module init");
 	}
 	

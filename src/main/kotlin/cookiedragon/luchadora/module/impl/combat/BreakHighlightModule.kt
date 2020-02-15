@@ -1,6 +1,6 @@
 package cookiedragon.luchadora.module.impl.combat
 
-import cookiedragon.luchadora.event.api.Subscriber
+import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.event.client.Render3dEvent
 import cookiedragon.luchadora.mixin.mixins.world.IMixinRenderGlobal
 import cookiedragon.luchadora.module.AbstractModule

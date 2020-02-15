@@ -1,12 +1,11 @@
 package cookiedragon.luchadora.event.client;
 
-import cookiedragon.luchadora.event.api.AbstractEvent;
 import cookiedragon.luchadora.util.Key;
 
 /**
  * @author cookiedragon234 15/Dec/2019
  */
-public class KeyPressedEvent extends AbstractEvent
+public class KeyPressedEvent
 {
 	private final Key key;
 	

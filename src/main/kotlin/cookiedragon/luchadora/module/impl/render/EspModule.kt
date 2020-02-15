@@ -1,6 +1,6 @@
 package cookiedragon.luchadora.module.impl.render
 
-import cookiedragon.luchadora.event.api.Subscriber
+import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.event.entity.RenderEntityEvent
 import cookiedragon.luchadora.event.entity.RenderEntityModelEvent
 import cookiedragon.luchadora.module.AbstractModule

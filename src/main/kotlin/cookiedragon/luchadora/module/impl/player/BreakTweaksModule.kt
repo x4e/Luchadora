@@ -1,6 +1,6 @@
 package cookiedragon.luchadora.module.impl.player
 
-import cookiedragon.luchadora.event.api.Subscriber
+import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.event.entity.ResetBlockDamageEvent
 import cookiedragon.luchadora.module.AbstractModule
 import cookiedragon.luchadora.module.Category

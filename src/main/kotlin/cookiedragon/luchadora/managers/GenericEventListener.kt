@@ -1,8 +1,8 @@
 package cookiedragon.luchadora.managers
 
+import cookiedragon.eventsystem.EventDispatcher
+import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.Luchadora
-import cookiedragon.luchadora.event.api.EventDispatcher
-import cookiedragon.luchadora.event.api.Subscriber
 import cookiedragon.luchadora.event.lwjgl.SetDisplayTitleEvent
 
 /**

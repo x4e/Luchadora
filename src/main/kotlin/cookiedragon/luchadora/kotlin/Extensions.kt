@@ -34,7 +34,7 @@ fun getExplosionDamage(blockPos: BlockPos): Map<Entity, Float> {
 }
 
 fun getExplosionDamage(explosionLoc: Vec3d): Map<Entity, Float> {
-	val out = HashMap<Entity, Float>()
+	val out = mutableMapOf<Entity, Float>()
 	
 	val size = 6f
 	val doubleSize = size * 2.0

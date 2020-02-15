@@ -1,11 +1,9 @@
 package cookiedragon.luchadora.event.client;
 
-import cookiedragon.luchadora.event.api.AbstractEvent;
-
 /**
  * @author cookiedragon234 24/Dec/2019
  */
-public class AllowedCharactersEvent extends AbstractEvent
+public class AllowedCharactersEvent
 {
 	public enum State
 	{

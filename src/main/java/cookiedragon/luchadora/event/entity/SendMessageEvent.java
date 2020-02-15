@@ -1,12 +1,11 @@
 package cookiedragon.luchadora.event.entity;
 
-import cookiedragon.luchadora.event.api.AbstractEvent;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
 
 /**
  * @author cookiedragon234 08/Dec/2019
  */
-public class SendMessageEvent extends AbstractEvent
+public class SendMessageEvent
 {
 	private final String message;
 	

@@ -1,11 +1,10 @@
 package cookiedragon.luchadora.event.entity;
 
-import cookiedragon.luchadora.event.api.AbstractEvent;
+import cookiedragon.luchadora.event.CancellableEvent;
 
 /**
  * @author cookiedragon234 31/Dec/2019
  */
-@AbstractEvent.Cancellable
-public class ResetBlockDamageEvent extends AbstractEvent
+public class ResetBlockDamageEvent extends CancellableEvent
 {
 }
