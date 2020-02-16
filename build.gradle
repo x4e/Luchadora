@@ -48,6 +48,9 @@ repositories {
 		name = "spongepowered-repo"
 		url = "http://repo.spongepowered.org/maven/"
 	}
+	maven {
+		url = "https://jitpack.io/"
+	}
 }
 
 dependencies {
@@ -60,6 +63,7 @@ dependencies {
 		exclude module: "commons-io"
 	}
 	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	compile "com.github.cookiedragon234:EventDispatcher:master-SNAPSHOT"
 }
 
 processResources {
