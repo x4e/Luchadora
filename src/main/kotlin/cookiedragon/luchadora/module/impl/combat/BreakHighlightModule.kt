@@ -6,7 +6,7 @@ import cookiedragon.luchadora.mixin.mixins.world.IMixinRenderGlobal
 import cookiedragon.luchadora.module.AbstractModule
 import cookiedragon.luchadora.module.Category
 import cookiedragon.luchadora.util.RenderUtils
-import cookiedragon.luchadora.value.values.ColourValue
+import cookiedragon.valuesystem.Value
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.util.math.AxisAlignedBB
 import java.awt.Color
@@ -15,7 +15,7 @@ import java.awt.Color
  * @author cookiedragon234 10/Jan/2020
  */
 class BreakHighlightModule : AbstractModule("Break Highlight", "Highlight blocks that other players are breaking", Category.COMBAT) {
-	private val colourValue = ColourValue("Colour", Color(0, 64, 255, 100))
+	private val colourValue = Value("Colour", Color(0, 64, 255, 100))
 	private val damagedBlocks = (mc.renderGlobal as IMixinRenderGlobal).getDamagedBlocks()
 	
 	@Subscriber

@@ -6,10 +6,7 @@ import cookiedragon.luchadora.kotlin.getExplosionDamage
 import cookiedragon.luchadora.kotlin.placeBlockMainHand
 import cookiedragon.luchadora.module.AbstractModule
 import cookiedragon.luchadora.module.Category
-import cookiedragon.luchadora.util.Globals.mc
-import cookiedragon.luchadora.util.Key
-import cookiedragon.luchadora.value.values.*
-import net.minecraft.block.Block
+import cookiedragon.valuesystem.NumberValue
 import net.minecraft.entity.Entity
 import net.minecraft.init.Blocks
 import net.minecraft.init.Items
@@ -25,12 +22,12 @@ class CrystalAuraModule : AbstractModule("Crystal Aura", "Automatically place an
 	private val rangeSetting = NumberValue("Range", 4f, 0, 6)
 	private val minDamage = NumberValue("Min Damage", 3f, 0, 30)
 	private val perTick = NumberValue("Per Tick", 1, 1, 5)
-			.addCallback { oldVal, newVal -> currentTargets = arrayOfNulls(newVal.toInt())}
+			.addCallback { oldVal, newVal -> currentTargets = arrayOfNulls(newVal) }
 	
 	private var currentTargets: Array<PlacePosition?> = emptyArray()
 	
 	override fun onEnabled() {
-		currentTargets = arrayOfNulls(perTick.value.toInt())
+		currentTargets = arrayOfNulls(perTick.value)
 	}
 	
 	override fun onDisabled() {

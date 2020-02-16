@@ -5,7 +5,7 @@ import cookiedragon.eventsystem.EventDispatcher;
 import cookiedragon.luchadora.event.luchadora.ModuleInitialisationEvent;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.CategoryElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.GuiModule;
-import cookiedragon.luchadora.value.Value;
+import cookiedragon.valuesystem.Value;
 import net.minecraft.launchwrapper.Launch;
 
 import java.lang.reflect.Constructor;
@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class ModuleManager
 {
-	private static final Map<AbstractModule, List<Value>> modules = new HashMap<>();
+	private static final Map<AbstractModule, List<Value<?>>> modules = new HashMap<>();
 	
 	@SuppressWarnings("UnstableApiUsage")
 	public static void init()
@@ -90,12 +90,12 @@ public class ModuleManager
 		return modules.keySet();
 	}
 	
-	public static Map<AbstractModule, List<Value>> getAll()
+	public static Map<AbstractModule, List<Value<?>>> getAll()
 	{
 		return modules;
 	}
 	
-	public static List<Value> getValuesForModule(AbstractModule module)
+	public static List<Value<?>> getValuesForModule(AbstractModule module)
 	{
 		return modules.get(module);
 	}

@@ -4,12 +4,12 @@ import cookiedragon.luchadora.util.Globals;
 import cookiedragon.luchadora.util.IRenderable;
 import cookiedragon.luchadora.util.Key;
 import cookiedragon.luchadora.util.Vec2f;
-import cookiedragon.luchadora.value.Value;
+import cookiedragon.valuesystem.Value;
 
 /**
  * @author cookiedragon234 22/Dec/2019
  */
-public abstract class ValueElement<T extends Value> implements IRenderable, Globals
+public abstract class ValueElement<T extends Value<?>> implements IRenderable, Globals
 {
 	protected final T value;
 	protected final ModuleElement moduleElement;

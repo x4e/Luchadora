@@ -5,17 +5,20 @@ import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ModuleElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
 import cookiedragon.luchadora.util.RenderUtils;
 import cookiedragon.luchadora.util.Vec2f;
-import cookiedragon.luchadora.value.values.EnumValue;
+import cookiedragon.valuesystem.Value;
 
 import java.awt.*;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author cookiedragon234 22/Dec/2019
  */
-public class EnumValueElement extends ValueElement<EnumValue>
+public class EnumValueElement extends ValueElement<Value<Enum<?>>>
 {
-	public EnumValueElement(EnumValue value, ModuleElement categoryElement)
+	public EnumValueElement(Value<Enum<?>> value, ModuleElement categoryElement)
 	{
 		super(value, categoryElement);
 	}
@@ -78,9 +81,9 @@ public class EnumValueElement extends ValueElement<EnumValue>
 	{
 		if (position.contains(size, mousePos))
 		{
-			EnumValue enumValue = value;
-			int currentIndex = enumValue.options.indexOf(value.getValue());
-			int size = enumValue.options.size();
+			ArrayList<Enum<?>> options = new ArrayList<Enum<?>>(EnumSet.allOf(value.getValue().getClass()));
+			int currentIndex = options.indexOf(value.getValue());
+			int size = options.size();
 			
 			int add;
 			if (mouseID == 0)
@@ -97,7 +100,7 @@ public class EnumValueElement extends ValueElement<EnumValue>
 			else if (newIndex >= size)
 				newIndex = 0;
 			
-			value.setValue(value.options.get(newIndex));
+			value.setValue(options.get(newIndex));
 			
 			return true;
 		}

@@ -5,7 +5,7 @@ import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ModuleElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
 import cookiedragon.luchadora.util.RenderUtils;
 import cookiedragon.luchadora.util.Vec2f;
-import cookiedragon.luchadora.value.values.SelectableStringValue;
+import cookiedragon.valuesystem.SelectableStringValue;
 
 import java.awt.*;
 import java.util.Objects;
@@ -79,19 +79,19 @@ public class SelectableStringValueElement extends ValueElement<SelectableStringV
 		if (position.contains(size, mousePos))
 		{
 			
-			int currentIndex = value.options.indexOf(value.getValue());
+			int currentIndex = value.getOptions().indexOf(value.getValue());
 			
 			try
 			{
 				value.setValue(
 					Objects.requireNonNull(
-						value.options.get(currentIndex + 1)
+						value.getOptions().get(currentIndex + 1)
 					)
 				);
 			}
 			catch (Exception e)
 			{
-				value.setValue(value.options.get(0));
+				value.setValue(value.getOptions().get(0));
 			}
 			
 			return true;

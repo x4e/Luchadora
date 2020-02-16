@@ -6,7 +6,7 @@ import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ModuleElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
 import cookiedragon.luchadora.util.RenderUtils;
 import cookiedragon.luchadora.util.Vec2f;
-import cookiedragon.luchadora.value.values.ColourValue;
+import cookiedragon.valuesystem.Value;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -23,7 +23,7 @@ import java.io.InputStream;
  * @author cookiedragon234 26/Dec/2019
  */
 @SuppressWarnings("Duplicates")
-public class ColourValueElement extends ValueElement<ColourValue>
+public class ColourValueElement extends ValueElement<Value<Color>>
 {
 	private static final ResourceLocation COLOUR_PICKER_RESOURCE = new ResourceLocation(Luchadora.MOD_ID, "colourpicker.png");
 	private static BufferedImage pickerImage;
@@ -39,7 +39,7 @@ public class ColourValueElement extends ValueElement<ColourValue>
 	
 	private Vec2f draggingPos = null;
 	
-	public ColourValueElement(ColourValue value, ModuleElement moduleElement)
+	public ColourValueElement(Value<Color> value, ModuleElement moduleElement)
 	{
 		super(value, moduleElement);
 		try

@@ -5,31 +5,21 @@ import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ModuleElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
 import cookiedragon.luchadora.util.RenderUtils;
 import cookiedragon.luchadora.util.Vec2f;
-import cookiedragon.luchadora.value.values.BooleanValue;
+import cookiedragon.valuesystem.Value;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
 
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import java.awt.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.security.KeyStore;
-import java.util.Arrays;
 
 /**
  * @author cookiedragon234 22/Dec/2019
  */
 @SuppressWarnings("Duplicates")
-public class BooleanValueElement extends ValueElement<BooleanValue>
+public class BooleanValueElement extends ValueElement<Value<Boolean>>
 {
 	private boolean isEnabledValue;
 	
-	public BooleanValueElement(BooleanValue value, ModuleElement categoryElement)
+	public BooleanValueElement(Value<Boolean> value, ModuleElement categoryElement)
 	{
 		super(value, categoryElement);
 		isEnabledValue = value.getName().equals("Enabled");

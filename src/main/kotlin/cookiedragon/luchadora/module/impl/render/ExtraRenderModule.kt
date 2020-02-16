@@ -5,22 +5,16 @@ import cookiedragon.luchadora.event.block.GetBlockModelEvent
 import cookiedragon.luchadora.event.block.GetBlockRenderLayerEvent
 import cookiedragon.luchadora.event.block.GetBlockRenderTypeEvent
 import cookiedragon.luchadora.event.client.UpdateLightmapEvent
-import cookiedragon.luchadora.event.render.RenderBarrierEvent
 import cookiedragon.luchadora.event.render.RenderBarrierParticleEvent
 import cookiedragon.luchadora.module.AbstractModule
 import cookiedragon.luchadora.module.Category
-import cookiedragon.luchadora.util.Globals
-import cookiedragon.luchadora.value.values.BooleanValue
-import cookiedragon.luchadora.value.values.NumberValue
-import net.minecraft.client.Minecraft
+import cookiedragon.valuesystem.NumberValue
+import cookiedragon.valuesystem.Value
 import net.minecraft.client.renderer.block.model.IBakedModel
 import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
 import net.minecraft.util.BlockRenderLayer
 import net.minecraft.util.EnumBlockRenderType
-import net.minecraft.util.EnumParticleTypes
-import net.minecraft.util.math.BlockPos
-import java.util.*
 
 /**
  * @author cookiedragon234 12/Jan/2020
@@ -38,8 +32,8 @@ class ExtraRenderModule: AbstractModule("Extra Render", "See things you dont nor
 	
 	
 	/* ----- BARRIERS ----- */
-	private val barriers = BooleanValue("Barriers", true)
-			.addCallback {oldVal, newVal -> mc.renderGlobal.loadRenderers()}
+	private val barriers = Value("Barriers", true)
+			.addCallback { oldVal, newVal -> mc.renderGlobal.loadRenderers() }
 	private val barrierModel: IBakedModel by lazy {
 		mc.renderItem.itemModelMesher.getItemModel(ItemStack(Blocks.BARRIER))
 	}
@@ -73,21 +67,21 @@ class ExtraRenderModule: AbstractModule("Extra Render", "See things you dont nor
 	
 	
 	/* ----- NO FOG ----- */
-	private val noFog = BooleanValue("No Fog", true)
+	private val noFog = Value("No Fog", true)
 	
 	
 	
 	
 	
 	/* ----- FULL BRIGHT ----- */
-	private val fullBright = BooleanValue("Full Bright", true)
+	private val fullBright = Value("Full Bright", true)
 			.addCallback { oldVal, newVal -> fullBrightUpdate()}
-	private val brightness = NumberValue("Brightness", 1f, 0, 3)
-			.addCallback { oldVal, newVal -> if (fullBright.value){updateLightmap(newVal.toFloat())} }
+	private val brightness = NumberValue("Brightness", 1f, 0f, 3f)
+			.addCallback { oldVal, newVal -> if (fullBright.value){updateLightmap(newVal)} }
 	
 	private fun fullBrightUpdate() {
 		if (fullBright.value) {
-			updateLightmap(brightness.value.toFloat())
+			updateLightmap(brightness.value)
 		} else {
 			regenerateDefaultLightmap()
 		}
@@ -98,8 +92,10 @@ class ExtraRenderModule: AbstractModule("Extra Render", "See things you dont nor
 	
 	private fun updateLightmap(brightness: Float) {
 		if (mc.world != null) {
-			for (i in 0 until mc.world.provider.lightBrightnessTable.size) {
-				mc.world.provider.lightBrightnessTable[i] = brightness
+			with (mc.world.provider.lightBrightnessTable) {
+				for (i in indices) {
+					set(i, brightness)
+				}
 			}
 		}
 	}

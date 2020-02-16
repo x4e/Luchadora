@@ -4,7 +4,7 @@ import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.event.entity.EntityReachEvent
 import cookiedragon.luchadora.module.AbstractModule
 import cookiedragon.luchadora.module.Category
-import cookiedragon.luchadora.value.values.NumberValue
+import cookiedragon.valuesystem.NumberValue
 
 /**
  * @author cookiedragon234 11/Jan/2020

@@ -7,23 +7,21 @@ import cookiedragon.luchadora.module.AbstractModule
 import cookiedragon.luchadora.module.Category
 import cookiedragon.luchadora.util.OutlineUtils
 import cookiedragon.luchadora.util.RenderUtils
-import cookiedragon.luchadora.value.values.BooleanValue
-import cookiedragon.luchadora.value.values.ColourValue
-import cookiedragon.luchadora.value.values.EnumValue
-import cookiedragon.luchadora.value.values.NumberValue
+import cookiedragon.valuesystem.NumberValue
 import net.minecraft.client.renderer.GlStateManager
 import org.lwjgl.opengl.GL11
 import java.awt.Color
+import cookiedragon.valuesystem.Value
 
 /**
  * @author cookiedragon234 13/Jan/2020
  */
 class EspModule: AbstractModule("Esp", "See entities through walls", Category.RENDER) {
-	private val mode = EnumValue("Mode", Type.WIREFRAME)
-	private val colour = ColourValue("Colour", Color.RED)
-	private val width = NumberValue("Width", 2f, 0.1, 5)
-	private val chams = BooleanValue("Chams", false)
-	private val onTop = BooleanValue("On Top", true)
+	private val mode = Value("Mode", Type.WIREFRAME)
+	private val colour = Value("Colour", Color.RED)
+	private val width = NumberValue("Width", 2f, 0.1f, 5f)
+	private val chams = Value("Chams", false)
+	private val onTop = Value("On Top", true)
 	
 	private enum class Type {
 		WIREFRAME,
@@ -51,22 +49,22 @@ class EspModule: AbstractModule("Esp", "See entities through walls", Category.RE
 			)
 		}
 		if (mode.value == Type.OUTLINE) {
-			OutlineUtils.renderOne(width.value.toFloat())
+			OutlineUtils.renderOne(width.value)
 			entityModelEvent.modelBase.render(
 					entityModelEvent.entity, entityModelEvent.limbSwing, entityModelEvent.limbSwingAmount, entityModelEvent.age, entityModelEvent.headYaw, entityModelEvent.headPitch, entityModelEvent.scale
 			)
-			GlStateManager.glLineWidth(width.value.toFloat())
+			GlStateManager.glLineWidth(width.value)
 			OutlineUtils.renderTwo()
 			entityModelEvent.modelBase.render(
 					entityModelEvent.entity, entityModelEvent.limbSwing, entityModelEvent.limbSwingAmount, entityModelEvent.age, entityModelEvent.headYaw, entityModelEvent.headPitch, entityModelEvent.scale
 			)
-			GlStateManager.glLineWidth(width.value.toFloat())
+			GlStateManager.glLineWidth(width.value)
 			OutlineUtils.renderThree()
 			OutlineUtils.renderFour(colour.value)
 			entityModelEvent.modelBase.render(
 					entityModelEvent.entity, entityModelEvent.limbSwing, entityModelEvent.limbSwingAmount, entityModelEvent.age, entityModelEvent.headYaw, entityModelEvent.headPitch, entityModelEvent.scale
 			)
-			GlStateManager.glLineWidth(width.value.toFloat())
+			GlStateManager.glLineWidth(width.value)
 			OutlineUtils.renderFive()
 		} else {
 			GL11.glPushMatrix()
@@ -85,7 +83,7 @@ class EspModule: AbstractModule("Esp", "See entities through walls", Category.RE
 			
 			GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA)
 			RenderUtils.glColor(colour.value)
-			GlStateManager.glLineWidth(width.value.toFloat())
+			GlStateManager.glLineWidth(width.value)
 			
 			entityModelEvent.modelBase.render(
 					entityModelEvent.entity, entityModelEvent.limbSwing, entityModelEvent.limbSwingAmount, entityModelEvent.age, entityModelEvent.headYaw, entityModelEvent.headPitch, entityModelEvent.scale

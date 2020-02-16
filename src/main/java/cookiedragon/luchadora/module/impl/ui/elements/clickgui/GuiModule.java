@@ -3,8 +3,8 @@ package cookiedragon.luchadora.module.impl.ui.elements.clickgui;
 import cookiedragon.luchadora.module.AbstractModule;
 import cookiedragon.luchadora.module.Category;
 import cookiedragon.luchadora.util.Key;
-import cookiedragon.luchadora.value.values.ColourValue;
-import cookiedragon.luchadora.value.values.NumberValue;
+import cookiedragon.valuesystem.NumberValue;
+import cookiedragon.valuesystem.Value;
 
 import java.awt.*;
 
@@ -19,12 +19,12 @@ public class GuiModule extends AbstractModule
 		super("Gui", "Graphical User Interface", Category.UI);
 	}
 	
-	public final ColourValue primaryColour = new ColourValue("Primary", new Color(0,0,0, 220));
-	public final ColourValue secondaryColour = new ColourValue("Secondary", new Color(0,0,0, 210));
-	public final ColourValue tertiaryColour = new ColourValue("Tertiary", new Color(0,0,0, 195));
-	public final ColourValue negativeColour = new ColourValue("Negative", new Color(64, 64, 64, 175));
-	public final ColourValue textColour = new ColourValue("Text", new Color(255, 255, 255));
-	public final NumberValue guiScale = new NumberValue("Scale", 1f, 0.5, 2, true);
+	public final Value<Color> primaryColour = new Value<Color>("Primary", new Color(0,0,0, 220));
+	public final Value<Color> secondaryColour = new Value<Color>("Secondary", new Color(0,0,0, 210));
+	public final Value<Color> tertiaryColour = new Value<Color>("Tertiary", new Color(0,0,0, 195));
+	public final Value<Color> negativeColour = new Value<Color>("Negative", new Color(64, 64, 64, 175));
+	public final Value<Color> textColour = new Value<Color>("Text", new Color(255, 255, 255));
+	public final NumberValue<Float> guiScale = new NumberValue<>("Scale", 1f, 0.5f, 2f, true);
 	
 	@Override
 	protected void onEnabled()

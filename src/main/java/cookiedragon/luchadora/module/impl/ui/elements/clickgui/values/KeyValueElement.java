@@ -7,7 +7,7 @@ import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
 import cookiedragon.luchadora.util.Key;
 import cookiedragon.luchadora.util.RenderUtils;
 import cookiedragon.luchadora.util.Vec2f;
-import cookiedragon.luchadora.value.values.KeyValue;
+import cookiedragon.valuesystem.KeyValue;
 
 import java.awt.*;
 

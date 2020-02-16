@@ -6,23 +6,22 @@ import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ModuleElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
 import cookiedragon.luchadora.util.RenderUtils;
 import cookiedragon.luchadora.util.Vec2f;
-import cookiedragon.luchadora.value.values.NumberValue;
+import cookiedragon.valuesystem.NumberValue;
 
 import java.awt.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 
 /**
  * @author cookiedragon234 22/Dec/2019
  */
-public class NumberValueElement extends ValueElement<NumberValue>
+public class NumberValueElement extends ValueElement<NumberValue<?>>
 {
 	private boolean isDragging = false;
 	private Vec2f mouseOffset = new Vec2f(0,0);
 	private Number cachedVal = null;
 	
-	public NumberValueElement(NumberValue value, ModuleElement categoryElement)
+	public NumberValueElement(NumberValue<?> value, ModuleElement categoryElement)
 	{
 		super(value, categoryElement);
 	}
@@ -44,8 +43,8 @@ public class NumberValueElement extends ValueElement<NumberValue>
 		position.x += 2;
 		size.x -= 2;
 		
-		float max = value.max.floatValue();
-		float min = value.min.floatValue();
+		float max = value.getMax().floatValue();
+		float min = value.getMin().floatValue();
 		float val = cachedVal == null ? value.getValue().floatValue() : cachedVal.floatValue();
 		
 		
@@ -102,8 +101,8 @@ public class NumberValueElement extends ValueElement<NumberValue>
 		{
 			this.isDragging = true;
 			float progress = (mousePos.x - position.x) / size.x;
-			float scale = value.max.floatValue() - value.min.floatValue();
-			setValue(value.min.floatValue() + (scale * progress));
+			float scale = value.getMax().floatValue() - value.getMin().floatValue();
+			setValue(value.getMin().floatValue() + (scale * progress));
 			return true;
 		}
 		this.isDragging = false;
@@ -122,8 +121,8 @@ public class NumberValueElement extends ValueElement<NumberValue>
 				mousePos.x = Math.min(mousePos.x, position.x + size.x);
 				
 				float progress = (mousePos.x - position.x) / size.x;
-				float scale = value.max.floatValue() - value.min.floatValue();
-				setValue(value.min.floatValue() + (scale * progress));
+				float scale = value.getMax().floatValue() - value.getMin().floatValue();
+				setValue(value.getMin().floatValue() + (scale * progress));
 				return true;
 			}
 		}
@@ -145,7 +144,7 @@ public class NumberValueElement extends ValueElement<NumberValue>
 	}
 	private void setValue(float newVal)
 	{
-		if (value.slowUpdate)
+		if (value.getSlowUpdate())
 		{
 			cachedVal = round(newVal, 2);
 			return;
@@ -157,19 +156,19 @@ public class NumberValueElement extends ValueElement<NumberValue>
 	{
 		if (this.value.getValue() instanceof Integer)
 		{
-			this.value.setValue(Math.round(newVal));
+			this.value.castAndSetValue(Math.round(newVal));
 		}
 		else if (this.value.getValue() instanceof Float)
 		{
-			this.value.setValue((float) round(newVal, 2));
+			this.value.castAndSetValue((float) round(newVal, 2));
 		}
 		else if (this.value.getValue() instanceof Double)
 		{
-			this.value.setValue(round(newVal, 2));
+			this.value.castAndSetValue(round(newVal, 2));
 		}
 		else if (this.value.getValue() instanceof Long)
 		{
-			this.value.setValue((long) Math.round(newVal));
+			this.value.castAndSetValue((long) Math.round(newVal));
 		}
 	}
 	

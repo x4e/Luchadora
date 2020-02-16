@@ -3,7 +3,7 @@ package cookiedragon.luchadora.module.impl.dev
 import cookiedragon.luchadora.module.AbstractModule
 import cookiedragon.luchadora.module.Category
 import cookiedragon.luchadora.util.ChatUtils
-import cookiedragon.luchadora.value.values.EnumValue
+import cookiedragon.valuesystem.Value
 import net.minecraft.launchwrapper.Launch
 import net.minecraft.launchwrapper.LaunchClassLoader
 import net.minecraft.network.play.client.CPacketPlayer
@@ -12,7 +12,7 @@ import net.minecraft.network.play.client.CPacketPlayer
  * @author cookiedragon234 10/Jan/2020
  */
 class InvalidTeleportModule : AbstractModule("Invalid Teleport", "Sends invalid numbers to the server causing unpredicted actions", Category.DEV) {
-	private val modeVal = EnumValue("Value", ValueMode.NAN)
+	private val modeVal = Value("Value", ValueMode.NAN)
 	
 	private enum class ValueMode {
 		NAN,

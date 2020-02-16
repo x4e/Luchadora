@@ -5,11 +5,10 @@ import cookiedragon.eventsystem.EventDispatcher;
 import cookiedragon.luchadora.util.Globals;
 import cookiedragon.luchadora.util.ISerializable;
 import cookiedragon.luchadora.util.Key;
-import cookiedragon.luchadora.value.Value;
-import cookiedragon.luchadora.value.values.BooleanValue;
-import cookiedragon.luchadora.value.values.KeyValue;
+import cookiedragon.valuesystem.KeyValue;
+import cookiedragon.valuesystem.Value;
+import kotlin.Unit;
 
-import javax.annotation.Nonnull;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -26,8 +25,8 @@ public abstract class AbstractModule implements ISerializable, Globals
 	private final String description;
 	private final Category category;
 	
-	protected final Value<Boolean> enabled = new BooleanValue("Enabled", false);
-	protected final Value<Boolean> visible = new BooleanValue("Visible", true);
+	protected final Value<Boolean> enabled = new Value<>("Enabled", false);
+	protected final Value<Boolean> visible = new Value<>("Visible", true);
 	protected final Value<Key> keyBind = new KeyValue("Keybind", Key.KEY_NONE);
 	
 	public AbstractModule(String name, String description, Category category)
@@ -50,6 +49,7 @@ public abstract class AbstractModule implements ISerializable, Globals
 				EventDispatcher.Companion.unsubscribe(this);
 				this.onDisabled();
 			}
+			return Unit.INSTANCE;
 		});
 		
 		Declaration annotation = this.getAnnotation();
@@ -144,14 +144,14 @@ public abstract class AbstractModule implements ISerializable, Globals
 		Key defaultBind() default Key.KEY_NONE;
 	}
 	
-	public List<Value> getValues()
+	public List<Value<?>> getValues()
 	{
-		List<Value> values = new ArrayList<>();
+		List<Value<?>> values = new ArrayList<>();
 		try
 		{
-			List<Class> clazzes = new ArrayList<>();
+			List<Class<?>> clazzes = new ArrayList<>();
 			
-			Class clazz = this.getClass();
+			Class<?> clazz = this.getClass();
 			do
 			{
 				clazzes.add(clazz);
@@ -166,7 +166,7 @@ public abstract class AbstractModule implements ISerializable, Globals
 					if (Value.class.isAssignableFrom(declaredField.getType()))
 					{
 						declaredField.setAccessible(true);
-						Value value = Objects.requireNonNull((Value)declaredField.get(this), "Error fetching value via reflection");
+						Value<?> value = Objects.requireNonNull((Value<?>)declaredField.get(this), "Error fetching value via reflection");
 						values.add(value);
 					}
 				}
@@ -183,9 +183,9 @@ public abstract class AbstractModule implements ISerializable, Globals
 	public JsonObject addToObject(JsonObject jsonObject)
 	{
 		JsonObject moduleObj = new JsonObject();
-		for (Value value : ModuleManager.getValuesForModule(this))
+		for (Value<?> value : ModuleManager.getValuesForModule(this))
 		{
-			value.addToObject(moduleObj);
+			//moduleObj.add(value.getName(), value.getValue());
 		}
 		jsonObject.add(this.getName().toLowerCase(), moduleObj);
 		return jsonObject;
@@ -197,9 +197,9 @@ public abstract class AbstractModule implements ISerializable, Globals
 		try
 		{
 			JsonObject moduleObj = jsonObject.getAsJsonObject(this.getName().toLowerCase());
-			for (Value value : ModuleManager.getValuesForModule(this))
+			for (Value<?> value : ModuleManager.getValuesForModule(this))
 			{
-				value.retrieveFromObject(moduleObj);
+				//value.retrieveFromObject(moduleObj);
 			}
 		}
 		catch(Exception ignored){}

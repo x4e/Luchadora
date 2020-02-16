@@ -6,21 +6,20 @@ import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
 import cookiedragon.luchadora.util.Key;
 import cookiedragon.luchadora.util.RenderUtils;
 import cookiedragon.luchadora.util.Vec2f;
-import cookiedragon.luchadora.value.values.StringValue;
+import cookiedragon.valuesystem.Value;
 import net.minecraft.util.ChatAllowedCharacters;
 import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
-import java.util.regex.Pattern;
 
 /**
  * @author cookiedragon234 22/Dec/2019
  */
-public class StringValueElement extends ValueElement<StringValue>
+public class StringValueElement extends ValueElement<Value<String>>
 {
 	private boolean typing = false;
 	
-	public StringValueElement(StringValue value, ModuleElement categoryElement)
+	public StringValueElement(Value<String> value, ModuleElement categoryElement)
 	{
 		super(value, categoryElement);
 	}

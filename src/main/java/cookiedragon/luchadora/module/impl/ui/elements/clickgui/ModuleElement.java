@@ -5,14 +5,14 @@ import cookiedragon.luchadora.module.Category;
 import cookiedragon.luchadora.module.ModuleManager;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.values.*;
 import cookiedragon.luchadora.util.*;
-import cookiedragon.luchadora.value.Value;
-import cookiedragon.luchadora.value.values.*;
+import cookiedragon.valuesystem.KeyValue;
+import cookiedragon.valuesystem.NumberValue;
+import cookiedragon.valuesystem.SelectableStringValue;
+import cookiedragon.valuesystem.Value;;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author cookiedragon234 22/Dec/2019
@@ -32,15 +32,15 @@ public class ModuleElement implements IRenderable, Globals
 		this.categoryElement = categoryElement;
 		valueElements = new ArrayList<>();
 		
-		for (Value value : ModuleManager.getValuesForModule(module))
+		for (Value<?> value : ModuleManager.getValuesForModule(module))
 		{
-			if (value instanceof BooleanValue)
+			if (value.getValue() instanceof Boolean)
 			{
-				valueElements.add(new BooleanValueElement((BooleanValue) value, this));
+				valueElements.add(new BooleanValueElement((Value<Boolean>) value, this));
 			}
-			else if (value instanceof EnumValue)
+			else if (value.getValue() instanceof Enum)
 			{
-				valueElements.add(new EnumValueElement((EnumValue) value, this));
+				valueElements.add(new EnumValueElement((Value<Enum<?>>) value, this));
 			}
 			else if (value instanceof KeyValue)
 			{
@@ -54,13 +54,13 @@ public class ModuleElement implements IRenderable, Globals
 			{
 				valueElements.add(new SelectableStringValueElement((SelectableStringValue) value, this));
 			}
-			else if (value instanceof StringValue)
+			else if (value.getValue() instanceof String)
 			{
-				valueElements.add(new StringValueElement((StringValue) value, this));
+				valueElements.add(new StringValueElement((Value<String>) value, this));
 			}
-			else if (value instanceof ColourValue)
+			else if (value.getValue() instanceof Color)
 			{
-				valueElements.add(new ColourValueElement((ColourValue) value, this));
+				valueElements.add(new ColourValueElement((Value<Color>) value, this));
 			}
 			else
 			{
