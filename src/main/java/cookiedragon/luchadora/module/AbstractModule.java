@@ -2,6 +2,7 @@ package cookiedragon.luchadora.module;
 
 import com.google.gson.JsonObject;
 import cookiedragon.eventsystem.EventDispatcher;
+import cookiedragon.luchadora.managers.ModuleManager;
 import cookiedragon.luchadora.util.Globals;
 import cookiedragon.luchadora.util.ISerializable;
 import cookiedragon.luchadora.util.Key;
@@ -181,27 +182,27 @@ public abstract class AbstractModule implements ISerializable, Globals
 	
 	@Override
 	public JsonObject addToObject(JsonObject jsonObject)
-	{
+	{/*
 		JsonObject moduleObj = new JsonObject();
 		for (Value<?> value : ModuleManager.getValuesForModule(this))
 		{
-			//moduleObj.add(value.getName(), value.getValue());
+			moduleObj.add(value.getName(), value.getValue());
 		}
-		jsonObject.add(this.getName().toLowerCase(), moduleObj);
+		jsonObject.add(this.getName().toLowerCase(), moduleObj);*/
 		return jsonObject;
 	}
 	
 	@Override
 	public void retrieveFromObject(JsonObject jsonObject)
-	{
+	{/*
 		try
 		{
 			JsonObject moduleObj = jsonObject.getAsJsonObject(this.getName().toLowerCase());
 			for (Value<?> value : ModuleManager.getValuesForModule(this))
 			{
-				//value.retrieveFromObject(moduleObj);
+				value.retrieveFromObject(moduleObj);
 			}
 		}
-		catch(Exception ignored){}
+		catch(Exception ignored){}*/
 	}
 }

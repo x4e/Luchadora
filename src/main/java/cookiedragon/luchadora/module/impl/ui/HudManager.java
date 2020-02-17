@@ -4,7 +4,7 @@ import cookiedragon.eventsystem.EventDispatcher;
 import cookiedragon.eventsystem.Subscriber;
 import cookiedragon.luchadora.event.client.Render2dEvent;
 import cookiedragon.luchadora.event.luchadora.ModuleInitialisationEvent;
-import cookiedragon.luchadora.module.ModuleManager;
+import cookiedragon.luchadora.managers.ModuleManager;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.EditHudGui;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.GuiModule;
 import cookiedragon.luchadora.util.Globals;

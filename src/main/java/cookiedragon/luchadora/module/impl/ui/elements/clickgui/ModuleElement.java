@@ -1,8 +1,8 @@
 package cookiedragon.luchadora.module.impl.ui.elements.clickgui;
 
+import cookiedragon.luchadora.managers.ModuleManager;
 import cookiedragon.luchadora.module.AbstractModule;
 import cookiedragon.luchadora.module.Category;
-import cookiedragon.luchadora.module.ModuleManager;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.values.*;
 import cookiedragon.luchadora.util.*;
 import cookiedragon.valuesystem.KeyValue;

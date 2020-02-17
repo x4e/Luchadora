@@ -4,13 +4,13 @@ import cookiedragon.eventsystem.EventDispatcher.Companion.register
 import cookiedragon.eventsystem.EventDispatcher.Companion.subscribe
 import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.event.client.KeyPressedEvent
-import cookiedragon.luchadora.module.ModuleManager
+import cookiedragon.luchadora.util.Initialisable
 
 /**
  * @author cookiedragon234 15/Feb/2020
  */
-object BindManager {
-	fun init() {
+object BindManager: Initialisable() {
+	init {
 		register(this)
 		subscribe(this)
 	}

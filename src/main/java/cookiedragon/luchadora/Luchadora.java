@@ -1,12 +1,9 @@
 package cookiedragon.luchadora;
 
 import cookiedragon.luchadora.integration.discord.DiscordIntegration;
-import cookiedragon.luchadora.managers.BindManager;
-import cookiedragon.luchadora.managers.ForgeEventListener;
-import cookiedragon.luchadora.managers.GenericEventListener;
-import cookiedragon.luchadora.managers.PerspectiveManager;
-import cookiedragon.luchadora.module.ModuleManager;
+import cookiedragon.luchadora.managers.*;
 import cookiedragon.luchadora.module.impl.ui.HudManager;
+import cookiedragon.luchadora.util.Initialisable;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -34,12 +31,12 @@ public class Luchadora
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		BindManager.INSTANCE.init();
+		for (Initialisable initialisable : new Initialisable[]{BindManager.INSTANCE, ModuleManager.INSTANCE, GenericEventListener.INSTANCE}) {
+			initialisable.init();
+		}
 		HudManager.init();
 		ForgeEventListener.init();
 		PerspectiveManager.init();
-		ModuleManager.init();
-		GenericEventListener.INSTANCE.init();
 		new DiscordIntegration().start();
 	}
 	
