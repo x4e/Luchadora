@@ -43,7 +43,7 @@ class MixinEntityRenderer {
 	
 	@Redirect(method = ["getMouseOver"], at = At(value = "INVOKE", target = "Ljava/util/List;size()I", remap = false), require = 1)
 	private fun getNumEntities(list: List<*>): Int {
-		with(GetEntitiesMouseOverEvent(list as List<Entity?>)) {
+		with(GetEntitiesMouseOverEvent(list as List<Entity>)) {
 			EventDispatcher.dispatch(this)
 			return size
 		}

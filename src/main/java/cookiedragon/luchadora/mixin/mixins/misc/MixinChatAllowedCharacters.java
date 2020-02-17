@@ -27,12 +27,12 @@ public class MixinChatAllowedCharacters
 		AllowedCharactersEvent event = new AllowedCharactersEvent(AllowedCharactersEvent.State.DISALLOW);
 		EventDispatcher.Companion.dispatch(event);
 		
-		if (event.state == AllowedCharactersEvent.State.ALLOW)
+		if (event.getState() == AllowedCharactersEvent.State.ALLOW)
 		{
 			cir.setReturnValue(input);
 			cir.cancel();
 		}
-		else if (event.state == AllowedCharactersEvent.State.ALLOW_SERVER)
+		else if (event.getState() == AllowedCharactersEvent.State.ALLOW_SERVER)
 		{
 			StringBuilder stringbuilder = new StringBuilder();
 			
