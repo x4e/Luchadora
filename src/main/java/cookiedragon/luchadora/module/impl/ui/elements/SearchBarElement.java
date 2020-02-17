@@ -3,6 +3,8 @@ package cookiedragon.luchadora.module.impl.ui.elements;
 import cookiedragon.luchadora.module.Category;
 import cookiedragon.luchadora.module.impl.ui.AbstractHudElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.EditHudGui;
+import cookiedragon.luchadora.util.Key;
+import cookiedragon.luchadora.util.Vec2f;
 import net.minecraft.client.gui.GuiTextField;
 import org.lwjgl.input.Keyboard;
 
@@ -35,7 +37,7 @@ public class SearchBarElement extends AbstractHudElement
 	{
 		if (key != Key.KEY_NONE)
 		{
-			return textField.textboxKeyTyped(Keyboard.getEventCharacter(), key.code);
+			return textField.textboxKeyTyped(Keyboard.getEventCharacter(), key.getCode());
 		}
 		return false;
 	}

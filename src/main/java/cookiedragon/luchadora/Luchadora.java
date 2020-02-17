@@ -1,5 +1,6 @@
 package cookiedragon.luchadora;
 
+import cookiedragon.luchadora.integrations.discord.DiscordIntegration;
 import cookiedragon.luchadora.managers.*;
 import cookiedragon.luchadora.module.impl.ui.HudManager;
 import cookiedragon.luchadora.util.Initialisable;
@@ -35,12 +36,12 @@ public class Luchadora
 			ModuleManager.INSTANCE,
 			GenericEventListener.INSTANCE,
 			ForgeEventListener.INSTANCE,
-			PerspectiveManager.INSTANCE
+			PerspectiveManager.INSTANCE,
+			DiscordIntegration.INSTANCE
 		}) {
 			initialisable.init();
 		}
 		HudManager.init();
-		new DiscordIntegration().start();
 	}
 	
 	@Mod.EventHandler

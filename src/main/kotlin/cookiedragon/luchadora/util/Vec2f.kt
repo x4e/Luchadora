@@ -2,12 +2,14 @@ package cookiedragon.luchadora.util
 
 /**
  * Semi-Immutable helper class for dealing with two dimensional points at floating point accuracy
- * 
+ *
  * @author cookiedragon234 17/Feb/2020
  */
 
 class Vec2f {
+	@JvmField
 	var x: Float
+	@JvmField
 	var y: Float
 	
 	constructor(x: Float, y: Float) {

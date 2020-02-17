@@ -8,6 +8,9 @@ import cookiedragon.luchadora.managers.ModuleManager;
 import cookiedragon.luchadora.module.AbstractModule;
 import cookiedragon.luchadora.module.Category;
 import cookiedragon.luchadora.module.impl.ui.AbstractHudElement;
+import cookiedragon.luchadora.util.Key;
+import cookiedragon.luchadora.util.RenderUtils;
+import cookiedragon.luchadora.util.Vec2f;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.init.SoundEvents;
 

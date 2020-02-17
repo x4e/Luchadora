@@ -4,6 +4,7 @@ import cookiedragon.luchadora.Luchadora;
 import cookiedragon.luchadora.kotlin.ExtensionsKt;
 import cookiedragon.luchadora.module.Category;
 import cookiedragon.luchadora.module.impl.ui.AbstractHudElement;
+import cookiedragon.luchadora.util.Vec2f;
 
 import java.awt.*;
 
@@ -16,6 +17,7 @@ public class WatermarkElement extends AbstractHudElement
 	{
 		super("Watermark", "", Category.UI);
 	}
+	
 	@Override
 	public void render(Vec2f mousePos)
 	{

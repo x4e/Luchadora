@@ -15,14 +15,17 @@ import cookiedragon.luchadora.util.Globals.mc
  * @author cookiedragon234 17/Feb/2020
  */
 object RenderUtils {
+	@JvmStatic
 	fun renderOutline(left: Float, top: Float, right: Float, bottom: Float, colour: Int) {
 		drawRect0(left, top, right, bottom, colour, GL11.GL_LINE_LOOP)
 	}
 	
+	@JvmStatic
 	fun renderRectangle(left: Float, top: Float, right: Float, bottom: Float, colour: Int) {
 		drawRect0(left, top, right, bottom, colour, GL11.GL_QUADS)
 	}
 	
+	@JvmStatic
 	private fun drawRect0(left: Float, top: Float, right: Float, bottom: Float, colour: Int, glMode: Int) {
 		val tessellator = Tessellator.getInstance()
 		val bufferbuilder = tessellator.buffer
@@ -40,6 +43,7 @@ object RenderUtils {
 		GlStateManager.disableBlend()
 	}
 	
+	@JvmStatic
 	fun drawPixel(x: Float, y: Float, colour: Int) {
 		val tessellator = Tessellator.getInstance()
 		val bufferbuilder = tessellator.buffer
@@ -54,6 +58,7 @@ object RenderUtils {
 		GlStateManager.disableBlend()
 	}
 	
+	@JvmStatic
 	fun colour(rgb: Int) {
 		val r = (rgb shr 16 and 255).toFloat() / 255.0f
 		val g = (rgb shr 8 and 255).toFloat() / 255.0f
@@ -62,6 +67,7 @@ object RenderUtils {
 		GlStateManager.color(r, g, b, a)
 	}
 	
+	@JvmStatic
 	fun drawTexturedModalRect(x: Int, y: Int, textureX: Int, textureY: Int, width: Int, height: Int) {
 		val f = 0.00390625f
 		val f1 = 0.00390625f
@@ -75,10 +81,12 @@ object RenderUtils {
 		tessellator.draw()
 	}
 	
+	@JvmStatic
 	fun glColor(color: Color) {
 		GlStateManager.color(color.red / 255.toFloat(), color.green / 255.toFloat(), color.blue / 255.toFloat(), color.alpha / 255.toFloat())
 	}
 	
+	@JvmStatic
 	fun drawSelectionBox(bb: AxisAlignedBB, color: Color) {
 		GlStateManager.enableBlend()
 		GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO)
@@ -94,6 +102,7 @@ object RenderUtils {
 		GlStateManager.disableBlend()
 	}
 	
+	@JvmStatic
 	fun drawTextureAt(x: Int, y: Int, width: Int, height: Int, resourceLocation: ResourceLocation) {
 		mc.textureManager.bindTexture(resourceLocation)
 		GlStateManager.enableBlend()

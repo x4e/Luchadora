@@ -94,8 +94,6 @@ jar {
 }
 
 shadowJar {
-	baseName = "luchadora"
-	version = ""
 	classifier = "shadow"
 }
 
@@ -107,8 +105,6 @@ task clientJar(type: Jar, dependsOn: jar) {
 		include "META-INF/**"
 		include "mcmod.info"
 	}
-	baseName = "luchadora"
-	version = ""
 	classifier = "client"
 }
 
@@ -119,17 +115,16 @@ task dependencyJar(type: Jar, dependsOn: shadowJar) {
 		exclude "mcmod.info"
 		exclude "assets/**"
 	}
-	baseName = "luchadora"
-	version = ""
 	classifier = "dependencies"
 }
 
 task deleteNonUsed(type: Delete, dependsOn: shadowJar) {
+	println("BaseName: $archivesBaseName")
+	println("Version: $version")
 	delete(fileTree("build/libs") {
-		exclude "luchadora-dependencies.jar"
-		exclude "luchadora-client.jar"
+		exclude "$archivesBaseName-$version-dependencies.jar"
+		exclude "$archivesBaseName-$version-client.jar"
 	})
-	System.out.println("Deleting")
 }
 
 build.dependsOn(clientJar, dependencyJar, deleteNonUsed)

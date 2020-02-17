@@ -8,6 +8,8 @@ import cookiedragon.luchadora.managers.ModuleManager;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.EditHudGui;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.GuiModule;
 import cookiedragon.luchadora.util.Globals;
+import cookiedragon.luchadora.util.Key;
+import cookiedragon.luchadora.util.Vec2f;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.input.Mouse;
 
@@ -73,7 +75,7 @@ public class HudManager implements Globals
 	
 	public static boolean keyTyped(char typedChar, int keyCode)
 	{
-		Key key = Key.fromCode(keyCode);
+		Key key = Key.Companion.fromCode(keyCode);
 		for (AbstractHudElement hudElement : hudElements)
 		{
 			if (hudElement.keyTyped(key))

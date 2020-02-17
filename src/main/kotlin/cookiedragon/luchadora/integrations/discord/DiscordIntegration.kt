@@ -13,7 +13,7 @@ import org.json.JSONObject
  * @author cookiedragon234 17/Feb/2020
  */
 
-class DiscordIntegration : Initialisable() {
+object DiscordIntegration : Initialisable() {
 	private val ipcClient: IPCClient = IPCClient(658340490655039537L)
 	
 	init {
