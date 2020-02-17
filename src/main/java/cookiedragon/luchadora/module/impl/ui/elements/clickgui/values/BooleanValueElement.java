@@ -83,7 +83,7 @@ public class BooleanValueElement extends ValueElement<Value<Boolean>>
 		{
 			if (mouseID == 0)
 			{
-				this.value.setValue(!this.value.getValue());
+				this.value.setValue(!this.value.getValue(), false);
 				mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.UI_BUTTON_CLICK, 1.0f));
 				return true;
 			}

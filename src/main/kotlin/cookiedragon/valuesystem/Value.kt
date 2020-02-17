@@ -9,7 +9,7 @@ import java.util.function.BiConsumer
 open class Value<T>(val name: String, defaultVal: T) {
 	var description: String? = null
 	var value = defaultVal
-		set(value) = setValue(value, false)
+		private set
 	protected var callback // called when the value of this value is set using the setValue function
 		: ((T, T) -> Unit)? = null
 	
@@ -21,7 +21,7 @@ open class Value<T>(val name: String, defaultVal: T) {
 		return this
 	}
 	
-	fun setValue(value: T, bypassCallback: Boolean = true) {
+	fun setValue(value: T, bypassCallback: Boolean = false) {
 		val oldVal = this.value
 		this.value = value
 		if (!bypassCallback) callback?.invoke(oldVal, this.value)

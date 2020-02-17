@@ -10,6 +10,7 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent
 import net.minecraftforge.client.event.GuiOpenEvent
 import net.minecraftforge.client.event.RenderWorldLastEvent
 import net.minecraftforge.common.MinecraftForge
+import net.minecraftforge.fml.common.eventhandler.Event
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
 /**
@@ -25,9 +26,7 @@ object ForgeEventListener: Initialisable() {
 	var lastChat: String? = null
 	
 	@SubscribeEvent
-	fun onEvent(event: Any) {
-		println("Forge event $event")
-		
+	fun onEvent(event: Event) {
 		EventDispatcher.dispatch(event)
 	}
 	

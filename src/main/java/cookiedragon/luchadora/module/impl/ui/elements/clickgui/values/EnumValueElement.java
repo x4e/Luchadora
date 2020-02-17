@@ -98,7 +98,7 @@ public class EnumValueElement extends ValueElement<Value<Enum<?>>>
 			else if (newIndex >= size)
 				newIndex = 0;
 			
-			value.setValue(options.get(newIndex));
+			value.setValue(options.get(newIndex), false);
 			
 			return true;
 		}

@@ -31,6 +31,7 @@ public class Luchadora
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
+		HudManager.init();
 		for (Initialisable initialisable : new Initialisable[]{
 			BindManager.INSTANCE,
 			ModuleManager.INSTANCE,
@@ -41,7 +42,6 @@ public class Luchadora
 		}) {
 			initialisable.init();
 		}
-		HudManager.init();
 	}
 	
 	@Mod.EventHandler

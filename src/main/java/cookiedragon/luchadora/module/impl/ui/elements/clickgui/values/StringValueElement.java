@@ -118,7 +118,7 @@ public class StringValueElement extends ValueElement<Value<String>>
 		
 		if (key == Key.KEY_BACK && !Keyboard.isRepeatEvent() && this.value.getValue().length() > 0)
 		{
-			this.value.setValue(this.value.getValue().substring(0, value.getValue().length() - 1));
+			this.value.setValue(this.value.getValue().substring(0, value.getValue().length() - 1), false);
 			return false;
 		}
 		
@@ -138,7 +138,7 @@ public class StringValueElement extends ValueElement<Value<String>>
 		
 		if (this.typing && ChatAllowedCharacters.isAllowedCharacter(keyStr.charAt(0)) && !keyStr.contains("\n"))
 		{
-			this.value.setValue(this.value.getValue() + keyStr);
+			this.value.setValue(this.value.getValue() + keyStr, false);
 			return true;
 		}
 		return false;

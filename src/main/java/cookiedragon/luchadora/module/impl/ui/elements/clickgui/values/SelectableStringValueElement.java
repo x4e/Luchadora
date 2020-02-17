@@ -86,12 +86,12 @@ public class SelectableStringValueElement extends ValueElement<SelectableStringV
 				value.setValue(
 					Objects.requireNonNull(
 						value.getOptions().get(currentIndex + 1)
-					)
+					), false
 				);
 			}
 			catch (Exception e)
 			{
-				value.setValue(value.getOptions().get(0));
+				value.setValue(value.getOptions().get(0), false);
 			}
 			
 			return true;

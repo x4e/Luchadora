@@ -228,7 +228,7 @@ public class ColourValueElement extends ValueElement<Value<Color>>
 	{
 		try
 		{
-			this.value.setValue(getColorAtPixel(x,y));
+			this.value.setValue(getColorAtPixel(x,y), false);
 			return true;
 		}
 		catch (Exception ignored){}

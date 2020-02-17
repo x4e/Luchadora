@@ -51,6 +51,7 @@ object ModuleManager: Initialisable(), Iterable<AbstractModule> {
 			}
 		}
 		
+		println("Dispatching post init")
 		EventDispatcher.dispatch(ModuleInitialisationEvent.Post())
 		
 		println(modules)

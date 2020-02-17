@@ -86,13 +86,13 @@ public abstract class AbstractModule implements ISerializable, Globals
 	
 	public boolean toggle()
 	{
-		getEnabled().setValue(!getEnabled().getValue());
+		getEnabled().setValue(!getEnabled().getValue(), false);
 		return getEnabled().getValue();
 	}
 	
 	public void setEnabled(boolean enabled)
 	{
-		getEnabled().setValue(enabled);
+		getEnabled().setValue(enabled, false);
 	}
 	
 	public Value<Boolean> getEnabled()

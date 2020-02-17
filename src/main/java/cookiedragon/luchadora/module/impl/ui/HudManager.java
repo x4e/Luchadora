@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.input.Mouse;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * @author cookiedragon234 17/Dec/2019
@@ -27,12 +28,15 @@ public class HudManager implements Globals
 	{
 		EventDispatcher.Companion.register(HudManager.class);
 		EventDispatcher.Companion.subscribe(HudManager.class);
+		System.out.println("Registered hud manager");
 	}
 	
 	@Subscriber
 	private static void onModuleInit(ModuleInitialisationEvent.Post event)
 	{
+		System.out.println("Selecting Gui Module");
 		guiModule = ModuleManager.getModule(GuiModule.class);
+		System.out.println(guiModule);
 	}
 	
 	public static AbstractHudElement getMouseOver(Vec2f mousePos)
@@ -58,9 +62,13 @@ public class HudManager implements Globals
 	{
 		if (!(mc.currentScreen instanceof EditHudGui))
 		{
-			Vec2f mousePos = new Vec2f(Mouse.getX(), Mouse.getY(), 1/guiModule.guiScale.getValue().floatValue());
+			Objects.requireNonNull(guiModule);
+			Objects.requireNonNull(guiModule.guiScale);
+			Objects.requireNonNull(guiModule.guiScale.getValue());
+			float scale = guiModule.guiScale.getValue();
+			Vec2f mousePos = new Vec2f(Mouse.getX(), Mouse.getY(), 1/scale);
 			GlStateManager.pushAttrib();
-			GlStateManager.scale(guiModule.guiScale.getValue().floatValue(), guiModule.guiScale.getValue().floatValue(), 1);
+			GlStateManager.scale(scale, scale, 1);
 			for (AbstractHudElement hudElement : hudElements)
 			{
 				hudElement.render(mousePos);

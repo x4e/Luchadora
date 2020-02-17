@@ -103,7 +103,7 @@ public class KeyValueElement extends ValueElement<KeyValue>
 		{
 			if (key != Key.KEY_ESCAPE)
 			{
-				this.value.setValue(key);
+				this.value.setValue(key, false);
 			}
 			this.isListening = false;
 			return true;

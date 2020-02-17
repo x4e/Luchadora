@@ -51,8 +51,8 @@ class MixinEntityRenderer {
 		with(EntityTurnEvent.Pre(playerSP, yaw, pitch)) {
 			EventDispatcher.dispatch(this)
 			if (!isCancelled) {
-				entity.turn(yaw, pitch)
-				EventDispatcher.dispatch(EntityTurnEvent.Post(entity, yaw, pitch))
+				entity.turn(this.yaw, this.pitch)
+				EventDispatcher.dispatch(EntityTurnEvent.Post(entity, this.yaw, this.pitch))
 			}
 		}
 	}
