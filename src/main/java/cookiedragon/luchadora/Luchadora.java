@@ -1,6 +1,5 @@
 package cookiedragon.luchadora;
 
-import cookiedragon.luchadora.integration.discord.DiscordIntegration;
 import cookiedragon.luchadora.managers.*;
 import cookiedragon.luchadora.module.impl.ui.HudManager;
 import cookiedragon.luchadora.util.Initialisable;

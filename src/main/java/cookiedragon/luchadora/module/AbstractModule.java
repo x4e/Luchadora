@@ -2,7 +2,6 @@ package cookiedragon.luchadora.module;
 
 import com.google.gson.JsonObject;
 import cookiedragon.eventsystem.EventDispatcher;
-import cookiedragon.luchadora.managers.ModuleManager;
 import cookiedragon.luchadora.util.Globals;
 import cookiedragon.luchadora.util.ISerializable;
 import cookiedragon.luchadora.util.Key;

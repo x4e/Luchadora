@@ -2,10 +2,8 @@ package cookiedragon.luchadora.module.impl.ui.elements;
 
 import cookiedragon.luchadora.Luchadora;
 import cookiedragon.luchadora.kotlin.ExtensionsKt;
-import cookiedragon.luchadora.module.AbstractModule;
 import cookiedragon.luchadora.module.Category;
 import cookiedragon.luchadora.module.impl.ui.AbstractHudElement;
-import cookiedragon.luchadora.util.Vec2f;
 
 import java.awt.*;
 

@@ -1,9 +1,6 @@
 package cookiedragon.luchadora.module.impl.ui.elements.clickgui;
 
 import cookiedragon.luchadora.util.Globals;
-import cookiedragon.luchadora.util.IRenderable;
-import cookiedragon.luchadora.util.Key;
-import cookiedragon.luchadora.util.Vec2f;
 import cookiedragon.valuesystem.Value;
 
 /**

@@ -1,11 +1,8 @@
 package cookiedragon.luchadora.module.impl.ui.elements;
 
-import cookiedragon.luchadora.module.AbstractModule;
 import cookiedragon.luchadora.module.Category;
 import cookiedragon.luchadora.module.impl.ui.AbstractHudElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.EditHudGui;
-import cookiedragon.luchadora.util.Key;
-import cookiedragon.luchadora.util.Vec2f;
 import net.minecraft.client.gui.GuiTextField;
 import org.lwjgl.input.Keyboard;
 

@@ -1,25 +1,23 @@
-package cookiedragon.luchadora.util;
+package cookiedragon.luchadora.util
 
-import com.google.common.collect.ImmutableSet;
-import org.lwjgl.input.Keyboard;
-
-import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.Set;
+import org.lwjgl.input.Keyboard
+import java.util.*
 
 /**
- * <p>lwjgl keycodes in an enum</p>
  *
- * <p>in case you need to update, take the fields from the {@link org.lwjgl.input.Keyboard} class and use the following regex:</p>
- * <pre>{@code ([a-zA-Z_0-9]+)[ ]{3,}= ([a-zA-Z0-9_]+);[ ]*([\/\* a-zA-Z0-9\=\-\+\.\/\*\,\(\)]+)*}</pre>
- * <p>replace to:</p>
- * <pre>{@code $1\($2\)\,\t\t\t$3}</pre>
- * @see <a href="https://regexr.com/4qa0l">https://regexr.com/4qa0l</a>
+ * lwjgl keycodes in an enum
+ *
+ *
+ * in case you need to update, take the fields from the [org.lwjgl.input.Keyboard] class and use the following regex:
+ * <pre>`([a-zA-Z_0-9]+)[ ]{3,}= ([a-zA-Z0-9_]+);[ ]*([\/\* a-zA-Z0-9\=\-\+\.\/\*\,\(\)]+)*`</pre>
+ *
+ * replace to:
+ * <pre>`$1\($2\)\,\t\t\t$3`</pre>
+ * @see [https://regexr.com/4qa0l](https://regexr.com/4qa0l)
+ *
  * @author cookiedragon234 06/Dec/2019
  */
-@SuppressWarnings({"SpellCheckingInspection", "unused"})
-public enum Key
-{
+enum class Key(val code: Int) {
 	// TODO: Convert comments at end of line to javadocs before the enum declaration
 	KEY_NONE(0x00),
 	
@@ -156,73 +154,49 @@ public enum Key
 	KEY_POWER(0xDE),
 	KEY_SLEEP(0xDF);
 	
-	public final int code;
-	
-	Key(int code)
-	{
-		this.code = code;
-	}
-	
 	/**
 	 * @return whether this key is currently pressed
 	 */
-	public boolean isKeyDown()
-	{
-		return Keyboard.isKeyDown(this.code);
-	}
+	val isKeyDown: Boolean
+		get() = Keyboard.isKeyDown(code)
 	
 	/**
 	 * @return true if the key has changed its state this tick
 	 */
-	public boolean hasChangedState()
-	{
-		return this.code != 0 && Keyboard.getEventKey() == this.code;
-	}
+	val hasChangedState: Boolean
+		get() = (code != 0 && Keyboard.getEventKey() == code)
 	
-	@Override
-	public String toString()
-	{
-		String name = this.name();
-		if (name.startsWith("KEY_"))
-		{
-			name = name.substring("KEY_".length());
+	override fun toString(): String {
+		return with(this.name) {
+			if (startsWith("KEY_"))
+				name.substring("KEY_".length)
+			else name
 		}
-		return name;
 	}
 	
 	/**
 	 * @return the current state of the key, but will return null if it has not changed this tick
 	 */
-	@Nullable
-	public Boolean hasBeenPressed()
-	{
-		if (hasChangedState())
-		{
-			return Keyboard.getEventKeyState();
+	val hasBeenPressed: Boolean
+		get() = Keyboard.getEventKeyState() ?: false
+	
+	companion object {
+		fun fromName(keyName: String): Key {
+			for (value in values()) {
+				if (value.name == keyName) {
+					return value
+				}
+			}
+			throw RuntimeException("Couldn't find key with name $keyName")
 		}
-		return null;
-	}
-	
-	
-	
-	
-	public static Key fromName(String keyName)
-	{
-		return
-			Arrays.stream(Key.class.getEnumConstants())
-				.filter(key -> key.name().equals(keyName))
-				.findFirst()
-				.orElseThrow(() ->
-					new RuntimeException(String.format("Couldn't find key with name '%s'", keyName))
-				);
-	}
-	
-	public static Key fromCode(int keyCode)
-	{
-		return
-			Arrays.stream(Key.class.getEnumConstants())
-				.filter(key -> key.code == keyCode)
-				.findFirst()
-				.orElse(Key.KEY_NONE);
+		
+		fun fromCode(keyCode: Int): Key {
+			for (value in values()) {
+				if (value.code == keyCode) {
+					return value
+				}
+			}
+			throw RuntimeException("Couldn't find key with Code $keyCode")
+		}
 	}
 }

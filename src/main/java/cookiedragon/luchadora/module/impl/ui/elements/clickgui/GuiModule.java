@@ -2,7 +2,6 @@ package cookiedragon.luchadora.module.impl.ui.elements.clickgui;
 
 import cookiedragon.luchadora.module.AbstractModule;
 import cookiedragon.luchadora.module.Category;
-import cookiedragon.luchadora.util.Key;
 import cookiedragon.valuesystem.NumberValue;
 import cookiedragon.valuesystem.Value;
 

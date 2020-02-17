@@ -3,15 +3,11 @@ package cookiedragon.luchadora.module.impl.ui.elements.clickgui.values;
 import cookiedragon.luchadora.kotlin.ExtensionsKt;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ModuleElement;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.ValueElement;
-import cookiedragon.luchadora.util.RenderUtils;
-import cookiedragon.luchadora.util.Vec2f;
 import cookiedragon.valuesystem.Value;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author cookiedragon234 22/Dec/2019

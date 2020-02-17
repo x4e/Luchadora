@@ -11,6 +11,6 @@ class KeyValue(name: String, defaultVal: Key): Value<Key>(name, defaultVal) {
 	constructor(name: String, defaultVal: Int): this(name, Key.fromCode(defaultVal))
 	
 	fun isKeyDown() = this.value.isKeyDown
-	fun hasChangedState() = this.value.hasChangedState()
-	fun hasBeenPressed() = this.value.hasBeenPressed()
+	fun hasChangedState() = this.value.hasChangedState
+	fun hasBeenPressed() = this.value.hasBeenPressed
 }

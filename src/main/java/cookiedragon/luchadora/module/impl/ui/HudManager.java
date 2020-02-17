@@ -8,8 +8,6 @@ import cookiedragon.luchadora.managers.ModuleManager;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.EditHudGui;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.GuiModule;
 import cookiedragon.luchadora.util.Globals;
-import cookiedragon.luchadora.util.Key;
-import cookiedragon.luchadora.util.Vec2f;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.input.Mouse;
 
