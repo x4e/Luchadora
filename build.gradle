@@ -99,7 +99,7 @@ shadowJar {
 
 task clientJar(type: Jar, dependsOn: jar) {
 	from(zipTree(jar.archivePath)) {
-		include "cookiedragon/luchadora/**"
+		include "cookiedragon/**"
 		include "assets/**"
 		include "*.json"
 		include "META-INF/**"
