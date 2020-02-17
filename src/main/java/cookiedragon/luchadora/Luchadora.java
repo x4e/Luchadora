@@ -31,12 +31,16 @@ public class Luchadora
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		for (Initialisable initialisable : new Initialisable[]{BindManager.INSTANCE, ModuleManager.INSTANCE, GenericEventListener.INSTANCE}) {
+		for (Initialisable initialisable : new Initialisable[]{
+			BindManager.INSTANCE,
+			ModuleManager.INSTANCE,
+			GenericEventListener.INSTANCE,
+			ForgeEventListener.INSTANCE,
+			PerspectiveManager.INSTANCE
+		}) {
 			initialisable.init();
 		}
 		HudManager.init();
-		ForgeEventListener.init();
-		PerspectiveManager.init();
 		new DiscordIntegration().start();
 	}
 	

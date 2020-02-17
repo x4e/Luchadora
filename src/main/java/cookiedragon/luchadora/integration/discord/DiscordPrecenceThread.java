@@ -4,7 +4,6 @@ import com.jagrosh.discordipc.IPCClient;
 import com.jagrosh.discordipc.entities.RichPresence;
 import cookiedragon.luchadora.managers.ForgeEventListener;
 import cookiedragon.luchadora.util.Globals;
-import cookiedragon.luchadora.wrapper.client.ServerDataWrapper;
 import net.minecraft.client.multiplayer.ServerData;
 
 /**
@@ -72,7 +71,7 @@ public class DiscordPrecenceThread implements Runnable, Globals
 		
 		if (state.contains("2b2t.org"))
 		{
-			String lastChat = ForgeEventListener.lastChat;
+			String lastChat = ForgeEventListener.INSTANCE.getLastChat();
 			
 			if (lastChat != null && lastChat.startsWith("Position in queue: "))
 			{
