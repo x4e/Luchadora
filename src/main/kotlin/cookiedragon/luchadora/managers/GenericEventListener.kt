@@ -17,6 +17,6 @@ object GenericEventListener: Initialisable() {
 	
 	@Subscriber
 	private fun onSetDisplayTitle(event: SetDisplayTitleEvent) {
-		event.newTitle = Luchadora.getBrand()
+		event.newTitle = Luchadora.brand
 	}
 }

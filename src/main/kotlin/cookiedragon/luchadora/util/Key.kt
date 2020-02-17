@@ -178,7 +178,7 @@ enum class Key(val code: Int) {
 	 * @return the current state of the key, but will return null if it has not changed this tick
 	 */
 	val hasBeenPressed: Boolean
-		get() = Keyboard.getEventKeyState() ?: false
+		get() = Keyboard.getEventKeyState()
 	
 	companion object {
 		fun fromName(keyName: String): Key {

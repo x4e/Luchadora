@@ -14,7 +14,7 @@ buildscript {
 	dependencies {
 		classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
 		classpath "org.spongepowered:mixingradle:0.6-SNAPSHOT"
-		classpath "com.github.jengelman.gradle.plugins:shadow:1.2.3"
+		classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.4'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 	}
 }
@@ -83,23 +83,34 @@ processResources {
 jar {
 	manifest {
 		attributes(
-				"MixinConfigs": "mixins.luchadora.json",
-				"TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
-				"TweakOrder": 0,
-				"FMLCorePluginContainsFMLMod": "true",
-				"FMLCorePlugin": "cookiedragon.luchadora.mixin.CoreMod",
-				"ForceLoadAsMod": "true",
+			"Main-Class": "cookiedragon.luchadora.Main",
+			"MixinConfigs": "mixins.luchadora.json",
+			"TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
+			"TweakOrder": 0,
+			"FMLCorePluginContainsFMLMod": "true",
+			"FMLCorePlugin": "cookiedragon.luchadora.mixin.CoreMod",
+			"ForceLoadAsMod": "true",
 		)
 	}
 }
 
 shadowJar {
 	classifier = "shadow"
+	dependencies {
+		include(dependency("com.mojang:brigadier"))
+		include(dependency("org.spongepowered:mixin"))
+		include(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
+		include(dependency("com.github.cookiedragon234:EventDispatcher"))
+	}
+	//minimize {
+	//	exclude(dependency("org.spongepowered:mixin"))
+	//}
 }
 
 task clientJar(type: Jar, dependsOn: jar) {
+	manifest = project.tasks.jar.manifest
 	from(zipTree(jar.archivePath)) {
-		include "cookiedragon/**"
+		include "cookiedragon/luchadora/**"
 		include "assets/**"
 		include "*.json"
 		include "META-INF/**"
@@ -110,7 +121,7 @@ task clientJar(type: Jar, dependsOn: jar) {
 
 task dependencyJar(type: Jar, dependsOn: shadowJar) {
 	from(zipTree(shadowJar.archivePath)) {
-		exclude "cookiedragon/**"
+		exclude "cookiedragon/luchadora/**"
 		exclude "mixins.luchadora.json"
 		exclude "mcmod.info"
 		exclude "assets/**"
@@ -119,12 +130,10 @@ task dependencyJar(type: Jar, dependsOn: shadowJar) {
 }
 
 task deleteNonUsed(type: Delete, dependsOn: shadowJar) {
-	println("BaseName: $archivesBaseName")
-	println("Version: $version")
-	delete(fileTree("build/libs") {
-		exclude "$archivesBaseName-$version-dependencies.jar"
-		exclude "$archivesBaseName-$version-client.jar"
-	})
+	//delete(fileTree("build/libs") {
+	//	exclude "$archivesBaseName-$version-dependencies.jar"
+	//	exclude "$archivesBaseName-$version-client.jar"
+	//})
 }
 
 build.dependsOn(clientJar, dependencyJar, deleteNonUsed)

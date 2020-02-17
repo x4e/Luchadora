@@ -69,8 +69,6 @@ object RenderUtils {
 	
 	@JvmStatic
 	fun drawTexturedModalRect(x: Int, y: Int, textureX: Int, textureY: Int, width: Int, height: Int) {
-		val f = 0.00390625f
-		val f1 = 0.00390625f
 		val tessellator = Tessellator.getInstance()
 		val bufferbuilder = tessellator.buffer
 		bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX)
