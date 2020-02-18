@@ -1,4 +1,4 @@
-package cookiedragon.luchadora.module.impl.player
+package cookiedragon.luchadora.module.player
 
 import cookiedragon.luchadora.module.AbstractModule
 import cookiedragon.luchadora.module.Category

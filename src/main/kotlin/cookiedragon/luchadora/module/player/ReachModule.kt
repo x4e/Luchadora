@@ -1,4 +1,4 @@
-package cookiedragon.luchadora.module.impl.player
+package cookiedragon.luchadora.module.player
 
 import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.event.entity.EntityReachEvent

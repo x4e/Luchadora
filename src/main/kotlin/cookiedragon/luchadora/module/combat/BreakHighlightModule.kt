@@ -1,4 +1,4 @@
-package cookiedragon.luchadora.module.impl.combat
+package cookiedragon.luchadora.module.combat
 
 import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.event.client.Render3dEvent

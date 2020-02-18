@@ -2,6 +2,7 @@ package cookiedragon.luchadora.module.impl.ui.elements.clickgui;
 
 import cookiedragon.luchadora.module.AbstractModule;
 import cookiedragon.luchadora.module.Category;
+import cookiedragon.luchadora.module.Declaration;
 import cookiedragon.luchadora.util.Key;
 import cookiedragon.valuesystem.NumberValue;
 import cookiedragon.valuesystem.Value;
@@ -11,7 +12,7 @@ import java.awt.*;
 /**
  * @author cookiedragon234 15/Dec/2019
  */
-@AbstractModule.Declaration(defaultBind = Key.KEY_P)
+@Declaration(defaultBind = Key.KEY_P)
 public class GuiModule extends AbstractModule
 {
 	public GuiModule()
@@ -30,13 +31,13 @@ public class GuiModule extends AbstractModule
 	protected void onEnabled()
 	{
 		System.out.println("On gui Enabled");
-		mc.displayGuiScreen(new EditHudGui(() -> this.enabled.setValue(false, true)));
+		getMc().displayGuiScreen(new EditHudGui(() -> this.enabled.setValue(false, true)));
 	}
 	
 	@Override
 	protected void onDisabled()
 	{
 		System.out.println("On gui Disabled");
-		mc.displayGuiScreen(null);
+		getMc().displayGuiScreen(null);
 	}
 }

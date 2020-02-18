@@ -8,6 +8,7 @@ import cookiedragon.luchadora.util.Globals
 import cookiedragon.luchadora.util.Globals.mc
 import cookiedragon.luchadora.util.Initialisable
 import org.json.JSONObject
+import kotlin.concurrent.thread
 
 /**
  * @author cookiedragon234 17/Feb/2020
@@ -15,13 +16,26 @@ import org.json.JSONObject
 
 object DiscordIntegration : Initialisable() {
 	private val ipcClient: IPCClient = IPCClient(658340490655039537L)
+	private var richPresence: RichPresence? = null
 	
 	init {
 		ipcClient.setListener(object : IPCListener {
 			override fun onReady(client: IPCClient) {
 				println("Connected to discord " + client.discordBuild)
-				DiscordPresenceThread.start(client)
-				println("Started Discord RPC")
+				while (true) {
+					try {
+						richPresence = RichPresence.Builder()
+							.setState(getState())
+							.setDetails(getDetails())
+							.setLargeImage("luchadora", "Luchadora")
+							.build()
+					} catch(e: Exception) {
+						e.printStackTrace()
+					} finally {
+						if (richPresence != null) client.sendRichPresence(richPresence)
+					}
+					try { Thread.sleep(3500) } catch (ignored: Exception) {}
+				}
 			}
 			
 			override fun onClose(client: IPCClient, json: JSONObject) {
@@ -33,30 +47,12 @@ object DiscordIntegration : Initialisable() {
 			}
 		})
 		try {
-			ipcClient.connect()
+			thread(true, isDaemon = true) {
+				ipcClient.connect()
+			}
+			println("Started Discord RPC")
 		} catch (e: Exception) {
 			e.printStackTrace()
-		}
-	}
-}
-
-
-class DiscordPresenceThread(private val client: IPCClient) : Runnable, Globals {
-	private var richPresence: RichPresence? = null
-	override fun run() {
-		while (true) {
-			try {
-				richPresence = RichPresence.Builder()
-						.setState(getState())
-						.setDetails(getDetails())
-						.setLargeImage("luchadora", "Luchadora")
-						.build()
-			} catch(e: Exception) {
-				e.printStackTrace()
-			} finally {
-				if (richPresence != null) client.sendRichPresence(richPresence)
-			}
-			try { Thread.sleep(3500) } catch (ignored: Exception) {}
 		}
 	}
 	
@@ -82,12 +78,5 @@ class DiscordPresenceThread(private val client: IPCClient) : Runnable, Globals {
 			else -> "Multiplayer"
 		}
 	}
-	
-	companion object {
-		fun start(client: IPCClient) {
-			Thread(DiscordPresenceThread(client)).start()
-		}
-	}
-	
 }
 

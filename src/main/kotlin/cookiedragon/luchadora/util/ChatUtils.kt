@@ -7,7 +7,7 @@ import net.minecraft.util.text.TextComponentString
  * @author cookiedragon234 17/Feb/2020
  */
 object ChatUtils {
-	fun sendMessage(message: String) {
+	fun printMessage(message: String) {
 		mc.player.sendMessage(TextComponentString(message))
 	}
 }

@@ -23,12 +23,13 @@ class Luchadora {
 	fun init(event: FMLInitializationEvent) {
 		HudManager.init()
 		for (toInit in arrayOf(
-				BindManager,
-				ModuleManager,
-				GenericEventListener,
-				ForgeEventListener,
-				PerspectiveManager,
-				DiscordIntegration
+			BindManager,
+			ModuleManager,
+			GenericEventListener,
+			ForgeEventListener,
+			PerspectiveManager,
+			DiscordIntegration,
+			CommandManager
 		)) { toInit.init() }
 	}
 	

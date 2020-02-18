@@ -1,4 +1,4 @@
-package cookiedragon.luchadora.module.impl.world
+package cookiedragon.luchadora.module.world
 
 import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.event.block.CanLiquidCollideEvent

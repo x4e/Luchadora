@@ -102,9 +102,9 @@ shadowJar {
 		include(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
 		include(dependency("com.github.cookiedragon234:EventDispatcher"))
 	}
-	//minimize {
-	//	exclude(dependency("org.spongepowered:mixin"))
-	//}
+	minimize {
+		exclude(dependency("org.spongepowered:mixin"))
+	}
 }
 
 task clientJar(type: Jar, dependsOn: jar) {

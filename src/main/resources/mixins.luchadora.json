@@ -10,16 +10,18 @@
 		"entity.MixinEntityPlayer",
 		"entity.MixinEntityPlayerSP",
 		"entity.MixinEntityRenderer",
+		"entity.MixinTileEntitySkull",
 		"entity.MixinRenderLivingBase",
 		"entity.MixinPlayerControllerMP",
 		
 		"netty.MixinNetworkManager",
+		"netty.MixinNetHandlerPlayClient",
 		
-		"misc.MixinChatAllowedCharacters",
 		"misc.MixinTimer",
+		"misc.MixinChatAllowedCharacters",
 		
-		"world.IMixinRenderGlobal",
 		"world.MixinWorldClient",
+		"world.IMixinRenderGlobal",
 		
 		"lwjgl.MixinDisplay",
 		

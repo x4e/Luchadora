@@ -1,4 +1,4 @@
-package cookiedragon.luchadora.module.impl.movement
+package cookiedragon.luchadora.module.movement
 
 import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.event.entity.SlowEntityUsingEvent

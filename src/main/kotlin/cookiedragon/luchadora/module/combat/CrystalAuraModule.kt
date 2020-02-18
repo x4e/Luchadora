@@ -1,4 +1,4 @@
-package cookiedragon.luchadora.module.impl.combat
+package cookiedragon.luchadora.module.combat
 
 import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.event.entity.UpdateWalkingPlayerEvent
@@ -13,7 +13,6 @@ import net.minecraft.init.Items
 import net.minecraft.network.play.client.CPacketHeldItemChange
 import net.minecraft.util.math.AxisAlignedBB
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.Vec3d
 
 /**
  * @author cookiedragon234 10/Jan/2020

@@ -4,6 +4,7 @@ import cookiedragon.luchadora.module.AbstractModule;
 import cookiedragon.luchadora.module.Category;
 import cookiedragon.luchadora.module.impl.ui.elements.clickgui.EditHudGui;
 import cookiedragon.luchadora.util.*;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.Display;
 
 import java.awt.*;
@@ -36,7 +37,7 @@ public abstract class AbstractHudElement extends AbstractModule implements IRend
 	{
 		forceInView();
 		
-		if (shouldRender() && mc.currentScreen instanceof EditHudGui)
+		if (shouldRender() && getMc().currentScreen instanceof EditHudGui)
 		{
 			if (HudManager.getMouseOver(mousePos) == this || dragging)
 			{
@@ -111,7 +112,7 @@ public abstract class AbstractHudElement extends AbstractModule implements IRend
 	
 	public boolean shouldRender()
 	{
-		return getEnabled().getValue();
+		return isEnabled();
 	}
 	
 	protected void forceInView()

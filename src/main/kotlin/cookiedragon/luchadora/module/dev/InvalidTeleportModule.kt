@@ -1,4 +1,4 @@
-package cookiedragon.luchadora.module.impl.dev
+package cookiedragon.luchadora.module.dev
 
 import cookiedragon.luchadora.module.AbstractModule
 import cookiedragon.luchadora.module.Category
@@ -30,9 +30,9 @@ class InvalidTeleportModule : AbstractModule("Invalid Teleport", "Sends invalid 
 			println(get(Launch.classLoader))
 		}
 		
-		isEnabled = false
+		setEnabled(false)
 		if (mc.isSingleplayer) {
-			ChatUtils.sendMessage("Cant use in SP")
+			ChatUtils.printMessage("Cant use in SP")
 			return
 		}
 		
@@ -46,6 +46,6 @@ class InvalidTeleportModule : AbstractModule("Invalid Teleport", "Sends invalid 
 			else					-> throw IllegalStateException()
 		}
 		mc.connection!!.sendPacket(CPacketPlayer.Position(pos, pos, pos, mc.player.onGround))
-		ChatUtils.sendMessage("Sent Position $pos")
+		ChatUtils.printMessage("Sent Position $pos")
 	}
 }

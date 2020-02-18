@@ -7,6 +7,7 @@ import cookiedragon.luchadora.kotlin.ExtensionsKt;
 import cookiedragon.luchadora.managers.ModuleManager;
 import cookiedragon.luchadora.module.AbstractModule;
 import cookiedragon.luchadora.module.Category;
+import cookiedragon.luchadora.module.Declaration;
 import cookiedragon.luchadora.module.impl.ui.AbstractHudElement;
 import cookiedragon.luchadora.util.Key;
 import cookiedragon.luchadora.util.RenderUtils;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 /**
  * @author cookiedragon234 21/Dec/2019
  */
-@AbstractModule.Declaration(defaultOn = true)
+@Declaration(defaultOn = true)
 public class CategoryElement extends AbstractHudElement
 {
 	public final GuiModule guiModule;
@@ -35,8 +36,7 @@ public class CategoryElement extends AbstractHudElement
 	
 	public CategoryElement(Category category, GuiModule guiModule)
 	{
-		super("Category", "", Category.UI);
-		setName(category.displayName);
+		super(category.displayName, "", Category.UI);
 		this.category = category;
 		this.guiModule = guiModule;
 		
@@ -88,7 +88,7 @@ public class CategoryElement extends AbstractHudElement
 		
 		titleSize = new Vec2f(
 			100,
-			mc.fontRenderer.FONT_HEIGHT + 3
+			super.mc.fontRenderer.FONT_HEIGHT + 3
 		);
 		
 		draggableSize = titleSize;
@@ -199,6 +199,6 @@ public class CategoryElement extends AbstractHudElement
 	@Override
 	public boolean shouldRender()
 	{
-		return mc.currentScreen instanceof EditHudGui && (this.getEnabled().getValue() || this.getName().equals(this.category.displayName));
+		return mc.currentScreen instanceof EditHudGui && (this.isEnabled() || this.getName().equals(this.category.displayName));
 	}
 }

@@ -1,4 +1,4 @@
-package cookiedragon.luchadora.module.impl.render
+package cookiedragon.luchadora.module.render
 
 import cookiedragon.eventsystem.Subscriber
 import cookiedragon.luchadora.event.entity.RenderEntityEvent

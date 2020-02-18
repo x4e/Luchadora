@@ -43,7 +43,7 @@ object ModuleManager: Initialisable(), Iterable<AbstractModule> {
 			}
 		}
 		
-		with(ModuleManager.getModule(GuiModule::class.java)) {
+		with(getModule(GuiModule::class.java) as GuiModule) {
 			for (category in Category::class.java.enumConstants) {
 				CategoryElement(category, this).also {
 					modules[it] = it.values
