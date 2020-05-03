@@ -1,5 +1,7 @@
 # Luchadora
 
+**unmaintained**, if you need a better alternative check out [Raion](https://raionclient.com/)
+
 A Minecraft player utility modification for forge 1.12.2.
 
 I wrote this in java, then converted it to kotlin. The conversion process was the extent of my kotlin "learning" so please excuse the kotlin which probably isnt the best.
