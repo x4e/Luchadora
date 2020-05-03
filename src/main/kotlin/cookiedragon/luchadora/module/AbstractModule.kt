@@ -7,6 +7,7 @@ import cookiedragon.luchadora.util.Key
 import cookiedragon.valuesystem.KeyValue
 import cookiedragon.valuesystem.Value
 import net.minecraft.client.Minecraft
+import kotlin.reflect.KProperty
 
 /**
  * @author cookiedragon234 17/Feb/2020
@@ -16,7 +17,6 @@ abstract class AbstractModule(
 		val description: String,
 		val category: Category
 ) : Initialisable() {
-	@JvmField
 	val enabled = Value("Enabled", false)
 	val visible = Value("Visible", true)
 	val keyBind: Value<Key> = KeyValue("Keybind", Key.KEY_NONE)

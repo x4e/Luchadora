@@ -1,6 +1,7 @@
 package cookiedragon.luchadora.util;
 
 import java.awt.*;
+import java.util.HashMap;
 
 /**
  * @author cookiedragon234 05/Jan/2020

@@ -2,7 +2,7 @@
 	"required": true,
 	"compatibilityLevel": "JAVA_8",
 	"package": "cookiedragon.luchadora.mixin.mixins",
-	"refmap": "mixins.invicta.refmap.json",
+	"refmap": "mixins.luchadora.refmap.json",
 	"mixins": [
 		"MixinMinecraft",
 		

@@ -2,13 +2,13 @@ package cookiedragon.luchadora
 
 import cookiedragon.luchadora.integrations.discord.DiscordIntegration
 import cookiedragon.luchadora.managers.*
+import cookiedragon.luchadora.mixin.mixins.entity.MixinTileEntitySkull
+import cookiedragon.luchadora.mixin.mixins.netty.MixinNetHandlerPlayClient
 import cookiedragon.luchadora.module.impl.ui.HudManager
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
-import java.awt.Frame
-import javax.swing.JOptionPane
 
 /**
  * @author cookiedragon234 17/Feb/2020
@@ -31,6 +31,9 @@ class Luchadora {
 			DiscordIntegration,
 			CommandManager
 		)) { toInit.init() }
+		
+		println(MixinNetHandlerPlayClient::class)
+		println(MixinTileEntitySkull::class)
 	}
 	
 	@Mod.EventHandler

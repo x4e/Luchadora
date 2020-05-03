@@ -31,7 +31,7 @@ public class GuiModule extends AbstractModule
 	protected void onEnabled()
 	{
 		System.out.println("On gui Enabled");
-		getMc().displayGuiScreen(new EditHudGui(() -> this.enabled.setValue(false, true)));
+		getMc().displayGuiScreen(new EditHudGui(() -> this.getEnabled().setValue(false, true)));
 	}
 	
 	@Override

@@ -1,7 +1,9 @@
 package cookiedragon.valuesystem
 
+import cookiedragon.luchadora.module.AbstractModule
 import cookiedragon.luchadora.util.ISerializable
 import java.util.function.BiConsumer
+import kotlin.reflect.KProperty
 
 /**
  * @author cookiedragon234 15/Feb/2020

@@ -12,11 +12,8 @@ import cookiedragon.luchadora.mixin.mixins.entity.MixinTileEntitySkull
 import cookiedragon.luchadora.mixin.mixins.netty.MixinNetHandlerPlayClient
 import cookiedragon.luchadora.util.ChatUtils
 import net.minecraft.client.entity.EntityOtherPlayerMP
-import net.minecraft.client.network.NetHandlerPlayClient
 import net.minecraft.client.network.NetworkPlayerInfo
 import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.server.management.PlayerProfileCache
-import net.minecraft.tileentity.TileEntitySkull
 import net.minecraft.world.World
 import java.util.*
 import kotlin.collections.HashMap
@@ -80,12 +77,12 @@ class FakePlayerCommand: AbstractCommand() {
 					isAccessible = true
 					get(mc.connection!!) as HashMap<UUID, NetworkPlayerInfo>
 				}*/
-				val map = (mc.connection as MixinNetHandlerPlayClient).playerInfoMap
+				val map = (mc.connection as MixinNetHandlerPlayClient).playerInfoHashMap
 						as HashMap<UUID, NetworkPlayerInfo>
 				map[profile.id] = networkplayerinfo
 			}
 			
-			TileEntitySkull.updateGameProfile(profile)
+			//TileEntitySkull.updateGameProfile(profile)
 			
 			val entity = FakePlayer(mc.world, profile)
 			entity.copyLocationAndAnglesFrom(mc.player)

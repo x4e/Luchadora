@@ -38,7 +38,7 @@ minecraft {
 
 mixin {
 	defaultObfuscationEnv searge
-	add sourceSets.main, "mixin.luchadora.refmap.json"
+	add sourceSets.main, "mixins.luchadora.refmap.json"
 }
 
 repositories {
@@ -72,6 +72,7 @@ processResources {
 
 	from(sourceSets.main.resources.srcDirs) {
 		include "mcmod.info"
+
 		expand "version": project.version, "mcversion": project.minecraft.version
 	}
 
@@ -102,11 +103,12 @@ shadowJar {
 		include(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
 		include(dependency("com.github.cookiedragon234:EventDispatcher"))
 	}
-	minimize {
-		exclude(dependency("org.spongepowered:mixin"))
-	}
+	exclude "dummyThing"
+	//minimize {
+	//	exclude(dependency("org.spongepowered:mixin"))
+	//}
 }
-
+/*
 task clientJar(type: Jar, dependsOn: jar) {
 	manifest = project.tasks.jar.manifest
 	from(zipTree(jar.archivePath)) {
@@ -136,4 +138,6 @@ task deleteNonUsed(type: Delete, dependsOn: shadowJar) {
 	//})
 }
 
-build.dependsOn(clientJar, dependencyJar, deleteNonUsed)
+build.dependsOn(clientJar, dependencyJar, deleteNonUsed)*/
+
+build.dependsOn(shadowJar)
