@@ -63,7 +63,7 @@ dependencies {
 		exclude module: "commons-io"
 	}
 	compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-	compile "com.github.cookiedragon234:EventDispatcher:master-SNAPSHOT"
+	compile "com.github.DarkiBoi:EventDispatcher:v1.1"
 }
 
 processResources {
@@ -101,7 +101,7 @@ shadowJar {
 		include(dependency("com.mojang:brigadier"))
 		include(dependency("org.spongepowered:mixin"))
 		include(dependency("org.jetbrains.kotlin:kotlin-stdlib"))
-		include(dependency("com.github.cookiedragon234:EventDispatcher"))
+		include(dependency("com.github.DarkiBoi:EventDispatcher"))
 	}
 	exclude "dummyThing"
 	//minimize {
